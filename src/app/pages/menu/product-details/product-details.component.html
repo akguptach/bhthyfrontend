@@ -1,0 +1,40 @@
+   <!-- menu details -->
+   <div class="menu-details segments-page" *ngIf="productDetails$ | async as productDetails">
+     <div class="container">
+       <div class="col s12">
+         <div class="content">
+           <img src="{{productDetails.productPicture}}" style="width: 100%; height: 100%;" alt="menu">
+         </div>
+       </div>
+       <div class="content-desc">
+
+         <div class="row"></div>
+         <h5 style="font-size: 25px; font-weight: bold;">Product Sizes</h5> <br>
+         <button class="button" *ngFor="let productSize of productDetails.productSizes">
+           {{productSize.nameAr}} {{productSize.price}}</button>
+
+         <!--
+         <button class="button">Medium Size $23</button>
+
+
+         <button class="button">Large Size $23</button> -->
+
+
+       </div>
+       <div class="content-desc">
+
+         <div class="row"></div>
+         <h5 style="font-size: 25px; font-weight: bold;">Add ons</h5> <br>
+         <button class="button" *ngFor="let productAddonsOn of productDetails.productAddonsOn">
+           {{productAddonsOn.nameAr}} {{productAddonsOn.price}} </button>
+
+         <!--
+         <button class="button">Fries $23</button>
+
+
+         <button class="button">Buns $23</button> -->
+
+       </div>
+     </div>
+   </div>
+   <!-- end menu details -->

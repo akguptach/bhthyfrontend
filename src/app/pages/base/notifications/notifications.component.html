@@ -1,0 +1,23 @@
+<section class="section-50">
+  <div class="container">
+    <h3 class="m-b-50 heading-line" *ngIf="!customFunctions.IsRTL()">{{'BASE.NOTIFICATION' | translate}} <i class="fa fa-bell text-muted"></i></h3>
+	<h3 class="m-b-50 heading-line-ar" *ngIf="customFunctions.IsRTL()" style="text-align: right;"><i class="fa fa-bell text-muted"></i>{{'BASE.NOTIFICATION' | translate}} </h3>
+    <div class="notification-ui_dd-content">
+      <div class="notification-list notification-list--read" *ngFor="let notification of notifications$ | async"
+        [routerLink]="getNotificationUrl(notification)">
+        <div class="notification-list_content">
+          <div class="notification-list_img"> <img src="{{notification.senderImage}}" alt="user"> </div>
+          <div class="notification-list_detail">
+            <p><b>{{notification.senderName}}</b> : {{notification.subject}}</p>
+            <p class="text-muted">{{notification.message}}.</p>
+            <p class="text-muted"><small>{{notification.createdAt | amTimeAgo}}</small></p>
+          </div>
+        </div>
+        <!-- <div class="notification-list_feature-img"> <img src="images/features/random1.jpg" alt="Feature image"> </div> -->
+      </div>
+
+    </div>
+    <div class="text-center" style="display:none;"> <a class="btn btn-success" style="color:#fff;">{{'BASE.MORE' | translate}}</a> </div>
+  </div>
+</section>
+<app-footer></app-footer>

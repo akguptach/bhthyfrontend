@@ -1,0 +1,57 @@
+<!-- footer -->
+<footer>
+
+<div *ngIf="authService.isLoggedIn()" class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12" id="mobile-footer">
+  <div class="row">
+    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3 clm">
+      <a class="nav-link" [routerLink]="['/home']"><img src="assets/images/home.png" class="logoo"></a>
+     </div>
+    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3 clm">
+      <a class="nav-link" [routerLink]="['/projects/dashboard']"><img src="assets/images/dshbrd.png" class="logoo"></a>
+    </div>
+    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3 clm">
+      <a class="nav-link" [routerLink]="['/account/profile']"><img src="assets/images/prfl.png" class="logoo"></a>
+    </div>
+    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3 clm">
+      <a class="nav-link" [routerLink]="'/notifications'"><img src="assets/images/bell.png" class="logoo"></a>
+   </div>  
+ </div>
+</div>
+
+<div *ngIf="!authService.isLoggedIn()" class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12" id="mobile-footer">
+  <div class="row">
+    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 clm" style="background-color: #9cc33b;">
+      <a style="color: #fff; font-size: 15px; font-weight: 600;" class="nav-link" [routerLink]="['/account/login']">
+        <img src="assets/images/lnr.png" class="logoo">
+        {{'NAV.LOGIN' | translate}} / {{'NAV.REGISTER' | translate}}</a>
+     </div>
+    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 clm" style="background-color: #138d9a;">
+      <a style="color: #fff; font-size: 15px; font-weight: 600;" class="nav-link" [routerLink]="['/projects/addProject']">
+        <img src="assets/images/post.png" class="logoo">
+        {{'NAV.POST_PROJECT' | translate}}</a>
+    </div>  
+ </div>
+</div>
+
+
+  <section class="footer-bottom">
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+          <p *ngIf="!customFunction.IsRTL()" class="copyright-text">{{'BASE.COPY_RIGHT' | translate}}.</p>
+          <p *ngIf="customFunction.IsRTL()" class="copyright-text" style="text-align: right;">{{'BASE.COPY_RIGHT' | translate}}.</p>
+          
+        </div>
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+          <div class="footer-icon">
+            <a href="https://www.instagram.com/bhthy_platform/?igshid=YmMyMTA2M2Y%3D" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://twitter.com/bhthy_platform?s=21&t=Rl-bwwewWD8bE_AOMD9www" target="_blank"><i class="fab fa-twitter"></i></a>
+            <! -- update linkdin url-->
+            <a href="https://www.linkedin.com/company/bhthy-platform/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+          
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</footer>

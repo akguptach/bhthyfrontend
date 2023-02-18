@@ -1,0 +1,187 @@
+<main>
+  <!-- inner banner -->
+  <section class="inner-bg">
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-6 col-lg-6 col-md-6 col-6 full">
+          <div class="inner-title">
+            <h1 *ngIf="!customFunction.IsRTL()">
+              <img src="assets/images/icon/support.png" alt="" class="img-fluid icon-img" style="max-width: 12%;">
+
+              Get in Touch</h1>
+
+              <h1 *ngIf="customFunction.IsRTL()" style="text-align: right;">
+                <img src="assets/images/icon/support.png" alt="" class="img-fluid icon-img" style="max-width: 12%;">
+                كن على تواصل    </h1>
+
+          </div>
+        </div>
+
+        <div class="col-xl-6 col-lg-6 col-md-6 col-6">
+        <div *ngIf="!customFunction.IsRTL()" class="letter-image">
+          <div class="animated-mail">
+            <div class="back-fold"></div>
+            <div class="letter">
+              <div class="letter-border"></div>
+              <div class="letter-title"></div>
+              <div class="letter-context"></div>
+              <div class="letter-stamp">
+                <div class="letter-stamp-inner"></div>
+              </div>
+            </div>
+            <div class="top-fold"></div>
+            <div class="body"></div>
+            <div class="left-fold"></div>
+          </div>
+          <div class="shadow"></div>
+        </div>
+
+        <div *ngIf="customFunction.IsRTL()" class="letter-image">
+          <div class="animated-mail">
+            <div class="back-fold"></div>
+            <div class="letter">
+              <div class="letter-border"></div>
+              <div class="letter-title"></div>
+              <div class="letter-context"></div>
+              <div class="letter-stamp">
+                <div class="letter-stamp-inner"></div>
+              </div>
+            </div>
+            <div class="top-fold"></div>
+            <div class="body"></div>
+            <div class="left-fold" style="left: 0px;"></div>
+          </div>
+          <div class="shadow"></div>
+        </div>
+      </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- about -->
+  <section class="mt-60 mb-5">
+    <div class="container ">
+      <div class="row">
+
+
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+          <div class="card shadow bg-blue">
+            <div class="card-body">
+              <h3 class="contact-title" *ngIf="!customFunction.IsRTL()"><b>Hello,</b> <br>How Can We Help You?</h3>
+              <h3 class="contact-title" *ngIf="customFunction.IsRTL()" style="text-align: right;"> مرحبًا بك، كيف يمكننا مساعدتك؟ </h3>
+
+              <form [formGroup]="formGroup" (ngSubmit)="onSubmitForm()" class="contact-form">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <input *ngIf="!customFunction.IsRTL()" formControlName="First_Name" type="text" class="form-control" id="fname" aria-describedby="fname" name="first_name"
+                        placeholder="Enter First Name" required>
+
+                      <input *ngIf="customFunction.IsRTL()" formControlName="First_Name" type="text" class="form-control" id="fname" aria-describedby="fname" name="first_name"
+                        placeholder="ادخل الاسم الأول" required>
+                      <span *ngIf="formGroup.get('First_Name')?.errors && (formGroup.get('First_Name')?.dirty ||
+                                                formGroup.get('First_Name')?.touched)">
+                                                    <p class="text-danger error"> Please
+                                                       Please Enter Name</p> </span>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <input *ngIf="!customFunction.IsRTL()" formControlName="Last_Name" type="text" class="form-control" id="lname" aria-describedby="lname" name="last_name"
+                        placeholder="Enter Last Name" required>
+
+                        <input *ngIf="customFunction.IsRTL()" formControlName="Last_Name" type="text" class="form-control" id="lname" aria-describedby="lname" name="last_name"
+                        placeholder="ادخل الاسم الأخير
+                        " required>
+                      <span *ngIf="formGroup.get('Last_Name').errors && (formGroup.get('Last_Name').dirty ||
+                                                    formGroup.get('Last_Name').touched)">
+                                                    <p class="text-danger error"> Please
+                                                       Please Enter Last Name</p> </span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <input *ngIf="!customFunction.IsRTL()"  formControlName="Email"  type="email" class="form-control" id="email" aria-describedby="emailHelp" name="email"
+                        placeholder="Enter email" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
+
+                        <input *ngIf="customFunction.IsRTL()"  formControlName="Email"  type="email" class="form-control" id="email" aria-describedby="emailHelp" name="email"
+                        placeholder="ادخل البريد الإلكتروني
+                        " pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
+                      <span class="message"  *ngIf=" !(formGroup.get('Email')?.errors && formGroup.get('Email')?.dirty && formGroup.get('Email')?.errors?.pattern)
+                       && formGroup.get('Email').errors && (formGroup.get('Email').dirty || formGroup.get('Email').touched)"><p class="text-danger error">Please enter email id</p></span>
+                                                <span class="message"    *ngIf="formGroup.get('Email').errors && formGroup.get('Email')?.dirty && formGroup.get('Email')?.errors?.pattern"><p class="text-danger error">Please enter valid mail id </p></span>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <input *ngIf="!customFunction.IsRTL()" formControlName="Phone" type="text" class="form-control" id="no" aria-describedby="no" placeholder="Enter Phone No"
+                        name="phone">
+
+                        <input *ngIf="customFunction.IsRTL()" formControlName="Phone" type="text" class="form-control" id="no" aria-describedby="no" placeholder="ادخل رقم الهاتف
+                        "
+                        name="phone">
+                        <span class="message"  *ngIf=" !(formGroup.get('Phone')?.errors && formGroup.get('Phone')?.dirty && formGroup.get('Phone')?.errors?.pattern)
+                        && formGroup.get('Phone').errors && (formGroup.get('Phone').dirty || formGroup.get('Phone').touched)"><p class="text-danger error">Please enter Phone Number</p></span>
+                                                 <span class="message"  *ngIf="formGroup.get('Phone').errors && formGroup.get('Phone')?.dirty && formGroup.get('Phone')?.errors?.pattern"><p class="text-danger error">Please enter valid Phone Number </p></span>
+
+                      
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <input *ngIf="!customFunction.IsRTL()" formControlName="Subject" type="text" class="form-control" id="subject" placeholder="Enter Subject" name="subject"
+                        required>
+
+                        <input *ngIf="customFunction.IsRTL()" formControlName="Subject" type="text" class="form-control" id="subject" placeholder="اكتب عنوان الموضوع
+                        " name="subject"
+                        required>
+                      <span *ngIf="formGroup.get('Subject').errors &&
+                                        (formGroup.get('Subject').dirty || formGroup.get('Subject').touched)"> <p
+                                            class="text-danger error"> Please
+                                            enter subject</p></span>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <textarea *ngIf="!customFunction.IsRTL()" formControlName="Message" class="form-control" rows="5" id="comment" placeholder="Enter message" name="message"
+                        required></textarea>
+
+                        <textarea *ngIf="customFunction.IsRTL()" formControlName="Message" class="form-control" rows="5" id="comment" placeholder="اكتب رسالتك
+                        " name="message"
+                        required></textarea>
+                      <span *ngIf="formGroup.get('Message').errors &&
+                                                (formGroup.get('Message').dirty || formGroup.get('Message').touched)"> <p
+                                                    class="text-danger error"> Please
+                                                    enter message</p></span>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12 text-right">
+                    <button *ngIf="!customFunction.IsRTL()" type="submit" class="btn btn-blue mr-2 px-5"> Send</button>
+                    <button *ngIf="customFunction.IsRTL()" type="submit" class="btn btn-blue mr-2 px-5"> إرسال</button>
+
+                  </div>
+                </div>
+
+              </form>
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</main>
+
+<app-footer></app-footer>

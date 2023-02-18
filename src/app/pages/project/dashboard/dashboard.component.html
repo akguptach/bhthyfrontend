@@ -1,0 +1,613 @@
+<section class="pt-90 nav-sec" style="padding-bottom: 60px; background-color: #cce9f175 !important;">
+    <div class="container" *ngIf="authService.hasRole('Expert')">
+    <img src="assets/images/arrow.png" alt="" class="img-fluid icon-img" class="arrow text-center">
+    <br><br>
+        <div class="row">
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-2 col-12 text-center">
+          <img src="assets/images/background-shape.png" alt="" class="img-fluid icon-back1" style="max-width: 20%; position: absolute; left: 42%; top: 0px; z-index: -1;">
+            <h3 class="" id="step-heading">
+              <img src="assets/images/icon/bid.png" alt="" class="img-fluid icon-img" style="max-width: 12%;">
+              <br>
+              Bids
+               </h3>
+            <br>
+
+
+            <div class="navigation_menu" id="navigation_menu">
+                <ul class="navigation_tabs nav" id="navigation_tabs" *ngIf="authService.hasRole('Expert')">
+
+                  <li class="nav-item tab" (click)="setSelectedNav(12)"
+                    *ngIf="projectDashboard?.pendingBids > 0 && authService.hasAnyRoles(['Expert'])">
+                    <a class="nav-link" id="pills-PendingBids" data-toggle="pill" href="#PendingBids" role="tab"
+                      aria-selected="false">{{'DASHBOARD.PENDING_BIDS' | translate}}</a>
+                  </li>
+
+                  <li class="nav-item tab" (click)="setSelectedNav(9)"
+                  *ngIf="projectDashboard?.nominationBids > 0 && authService.hasAnyRoles(['Expert'])">
+                  <a class="nav-link" id="pills-NominationBids" data-toggle="pill" href="#NominationBids" role="tab"
+                    aria-selected="false">{{'DASHBOARD.NOMINATION_BIDS' | translate}}</a>
+                  </li>
+
+                  <li class="nav-item tab" (click)="setSelectedNav(8)"
+                  *ngIf="projectDashboard?.excludedBids > 0 && authService.hasAnyRoles(['Expert'])">
+                  <a class="nav-link" id="pills-ExcludedBids" data-toggle="pill" href="#ExcludedBids" role="tab"
+                    aria-selected="false">{{'DASHBOARD.ExcludedBids' | translate}}</a>
+                </li>
+
+                <li class="nav-item tab" (click)="setSelectedNav(17)"
+                  *ngIf="projectDashboard?.inviteByAdmin > 0 && authService.hasAnyRoles(['Expert'])">
+                  <a class="nav-link" id="pills-inviteByAdmin" data-toggle="pill" href="#InviteByAdmin" role="tab"
+                    aria-selected="false">{{'Invite By Admin To Bids' }}</a>
+                </li>
+
+                <li class="nav-item tab" (click)="setSelectedNav(10)"
+                  *ngIf="projectDashboard?.inviteBids > 0 && authService.hasAnyRoles(['Expert'])">
+                  <a class="nav-link" id="pills-inviteBids" data-toggle="pill" href="#InviteBids" role="tab"
+                    aria-selected="false">{{'Invited To Bids' }}</a>
+                </li>
+
+                
+
+                </ul>
+              </div>
+            </div>
+
+
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-2 col-12 text-center" id="client-column">
+
+              <img src="assets/images/background-shape.png" alt="" class="img-fluid icon-back" style="max-width: 20%; position: absolute; left: 42%; top: 0px; z-index: -1;">
+
+              <h3 class="" id="step-heading">
+                <img src="assets/images/icon/project.png" alt="" class="img-fluid icon-img" style="max-width: 12%;">
+                <br>
+                Project
+                </h3>
+
+              <br>
+
+              <div class="navigation_menu" id="navigation_menu">
+                <ul class="navigation_tabs nav" id="navigation_tabs" *ngIf="authService.hasRole('Expert')">
+
+                  
+
+                
+
+                
+				<li class="nav-item tab" (click)="setSelectedNav(14)"
+                    *ngIf="projectDashboard?.completedByProjectOwner > 0 && authService.hasAnyRoles(['Expert'])">
+                    <a class="nav-link" id="pills-CompletedByProjectOwner" data-toggle="pill" href="#CompletedByProjectOwner"
+                      role="tab" aria-selected="false">{{'DASHBOARD.COMPLETED_BY_PROJECT_OWNER' | translate}}</a>
+                  </li>
+
+                </ul>
+                </div>
+              </div>
+
+        </div>
+        <br><br>
+  </div>
+
+
+
+  <div class="container" *ngIf="authService.hasRole('Client')">
+    <img src="assets/images/arrow.png" alt="" class="img-fluid icon-img" class="arrow text-center">
+
+
+    <br><br>
+      <div class="row">
+
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-2 col-12 text-center">
+          <img src="assets/images/background-shape.png" alt="" class="img-fluid icon-back1" style="max-width: 20%; position: absolute; left: 42%; top: 0px; z-index: -1;">
+
+            <h3 class="" id="step-heading">
+              <img src="assets/images/icon/bid.png" alt="" class="img-fluid icon-img" style="max-width: 12%;">
+              <br>
+              Bids
+               </h3>
+            <br>
+            <div class="navigation_menu" id="navigation_menu">
+                <ul class="navigation_tabs nav" id="navigation_tabs">
+
+                  <li class="nav-item tab" (click)="setSelectedNav(2)"
+                  *ngIf="projectDashboard?.openingForBiding > 0 && authService.hasAnyRoles(['Client'])">
+                    <a class="nav-link tab" id="pills-OpeningForBiding" data-toggle="pill" href="#OpeningForBiding" role="tab"
+                      aria-selected="false">{{'DASHBOARD.OPENING_FOR_BIDING' | translate}} <i
+                        class="badge badge-info">{{projectDashboard?.openingForBiding}}</i></a>
+                </li>
+
+
+                <li class="nav-item tab" (click)="setSelectedNav(4)"
+                *ngIf="projectDashboard?.winnerSelected > 0 && authService.hasAnyRoles(['Client'])">
+                  <a class="nav-link" id="pills-WinnerSelected" data-toggle="pill" href="#WinnerSelected" role="tab"
+                    aria-selected="false">{{'DASHBOARD.WINNER_SELECTED' | translate}} <i
+                      class="badge badge-success">{{projectDashboard?.winnerSelected}}</i></a>
+                </li>
+				
+
+                </ul>
+              </div>
+            </div>
+
+
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-2 col-12 text-center" id="client-column">
+              <img src="assets/images/background-shape.png" alt="" class="img-fluid icon-back" style="max-width: 20%; position: absolute; left: 42%; top: 0px; z-index: -1;">
+
+              <h3 class="" id="step-heading">
+                <img src="assets/images/icon/project.png" alt="" class="img-fluid icon-img" style="max-width: 12%;">
+                <br>
+                Project
+                </h3>
+
+              <br>
+
+              <div class="navigation_menu" id="navigation_menu">
+                  <ul class="navigation_tabs nav" id="navigation_tabs">
+
+ 
+                    <li class="nav-item tab" (click)="setSelectedNav(13)" *ngIf="projectDashboard?.waitConfirmComplete > 0 &&
+                      authService.hasAnyRoles(['Client'])">
+                        <a class="nav-link" id="pills-WaitConfirmComplete" data-toggle="pill" href="#WaitConfirmComplete" role="tab"
+                          aria-selected="false">{{'DASHBOARD.WAIT_CONFIRM_COMPLETE' | translate}}</a>
+                    </li>
+                    <li  class="nav-item tab" (click)="setSelectedNav(5)" *ngIf="projectDashboard?.underDevelopment > 0 && authService.hasAnyRoles(['ExpertAndClient' ,
+                      'Client'])">
+                      <a class="nav-link" id="pills-UnderDevelopment" data-toggle="pill" href="#UnderDevelopment" role="tab"
+                        aria-selected="false">{{'DASHBOARD.UnderDevelopment' | translate}}</a>
+                  </li>
+					<li class="nav-item tab" (click)="setSelectedNav(15)" *ngIf="projectDashboard?.completedProject > 0 &&
+                  authService.hasAnyRoles(['Client'])">
+                  <a class="nav-link" id="pills-CompletedProject" data-toggle="pill" href="#CompletedProject" role="tab"
+                  aria-selected="false">{{'DASHBOARD.COMPLETED_PROJECT' | translate}}</a>
+                </li>
+				<li class="nav-item tab" (click)="setSelectedNav(6)" *ngIf="projectDashboard?.bidUnderDevelopment > 0 && authService.hasAnyRoles([
+                    'Client'])">
+                    <a class="nav-link" id="pills-UnderDevelopment" data-toggle="pill" href="#BidUnderDevelopment" role="tab"
+                      aria-selected="false">{{'DASHBOARD.bidUnderDevelopment' | translate}}</a>
+                </li>
+                   
+
+                <li class="nav-item tab" (click)="setSelectedNav(7)" *ngIf="projectDashboard?.waitingForReview > 0 && authService.hasAnyRoles(['Client'])">
+                    <a class="nav-link" id="pills-WaitingForReview" data-toggle="pill" href="#WaitingForReview" role="tab"
+                      aria-selected="false">{{'DASHBOARD.waitingForReview' | translate}}</a>
+                </li> 
+
+
+
+                  </ul>
+                </div>
+              </div>
+
+        </div>
+        <br><br>
+  </div>
+
+
+
+  <div class="container" *ngIf="authService.hasRole('ExpertAndClient')">
+    <img src="assets/images/arrow.png" alt="" class="img-fluid icon-img" class="arrow text-center">
+    <br><br>
+        <div class="row">
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-2 col-12 text-center">
+          <img src="assets/images/background-shape.png" alt="" class="img-fluid icon-back1" style="max-width: 20%; position: absolute; left: 42%; top: 0px; z-index: -1;">
+            <h3 class="" id="step-heading">
+              <img src="assets/images/icon/bid.png" alt="" class="img-fluid icon-img" style="max-width: 12%;">
+              <br>
+              Bids
+               </h3>
+            <br>
+
+
+            <div class="navigation_menu" id="navigation_menu">
+                <ul class="navigation_tabs nav" id="navigation_tabs">
+
+                  <li class="nav-item tab" (click)="setSelectedNav(12)"
+                    *ngIf="projectDashboard?.pendingBids > 0 && authService.hasAnyRoles(['ExpertAndClient'])">
+                    <a class="nav-link" id="pills-PendingBids" data-toggle="pill" href="#PendingBids" role="tab"
+                      aria-selected="false">{{'DASHBOARD.PENDING_BIDS' | translate}}</a>
+                  </li>
+
+                  <li class="nav-item tab" (click)="setSelectedNav(9)"
+                  *ngIf="projectDashboard?.nominationBids > 0 && authService.hasAnyRoles(['ExpertAndClient'])">
+                  <a class="nav-link" id="pills-NominationBids" data-toggle="pill" href="#NominationBids" role="tab"
+                    aria-selected="false">{{'DASHBOARD.NOMINATION_BIDS' | translate}}</a>
+                  </li>
+
+                  <li class="nav-item tab" (click)="setSelectedNav(8)"
+                  *ngIf="projectDashboard?.excludedBids > 0 && authService.hasAnyRoles(['ExpertAndClient'])">
+                  <a class="nav-link" id="pills-ExcludedBids" data-toggle="pill" href="#ExcludedBids" role="tab"
+                    aria-selected="false">{{'DASHBOARD.ExcludedBids' | translate}}</a>
+                </li>
+
+                <li class="nav-item tab" (click)="setSelectedNav(17)"
+                  *ngIf="projectDashboard?.inviteByAdmin > 0 && authService.hasAnyRoles(['ExpertAndClient'])">
+                  <a class="nav-link" id="pills-inviteByAdmin" data-toggle="pill" href="#InviteByAdmin" role="tab"
+                    aria-selected="false">{{'Invite By Admin To Bids' }}</a>
+                </li>
+
+                <li class="nav-item tab" (click)="setSelectedNav(10)"
+                  *ngIf="projectDashboard?.inviteBids > 0 && authService.hasAnyRoles(['ExpertAndClient'])">
+                  <a class="nav-link" id="pills-inviteBids" data-toggle="pill" href="#InviteBids" role="tab"
+                    aria-selected="false">{{'Invited To Bids' }}</a>
+                </li>
+				
+				<li class="nav-item tab" (click)="setSelectedNav(2)"
+                  *ngIf="projectDashboard?.openingForBiding > 0 && authService.hasAnyRoles(['ExpertAndClient'])">
+                    <a class="nav-link tab" id="pills-OpeningForBiding" data-toggle="pill" href="#OpeningForBiding" role="tab"
+                      aria-selected="false">{{'DASHBOARD.OPENING_FOR_BIDING' | translate}} <i
+                        class="badge badge-info">{{projectDashboard?.openingForBiding}}</i></a>
+                </li>
+
+
+                <li class="nav-item tab" (click)="setSelectedNav(4)"
+                *ngIf="projectDashboard?.winnerSelected > 0 && authService.hasAnyRoles(['ExpertAndClient'])">
+                  <a class="nav-link" id="pills-WinnerSelected" data-toggle="pill" href="#WinnerSelected" role="tab"
+                    aria-selected="false">{{'DASHBOARD.WINNER_SELECTED' | translate}} <i
+                      class="badge badge-success">{{projectDashboard?.winnerSelected}}</i></a>
+                </li>
+
+                
+
+                </ul>
+              </div>
+            </div>
+
+
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-2 col-12 text-center" id="client-column">
+
+              <img src="assets/images/background-shape.png" alt="" class="img-fluid icon-back" style="max-width: 20%; position: absolute; left: 42%; top: 0px; z-index: -1;">
+
+              <h3 class="" id="step-heading">
+                <img src="assets/images/icon/project.png" alt="" class="img-fluid icon-img" style="max-width: 12%;">
+                <br>
+                Project
+                </h3>
+
+              <br>
+
+              <div class="navigation_menu" id="navigation_menu">
+                <ul class="navigation_tabs nav" id="navigation_tabs" *ngIf="authService.hasRole('Expert') || isExpert() === true">
+
+                  <li style="display:none;" class="nav-item tab" (click)="setSelectedNav(5)" *ngIf="projectDashboard?.underDevelopment > 0 && authService.hasAnyRoles(['ExpertAndClient'])">
+                    <a class="nav-link" id="pills-UnderDevelopment" data-toggle="pill" href="#UnderDevelopment" role="tab"
+                      aria-selected="false">{{'DASHBOARD.UnderDevelopment' | translate}}</a>
+                </li>
+
+                <li class="nav-item tab" (click)="setSelectedNav(6)" *ngIf="projectDashboard?.bidUnderDevelopment > 0 && authService.hasAnyRoles(['ExpertAndClient'])">
+                    <a class="nav-link" id="pills-UnderDevelopment" data-toggle="pill" href="#BidUnderDevelopment" role="tab"
+                      aria-selected="false">{{'DASHBOARD.bidUnderDevelopment' | translate}}</a>
+                </li>
+
+                <li class="nav-item tab" (click)="setSelectedNav(7)" *ngIf="projectDashboard?.waitingForReview > 0 && authService.hasAnyRoles(['ExpertAndClient'])">
+                    <a class="nav-link" id="pills-WaitingForReview" data-toggle="pill" href="#WaitingForReview" role="tab"
+                      aria-selected="false">{{'DASHBOARD.waitingForReview' | translate}}</a>
+                </li>
+
+                <li class="nav-item tab" (click)="setSelectedNav(15)" *ngIf="projectDashboard?.completedProject > 0 &&
+                  authService.hasAnyRoles(['ExpertAndClient'])">
+                  <a class="nav-link" id="pills-CompletedProject" data-toggle="pill" href="#CompletedProject" role="tab"
+                  aria-selected="false">{{'DASHBOARD.COMPLETED_PROJECT' | translate}}</a>
+                </li>
+				<li class="nav-item tab" (click)="setSelectedNav(14)"
+                    *ngIf="projectDashboard?.completedByProjectOwner > 0 && authService.hasAnyRoles(['ExpertAndClient'])">
+                    <a class="nav-link" id="pills-CompletedByProjectOwner" data-toggle="pill" href="#CompletedByProjectOwner"
+                      role="tab" aria-selected="false">{{'DASHBOARD.COMPLETED_BY_PROJECT_OWNER' | translate}}</a>
+                  </li>
+                </ul>
+                </div>
+              </div>
+
+        </div>
+        <br><br>
+  </div>
+
+
+  <div class="container-fluid">
+    <!-- projects details -->
+    <div class="row my-5" style="display: none;">
+      <div class="col-md-2">
+        <div class="main_card ">
+          <h5><i class="fa fa-dashboard "></i></h5>
+          <p>{{'Dashboard' }}</p>
+        </div>
+      </div>
+
+      <div class="col-md-2">
+        <div class="main_card  ">
+          <h5><i class="fa fas fa-project-diagram"></i></h5>
+          <p>{{ 'My Projects' }}</p>
+        </div>
+      </div>
+
+
+    </div>
+    <div class="row" style="display: none;">
+      <ul class="nav nav-pills mb-3 user-tab ml-5 mr-5 mt-4" id="pills-tab" role="tablist"
+        *ngIf="authService.hasRole('Client') || isExpert() === false">
+        <li class="nav-item" (click)="setSelectedNav(1)"
+          *ngIf="projectDashboard?.draft > 0 && authService.hasAnyRoles(['ExpertAndClient' , 'Client'])">
+          <a class="nav-link active" id="pills-Draft" data-toggle="pill" href="#Draft" role="tab"
+            aria-selected="true">Draft
+            <i class="badge badge-primary">{{projectDashboard?.draft}}</i></a>
+        </li>
+        <li class="nav-item" (click)="setSelectedNav(2)"
+          *ngIf="projectDashboard?.openingForBiding > 0 && authService.hasAnyRoles(['ExpertAndClient' , 'Client'])">
+          <a class="nav-link" id="pills-OpeningForBiding" data-toggle="pill" href="#OpeningForBiding" role="tab" aria-selected="false">Opening For Biding <i class="badge badge-info">{{projectDashboard?.openingForBiding}}</i></a>
+        </li>
+        <li class="nav-item" (click)="setSelectedNav(4)"
+          *ngIf="projectDashboard?.winnerSelected > 0 && authService.hasAnyRoles(['ExpertAndClient' , 'Client'])">
+          <a class="nav-link" id="pills-WinnerSelected" data-toggle="pill" href="#WinnerSelected" role="tab"
+            aria-selected="false">winner Selected <i
+              class="badge badge-success">{{projectDashboard?.winnerSelected}}</i></a>
+        </li>
+        <li class="nav-item" (click)="setSelectedNav(5)" *ngIf="projectDashboard?.underDevelopment > 0 && authService.hasAnyRoles(['ExpertAndClient' ,
+               'Client'])">
+          <a class="nav-link" id="pills-UnderDevelopment" data-toggle="pill" href="#UnderDevelopment" role="tab"
+            aria-selected="false">Under Development</a>
+        </li>
+        <li class="nav-item" (click)="setSelectedNav(11)" *ngIf="projectDashboard?.sendingBids > 0 && authService.hasAnyRoles(['ExpertAndClient' ,
+                           'Client'])">
+          <a class="nav-link" id="pills-SendingBids" data-toggle="pill" href="#SendingBids" role="tab"
+            aria-selected="false">Sending Bids To Expert</a>
+        </li>
+        <li class="nav-item" (click)="setSelectedNav(13)" *ngIf="projectDashboard?.waitConfirmComplete > 0 &&
+                            authService.hasAnyRoles(['ExpertAndClient' , 'Client'])">
+          <a class="nav-link" id="pills-WaitConfirmComplete" data-toggle="pill" href="#WaitConfirmComplete" role="tab"
+            aria-selected="false">Wait Confirm Complete</a>
+        </li>
+        <li class="nav-item" (click)="setSelectedNav(15)" *ngIf="projectDashboard?.completedProject > 0 &&
+                              authService.hasAnyRoles(['ExpertAndClient' , 'Client'])">
+          <a class="nav-link" id="pills-CompletedProject" data-toggle="pill" href="#CompletedProject" role="tab"
+            aria-selected="false">Completed Projects</a>
+        </li>
+      </ul>
+      <ul class="nav nav-pills mb-3 user-tab ml-5 mr-5 mt-4" id="pills-tab" role="tablist"
+        *ngIf="authService.hasRole('Expert') || isExpert() === true">
+        <li class="nav-item" (click)="setSelectedNav(12)"
+          *ngIf="projectDashboard?.pendingBids > 0 && authService.hasAnyRoles(['ExpertAndClient' , 'Expert'])">
+          <a class="nav-link" id="pills-PendingBids" data-toggle="pill" href="#PendingBids" role="tab"
+            aria-selected="false">Pending Bids</a>
+        </li>
+
+        <li class="nav-item" (click)="setSelectedNav(9)"
+          *ngIf="projectDashboard?.nominationBids > 0 && authService.hasAnyRoles(['ExpertAndClient' , 'Expert'])">
+          <a class="nav-link" id="pills-NominationBids" data-toggle="pill" href="#NominationBids" role="tab"
+            aria-selected="false">Nomination Bids</a>
+        </li>
+        <li class="nav-item" (click)="setSelectedNav(8)"
+          *ngIf="projectDashboard?.excludedBids > 0 && authService.hasAnyRoles(['ExpertAndClient' , 'Expert'])">
+          <a class="nav-link" id="pills-ExcludedBids" data-toggle="pill" href="#ExcludedBids" role="tab"
+            aria-selected="false">Excluded Bids</a>
+        </li>
+        <li class="nav-item" (click)="setSelectedNav(6)"
+          *ngIf="projectDashboard?.bidUnderDevelopment > 0 && authService.hasAnyRoles(['ExpertAndClient' , 'Expert'])">
+          <a class="nav-link" id="pills-BidUnderDevelopment" data-toggle="pill" href="#BidUnderDevelopment" role="tab"
+            aria-selected="false">Bid Under Development</a>
+        </li>
+        <li class="nav-item" (click)="setSelectedNav(7)" *ngIf="projectDashboard?.waitingForReview > 0 && authService.hasAnyRoles(['ExpertAndClient' ,
+                 'Expert'])">
+          <a class="nav-link" id="pills-WaitingForReview" data-toggle="pill" href="#WaitingForReview" role="tab"
+            aria-selected="false">Waiting For Review</a>
+        </li>
+        <li class="nav-item" (click)="setSelectedNav(14)"
+          *ngIf="projectDashboard?.completedByProjectOwner > 0 && authService.hasAnyRoles(['ExpertAndClient' , 'Expert'])">
+          <a class="nav-link" id="pills-CompletedByProjectOwner" data-toggle="pill" href="#CompletedByProjectOwner"
+            role="tab" aria-selected="false">Completed By Project Owner</a>
+        </li>
+
+        <li class="nav-item" (click)="setSelectedNav(10)"
+          *ngIf="projectDashboard?.inviteBids > 0 && authService.hasAnyRoles(['ExpertAndClient' , 'Expert'])">
+          <a class="nav-link" id="pills-InviteBids" data-toggle="pill" href="#InviteBids" role="tab"
+            aria-selected="false">Invite Bids</a>
+        </li>
+
+        <li class="nav-item" (click)="setSelectedNav(16)"
+          *ngIf="projectDashboard?.completedBids > 0 && authService.hasAnyRoles(['ExpertAndClient' , 'Expert'])">
+          <a class="nav-link" id="pills-CompletedBids" data-toggle="pill" href="#CompletedBids" role="tab"
+            aria-selected="false">Complete Projects Bids</a>
+        </li>
+
+
+      </ul>
+    </div>
+    <div class="row my-5 mx-3 nav nav-pills" style="display: none !important;">
+      <div class="col-md-2 m-b" data-toggle="pill" href="#Draft"
+        *ngIf="authService.hasAnyRoles(['ExpertAndClient' , 'Client'])">
+        <div class="sub-card " (click)="setSelectedNav(1)" [ngClass]="selectedNav === 1 ? 'selected-card' : ''">
+          <h5><i class="badge badge-primary">{{projectDashboard?.draft}}</i></h5>
+          <p>{{'Draft' }}</p>
+        </div>
+      </div>
+      <div class="col-md-2 m-b" data-toggle="pill" href="#OpeningForBiding"
+        *ngIf="authService.hasAnyRoles(['ExpertAndClient' , 'Client'])">
+        <div class="sub-card " (click)="setSelectedNav(2)" [ngClass]="selectedNav === 2 ? 'selected-card' : ''">
+          <h5><i class="badge badge-info">{{projectDashboard?.openingForBiding}}</i></h5>
+          <p>{{'Opening For Biding' }}</p>
+        </div>
+      </div>
+      <div class="col-md-2 m-b" data-toggle="pill" href="#BidingClosed-Expired"
+        *ngIf="authService.hasAnyRoles(['ExpertAndClient' , 'Expert'])">
+        <div class="sub-card" (click)="setSelectedNav(3)" [ngClass]="selectedNav === 3 ? 'selected-card' : ''">
+          <h5> <span class="badge badge-danger">{{projectDashboard?.bidingClosedExpired}}</span></h5>
+          <p>{{ 'Biding Closed /Expired' }}</p>
+        </div>
+      </div>
+      <div class="col-md-2 m-b" data-toggle="pill" href="#PendingBids"
+        *ngIf="authService.hasAnyRoles(['ExpertAndClient' , 'Expert'])">
+        <div class="sub-card" (click)="setSelectedNav(12)" [ngClass]="selectedNav === 12 ? 'selected-card' : ''">
+          <h5> <span class="badge badge-danger">{{projectDashboard?.pendingBids}}</span></h5>
+          <p>{{ 'Pending Bids' }}</p>
+        </div>
+      </div>
+      <div class="col-md-2 m-b" data-toggle="pill" href="#WinnerSelected"
+        *ngIf="authService.hasAnyRoles(['ExpertAndClient' , 'Client'])">
+        <div class="sub-card" (click)="setSelectedNav(4)" [ngClass]="selectedNav === 4 ? 'selected-card' : ''">
+          <h5><i class="badge badge-success">{{projectDashboard?.winnerSelected}}</i></h5>
+          <p>{{ 'Winner Selected' }}</p>
+        </div>
+      </div>
+      <div class="col-md-2 m-b" data-toggle="pill" href="#UnderDevelopment"
+        *ngIf="authService.hasAnyRoles(['ExpertAndClient' , 'Client'])">
+        <div class="sub-card" (click)="setSelectedNav(5)" [ngClass]="selectedNav === 5 ? 'selected-card' : ''">
+          <h5><i class="badge badge-success">{{projectDashboard?.underDevelopment}}</i></h5>
+          <p>{{ 'Under Development' }}</p>
+        </div>
+      </div>
+      <div class="col-md-2 m-b" data-toggle="pill" href="#WaitingForReview"
+        *ngIf="authService.hasAnyRoles(['ExpertAndClient' , 'Expert'])">
+        <div class="sub-card" (click)="setSelectedNav(7)" [ngClass]="selectedNav === 7 ? 'selected-card' : ''">
+          <h5><i class="badge badge-warning">{{projectDashboard?.waitingForReview}}</i></h5>
+          <p>{{ 'Waiting For Review' }}</p>
+        </div>
+      </div>
+      <div class="col-md-3 m-b" data-toggle="pill" href="#BidUnderDevelopment"
+        *ngIf="authService.hasAnyRoles(['ExpertAndClient' , 'Expert'])">
+        <div class="sub-card" (click)="setSelectedNav(6)" [ngClass]="selectedNav === 6 ? 'selected-card' : ''">
+          <h5><i class="badge badge-success">{{projectDashboard?.bidUnderDevelopment}}</i></h5>
+          <p>{{ 'Bids Under Development' }}</p>
+        </div>
+      </div>
+
+      <div class="col-md-2 m-b" data-toggle="pill" href="#ExcludedBids"
+        *ngIf="authService.hasAnyRoles(['ExpertAndClient' , 'Expert'])">
+        <div class="sub-card" (click)="setSelectedNav(8)" [ngClass]="selectedNav === 8 ? 'selected-card' : ''">
+          <h5><i class="badge badge-danger">{{projectDashboard?.excludedBids}}</i></h5>
+          <p>{{ 'Excluded Bids' }}</p>
+        </div>
+      </div>
+      <div class="col-md-2 m-b" data-toggle="pill" href="#NominationBids"
+        *ngIf="authService.hasAnyRoles(['ExpertAndClient' , 'Expert'])">
+        <div class="sub-card" (click)="setSelectedNav(9)" [ngClass]="selectedNav === 9 ? 'selected-card' : ''">
+          <h5><i class="badge badge-success">{{projectDashboard?.nominationBids}}</i></h5>
+          <p>{{ 'Nomination Bids' }}</p>
+        </div>
+      </div>
+      <div class="col-md-2 m-b" data-toggle="pill" href="#InviteByAdmin"
+      *ngIf="authService.hasAnyRoles(['ExpertAndClient' , 'Expert'])">
+      <div class="sub-card" (click)="setSelectedNav(17)" [ngClass]="selectedNav === 17 ? 'selected-card' : ''">
+        <h5><i class="badge badge-secondary">{{projectDashboard?.inviteByAdmin}}</i></h5>
+        <p>{{ 'Invite By Admin To Bids' }}</p>
+      </div>
+    </div>
+      <div class="col-md-2 m-b" data-toggle="pill" href="#InviteBids"
+        *ngIf="authService.hasAnyRoles(['ExpertAndClient' , 'Expert'])">
+        <div class="sub-card" (click)="setSelectedNav(10)" [ngClass]="selectedNav === 10 ? 'selected-card' : ''">
+          <h5><i class="badge badge-secondary">{{projectDashboard?.inviteBids}}</i></h5>
+          <p>{{ 'Invite  Bids' }}</p>
+        </div>
+      </div>
+
+      <div class="col-md-2 m-b" data-toggle="pill" href="#SendingBids"
+        *ngIf="authService.hasAnyRoles(['ExpertAndClient' , 'Client'])">
+        <div class="sub-card" (click)="setSelectedNav(11)" [ngClass]="selectedNav === 11 ? 'selected-card' : ''">
+          <h5><i class="badge badge-dark">{{projectDashboard?.sendingBids}}</i></h5>
+          <p>{{ 'Sending Bids To Expert' }}</p>
+        </div>
+      </div>
+      <div class="col-md-2 m-b" data-toggle="pill" href="#WaitConfirmComplete"
+        *ngIf="authService.hasAnyRoles(['ExpertAndClient' , 'Client'])">
+        <div class="sub-card" (click)="setSelectedNav(13)" [ngClass]="selectedNav === 13 ? 'selected-card' : ''">
+          <h5><i class="badge badge-success">{{projectDashboard?.waitConfirmComplete}}</i></h5>
+          <p>{{ 'Waiting  Confirm Complete' }}</p>
+        </div>
+      </div>
+      <div class="col-md-2 m-b" data-toggle="pill" href="#CompletedByProjectOwner"
+        *ngIf="authService.hasAnyRoles(['ExpertAndClient' , 'Expert'])">
+        <div class="sub-card" (click)="setSelectedNav(14)" [ngClass]="selectedNav === 14 ? 'selected-card' : ''">
+          <h5><i class="badge badge-success">{{projectDashboard?.completedByProjectOwner}}</i></h5>
+          <p>{{ 'Accept Completed By ProjectOwner' }}</p>
+        </div>
+      </div>
+      <div class="col-md-2 m-b" data-toggle="pill" href="#CompletedProject"
+        *ngIf="authService.hasAnyRoles(['ExpertAndClient' , 'Client'])">
+        <div class="sub-card" (click)="setSelectedNav(15)" [ngClass]="selectedNav === 15 ? 'selected-card' : ''">
+          <h5><i class="badge badge-success">{{projectDashboard?.completedProject}}</i></h5>
+          <p>{{ 'Completed Projects' }}</p>
+        </div>
+      </div>
+      <div class="col-md-2 m-b" data-toggle="pill" href="#CompletedBids"
+        *ngIf="authService.hasAnyRoles(['ExpertAndClient' , 'Expert'])">
+        <div class="sub-card" (click)="setSelectedNav(16)" [ngClass]="selectedNav === 16 ? 'selected-card' : ''">
+          <h5><i class="badge badge-success">{{projectDashboard?.completedBids}}</i></h5>
+          <p>{{ 'Complete Projects Bids' }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
+        <div class="tab-content shadow-sm p-3 sidenav">
+          <div style="display: none;">
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item ">
+                  <a>{{ 'Dashboard' }}</a>
+                </li>
+              </ol>
+            </nav>
+          </div>
+          <div class="tab-pane " id="Draft" *ngIf="isDraft === true">
+            <app-myProjects [projectStatus]="0"></app-myProjects>
+          </div>
+          <div class="tab-pane " id="OpeningForBiding" *ngIf="isOpeningForBiding === true">
+            <app-myProjects [projectStatus]="1"></app-myProjects>
+          </div>
+          <div class="tab-pane " id="BidingClosed-Expired" *ngIf="isBidingClosedExpired === true">
+            <app-projectBids [projectStatus]="70" [userType]="'Expert'"></app-projectBids>
+          </div>
+          <div class="tab-pane " id="PendingBids" *ngIf="isPending === true">
+            <app-projectBids [projectStatus]="1" [userType]="'Expert'"></app-projectBids>
+          </div>
+          <div class="tab-pane " id="WinnerSelected" *ngIf="isWinnerSelected === true">
+            <app-projectBids [projectStatus]="projectOfferStatus.Nomination" [userType]="'ProjectOwner'">
+            </app-projectBids>
+          </div>
+          <div class="tab-pane " id="UnderDevelopment" *ngIf="isUnderDevelopment === true">
+            <app-projectBids [projectStatus]="projectOfferStatus.Accepted" [userType]="'ProjectOwner'">
+            </app-projectBids>
+          </div>
+          <div class="tab-pane " id="BidUnderDevelopment" *ngIf="isBidUnderDevelopment === true">
+            <app-projectBids [projectStatus]="projectOfferStatus.Accepted" [userType]="'Expert'"></app-projectBids>
+          </div>
+          <div class="tab-pane " id="WaitingForReview" *ngIf="isWaitingForReview === true">
+            <app-projectBids [projectStatus]="projectOfferStatus.WaitingForReview" [userType]="'Expert'">
+            </app-projectBids>
+          </div>
+          <div class="tab-pane " id="ExcludedBids" *ngIf="isExcludedBids === true">
+            <app-projectBids [projectStatus]="projectOfferStatus.Excluded" [userType]="'Expert'"></app-projectBids>
+          </div>
+          <div class="tab-pane " id="NominationBids" *ngIf="isNominationBids === true">
+            <app-projectBids [projectStatus]="projectOfferStatus.Nomination" [userType]="'Expert'"></app-projectBids>
+            <!-- (bidsCountButtonEvent)="receiveBidsCount($event)" -->
+          </div>
+          <div class="tab-pane " id="InviteBids" *ngIf="isInviteBids === true">
+            <app-projectBids [projectStatus]="projectOfferStatus.SendInvite" [userType]="'Expert'" (bidsCountButtonEvent)="onUpdateCount($event)"></app-projectBids>
+          </div>
+          <div class="tab-pane " id="InviteByAdmin" *ngIf="isInviteByAdmin === true">
+            <app-projectBids [projectStatus]="projectOfferStatus.InviteByAdmin" [userType]="'Expert'" (bidsCountButtonEvent)="onUpdateCount($event)"></app-projectBids>
+          </div>
+          <div class="tab-pane " id="SendingBids" *ngIf="isSendingBids === true">
+            <app-projectBids [projectStatus]="projectOfferStatus.SendInvite" [userType]="'ProjectOwner'">
+            </app-projectBids>
+          </div>
+          <div class="tab-pane " id="WaitConfirmComplete" *ngIf="isWaitConfirmComplete === true">
+            <app-projectBids [projectStatus]="projectOfferStatus.WaitingForReview" [userType]="'ProjectOwner'">
+            </app-projectBids>
+          </div>
+          <div class="tab-pane " id="CompletedByProjectOwner" *ngIf="isCompletedByProjectOwner === true">
+            <app-projectBids [projectStatus]="projectOfferStatus.CompletedBYProjectOwner" [userType]="'Expert'">
+            </app-projectBids>
+          </div>
+          <div class="tab-pane " id="CompletedProject" *ngIf="isCompletedProject === true">
+            <app-projectBids [projectStatus]="projectOfferStatus.CompletedByExpert" [userType]="'ProjectOwner'">
+            </app-projectBids>
+          </div>
+          <div class="tab-pane " id="CompletedBids" *ngIf="isCompletedBids === true">
+            <app-projectBids [projectStatus]="projectOfferStatus.CompletedByExpert" [userType]="'Expert'">
+            </app-projectBids>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<app-project-footer style="position: fixed; left: 0; bottom: 0; width: 100%;"></app-project-footer>

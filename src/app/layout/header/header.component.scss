@@ -1,0 +1,732 @@
+/*Start My Code*/
+
+a.btn.switch-user.contact-btn.active-user-type, a.btn.switch-user.contact-btn {
+  padding: 3px 10px 3px 10px;
+}
+
+li.nav-item.dropdown.cust-drop {
+
+  position: relative;
+  top: 0px;
+}
+
+li.nav-item.dropdown.cust-drop.prfl-tab {
+  position: relative;
+  top: 2px;
+}
+
+nav.navbar.navbar-expand-lg.top-nav {
+  border-bottom: solid 1px #f7f7f7;
+  box-shadow: 0 .125rem .25rem rgba(0,0,0,.075); 
+}
+
+.top-nav .navbar-nav .nav-link {
+  color: #3c384b;
+  font-family: "Montserrat";
+  font-size: 13px;
+  font-weight: 600;
+}
+
+
+.top-nav .navbar-nav .nav-link:hover {
+  color: #138d9a;
+}
+
+#bhthy-register-btn{
+  font-size: 14px;
+  background-color: #f2f2f2;
+  border-radius: 5px 0px 0px 5px !important;
+}
+
+#bhthy-login-btn{
+  font-size: 14px;
+  background-color: #e7e6e6;
+  border-radius: 0px 5px 5px 0px !important;
+}
+
+#bhthy-register-btn:hover{
+  background-color: #e7e6e6;
+}
+
+#bhthy-login-btn:hover{
+  background-color: #f2f2f2;
+}
+
+.about-btn {
+  color: #ffffff !important;
+  font-size: 11px !important;
+  border-right: 1px solid #e7e6e6 !important;
+  background-color: #138d9a;
+  border-radius: 4px;
+  padding: 4px 8px 4px 8px;
+  margin-right: 5px;
+}
+
+.about-btn:hover {
+  background-color: #21b6c7;
+  font-size: 11px !important;
+  border-right: 1px solid #e7e6e6 !important;
+  text-decoration: none !important;
+}
+
+.contact-btn {
+  color: #ffffff !important;
+  font-size: 11px !important;
+  border-right: 1px solid #e7e6e6 !important;
+  background-color: #9cc33b;
+  border-radius: 4px;
+  padding: 4px 8px 4px 8px;
+}
+
+.contact-btn:hover {
+  background-color: #bbe05c;
+  font-size: 11px !important;
+  border-right: 1px solid #e7e6e6 !important;
+  text-decoration: none !important;
+}
+
+ul.navbar-nav.ml-auto.mt-2 {
+  padding: 0px 25px 0px 0px;
+}
+
+.mt-2, .my-2 {
+  margin-top: 1.4rem!important;
+}
+
+ul.navbar-nav.ml-auto.mt-2 {
+  margin-right: auto !important;
+}
+
+
+
+/*My Code is End*/
+
+.notification-header {
+  padding: 10px;
+
+  .notification-title {
+    font-size: 15px;
+    color: #f44336;
+  }
+
+  .notification-number {
+    border-radius: 50%;
+    justify-content: center;
+    text-align: center;
+    padding-top: 1px;
+    color: rgb(228, 220, 220);
+    margin-inline: 5px;
+  }
+}
+
+.notifications-btn {
+  width: 96%;
+  margin: 0 5px;
+}
+
+.Not-Found-Notification {
+  display: bolck;
+  text-align: center;
+  padding: 10px;
+}
+
+.notification {
+  cursor: pointer;
+  margin: 11px !important;
+  border-bottom: 1px solid #eeeeee;
+  padding: 4px;
+
+  .notify-icon {
+    border-inline-end: 3px solid #eeeeee;
+
+    .mat-icon {
+      margin-top: 10px !important;
+    }
+  }
+
+  .notify-content {
+    .notify-time {
+      color: #ee44af !important;
+    }
+
+    .notify-sender .notify-sender-title {
+      color: #FF9800 !important;
+      margin-inline-end: 5px;
+    }
+
+    .notify-sender .notify-sender-name {
+      color: #03a9f4 !important;
+    }
+  }
+}
+
+.switch-user {
+  margin-right: 3px;
+  margin-left: 3px;
+  padding: 5px;
+}
+
+.active-user-type {
+  background-color: #9cc33b;
+  color: #FFF;
+}
+
+
+/* 
+  ##Device = Most of the Smartphones Mobiles (Portrait)
+  ##Screen = B/w 320px to 479px
+*/
+
+@media (min-width: 320px) and (max-width: 480px) {
+  
+  ul.top-header, .dash{
+    display: none;
+}
+
+button.navbar-toggler.menu-icon.collapsed {
+
+  top: -8px;
+}
+  
+}
+
+
+.languages{
+ 
+  display:inline-block;
+  padding: 5px 10px 6px 10px;
+  position: fixed;
+  right: 0px;
+  top: 150px;
+  z-index: 999;
+  background-color: #9cc33b;
+  border: none;
+  color: #fff;
+&:after{
+    content: "";
+    position: absolute;
+    top:16px;
+    right:16px;
+    margin-left:10px;
+    border-top: 4px solid black;
+    border-top-color: #ccc; 
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;  
+    z-index:1;
+  }
+  .hover{
+    background: #138d9a;
+    color: #fff;
+    position: absolute;
+    top: 0px;
+    right: 100%;
+    display: none;
+    margin-right: 0px;
+    padding: 7px 10px;
+    line-height: 23px;
+    font-size: 12px;
+  }
+  .current{
+    display:inline-block;
+    padding:0 20px 0 6px;
+    line-height: 22px;
+    font-size:14px;
+    font-weight:bold;
+    border:1px solid #ccc;    
+  }
+  ul{
+    background: #e5e5e5;
+    display:none;
+    left:-10px;
+    position: absolute;
+    margin:0;
+    padding:3px 0;
+    list-style:none;
+    font-size:13px;
+    top:100%;
+    a{
+    text-decoration: none;
+    padding:0px 10px 0 10px;
+    display:inline-block;
+    color:#333;
+      &.sel{
+      color:#ccc;
+        &:hover{
+          color:#ccc;
+        }
+      }
+      &:hover{
+      color:#000;
+      }    
+    }
+  }
+}
+
+.languages{
+  &:hover{
+    .hover{
+    display:inline-block;
+    }
+  &:after{
+    border-top-color: #000; 
+  }
+}
+}
+
+
+
+
+//demo styles
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800);
+body{ 
+  padding:0 100px 50px;
+  font-family: 'Montserrat';  
+  font-size:14px;
+  line-height: 22px;
+  margin:0;
+  min-height:100%;
+}
+h1{
+  padding:10px;
+  font-weight:400;
+  background: #000;
+  color:#fff;
+  font-size:17px;
+  margin:0 -50px 50px ;
+}
+h2{
+  padding:10px;
+  font-weight:400;
+  background: #00bccd;
+  color:#fff;
+  font-size:17px;
+}
+
+
+/* 
+  ##Device = Desktops
+  ##Screen = 1281px to higher resolution desktops
+*/
+
+@media (min-width: 1281px) {
+  
+  .mobile-only{
+    display: none !important;
+  }
+
+ 
+  
+}
+
+/* 
+  ##Device = Laptops, Desktops
+  ##Screen = B/w 1025px to 1280px
+*/
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+  
+  .mobile-only{
+    display: none !important;
+  }
+  
+  
+}
+
+/* 
+  ##Device = Most of the Smartphones Mobiles (Portrait)
+  ##Screen = B/w 320px to 479px
+*/
+
+@media (min-width: 320px) and (max-width: 480px) {
+
+  .not{
+    display: none !important;
+  }
+  
+  .h-mbl{
+    display: none !important;
+  }
+
+  .rgstr{
+    display: none !important;
+  }
+  
+  .dropdown-menu {
+   
+    left: -217px !important;
+  }
+
+  .nav-item.dropdown.cust-drop {
+    margin-top: 10px !important;
+}
+
+label.toggleSwitch.nolabel {
+  /* text-align: center; */
+  position: relative;
+  left: 35%;
+}
+}
+
+/*  Toggle Switch  */
+
+.toggleSwitch span span {
+	display: none;
+}  
+  
+.toggleSwitch {
+	display: inline-block;
+	height: 18px;
+	position: relative;
+	overflow: visible;
+	padding: 0;
+	cursor: pointer;
+	width: 170px;
+	background-color: #fafafa;
+	border: 1px solid #e1e1e1;
+	border-radius:5px;
+	height:34px;
+}
+.toggleSwitch * {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+.toggleSwitch label,
+.toggleSwitch > span {
+	line-height: 20px;
+	height: 20px;
+	vertical-align: middle;
+}
+.toggleSwitch input:focus ~ a,
+.toggleSwitch input:focus + label {
+	outline: none;
+}
+.toggleSwitch label {
+	position: relative;
+	z-index: 3;
+	display: block;
+	width: 100%;
+}
+.toggleSwitch input {
+	position: absolute;
+	opacity: 0;
+	z-index: 5;
+}
+.toggleSwitch > span {
+	position: absolute;
+	left: 0;
+	width: calc(100% - 6px);
+	margin: 0;
+	text-align: left;
+	white-space: nowrap;
+  margin:0 3px;
+}
+.toggleSwitch > span span {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 5;
+	display: block;
+	width: 50%;
+	margin-left: 50px;
+	text-align: left;
+	font-size: 11px;
+	width: auto;
+	left: 0;
+	top: -1px;
+	opacity: 1;
+	width:40%;
+	text-align: center;
+  line-height:34px;
+}
+.toggleSwitch a {
+	position: absolute;
+	right: 50%;
+	z-index: 4;
+	display: block;
+	top: 3px;
+	bottom: 3px;
+	padding: 0;
+	left: 3px;
+	width: 50%;
+	background-color: #138D98;
+	border-radius: 4px;
+	-webkit-transition: all 0.2s ease-out;
+	-moz-transition: all 0.2s ease-out;
+	transition: all 0.2s ease-out;
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.toggleSwitch > span span:first-of-type {
+	color: #FFF;
+	opacity: 1;
+	left: 0;
+	margin: 0;
+    width: 50%;
+}
+.toggleSwitch > span span:last-of-type {
+	left:auto;
+	right:0;
+	color: #999;
+	margin: 0;
+    width: 50%;
+}
+.toggleSwitch > span:before {
+	content: '';
+	display: block;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	left: 0;
+	top: -2px;
+	/* background-color: #fafafa;
+	border: 1px solid #ccc; */
+	border-radius: 30px;
+	-webkit-transition: all 0.2s ease-out;
+	-moz-transition: all 0.2s ease-out;
+	transition: all 0.2s ease-out;
+}
+.toggleSwitch input:checked ~ a {
+	left: calc(50% - 3px);
+}
+
+.toggleSwitch input:checked ~ span span:first-of-type {
+	left:0;
+	color:#999;
+}
+.toggleSwitch input:checked ~ span span:last-of-type {
+	/* opacity: 1;
+	color: #fff;	 */
+	color:#FFF;
+}
+/* Switch Sizes */
+.toggleSwitch.large {
+	width: 60px;
+	height: 27px;
+}
+.toggleSwitch.large a {
+	width: 27px;
+}
+.toggleSwitch.large > span {
+	height: 29px;
+	line-height: 28px;
+}
+.toggleSwitch.large input:checked ~ a {
+	left: 41px;
+}
+.toggleSwitch.large > span span {
+	font-size: 1.1em;
+}
+.toggleSwitch.large > span span:first-of-type {
+	left: 50%;
+}
+.toggleSwitch.xlarge {
+	width: 80px;
+	height: 36px;
+}
+.toggleSwitch.xlarge a {
+	width: 36px;
+}
+.toggleSwitch.xlarge > span {
+	height: 38px;
+	line-height: 37px;
+}
+.toggleSwitch.xlarge input:checked ~ a {
+	left: 52px;
+}
+.toggleSwitch.xlarge > span span {
+	font-size: 1.4em;
+}
+.toggleSwitch.xlarge > span span:first-of-type {
+	left: 50%;
+}
+
+  /*  End Toggle Switch  */
+
+
+  /*  Toggle Switch  */
+
+.toggleSwitchh span span {
+	display: none;
+}  
+  
+.toggleSwitchh {
+	display: inline-block;
+	height: 18px;
+	position: relative;
+	overflow: visible;
+	padding: 0;
+	cursor: pointer;
+	width: 170px;
+	background-color: #fafafa;
+	border: 1px solid #e1e1e1;
+	border-radius:5px;
+	height:34px;
+}
+.toggleSwitchh * {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+.toggleSwitchh label,
+.toggleSwitchh > span {
+	line-height: 20px;
+	height: 20px;
+	vertical-align: middle;
+}
+.toggleSwitchh input:focus ~ a,
+.toggleSwitchh input:focus + label {
+	outline: none;
+}
+.toggleSwitchh label {
+	position: relative;
+	z-index: 3;
+	display: block;
+	width: 100%;
+}
+.toggleSwitchh input {
+	position: absolute;
+	opacity: 0;
+	z-index: 5;
+}
+.toggleSwitchh > span {
+	position: absolute;
+	left: 0;
+	width: calc(100% - 6px);
+	margin: 0;
+	text-align: left;
+	white-space: nowrap;
+  margin:0 3px;
+}
+.toggleSwitchh > span span {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 5;
+	display: block;
+	width: 50%;
+	margin-left: 50px;
+	text-align: left;
+	font-size: 11px;
+	width: auto;
+	left: 0;
+	top: -1px;
+	opacity: 1;
+	width:40%;
+	text-align: center;
+  line-height:34px;
+}
+.toggleSwitchh a {
+	position: absolute;
+	left: 50%;
+	z-index: 4;
+	display: block;
+	top: 3px;
+	bottom: 3px;
+	padding: 0;
+	left: 3px;
+	width: 50%;
+	background-color: #138D98;
+	border-radius: 4px;
+	-webkit-transition: all 0.2s ease-out;
+	-moz-transition: all 0.2s ease-out;
+	transition: all 0.2s ease-out;
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.toggleSwitchh > span span:first-of-type {
+	color: #FFF;
+	opacity: 1;
+	left: 0;
+	margin: 0;
+    width: 50%;
+}
+.toggleSwitchh > span span:last-of-type {
+	left:auto;
+	right:0;
+	color: #999;
+	margin: 0;
+    width: 50%;
+}
+.toggleSwitchh > span:before {
+	content: '';
+	display: block;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	left: 0;
+	top: -2px;
+	/* background-color: #fafafa;
+	border: 1px solid #ccc; */
+	border-radius: 30px;
+	-webkit-transition: all 0.2s ease-out;
+	-moz-transition: all 0.2s ease-out;
+	transition: all 0.2s ease-out;
+}
+.toggleSwitchh input:checked ~ a {
+	left: calc(50% - 3px);
+}
+
+.toggleSwitchh input:checked ~ span span:first-of-type {
+	left:0;
+	color:#999;
+}
+.toggleSwitchh input:checked ~ span span:last-of-type {
+	/* opacity: 1;
+	color: #fff;	 */
+	color:#FFF;
+}
+/* Switch Sizes */
+.toggleSwitchh.large {
+	width: 60px;
+	height: 27px;
+}
+.toggleSwitchh.large a {
+	width: 27px;
+}
+.toggleSwitchh.large > span {
+	height: 29px;
+	line-height: 28px;
+}
+.toggleSwitchh.large input:checked ~ a {
+	left: 41px;
+}
+.toggleSwitchh.large > span span {
+	font-size: 1.1em;
+}
+.toggleSwitchh.large > span span:first-of-type {
+	left: 50%;
+}
+.toggleSwitchh.xlarge {
+	width: 80px;
+	height: 36px;
+}
+.toggleSwitchh.xlarge a {
+	width: 36px;
+}
+.toggleSwitchh.xlarge > span {
+	height: 38px;
+	line-height: 37px;
+}
+.toggleSwitchh.xlarge input:checked ~ a {
+	left: 52px;
+}
+.toggleSwitchh.xlarge > span span {
+	font-size: 1.4em;
+}
+.toggleSwitchh.xlarge > span span:first-of-type {
+	left: 50%;
+}
+
+  /*  End Toggle Switch  */
+
+
+  .active-user-type {
+    background-color: #138d9a00;
+    color: #fff !important;
+    border-radius: 5px;
+}
+
+a.contact-btn {
+  margin-right: 8px;
+}

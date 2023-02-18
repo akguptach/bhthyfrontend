@@ -1,0 +1,149 @@
+<main>
+  <!-- inner banner -->
+  <section class="inner-bg">
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-12">
+          <div class="inner-title">
+            <h1 *ngIf="!customFunction.IsRTL()"> {{'PROJECT_BIDS.PROJECT_OFFERS' | translate}}</h1>
+			<h1 *ngIf="customFunction.IsRTL()" style="text-align:right;"> {{'PROJECT_BIDS.PROJECT_OFFERS' | translate}}</h1>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pt-90">
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+          <div class="card find-project">
+            <div class="card-body">
+              <div class="search-form prjct-form" *ngIf="!customFunction.IsRTL()">
+                {{'PROJECT_BIDS.LIST_PROJECT_OFFERS' | translate}}
+              </div>
+			  <div class="search-form prjct-form" *ngIf="customFunction.IsRTL()" style="text-align:right;">
+                {{'PROJECT_BIDS.LIST_PROJECT_OFFERS' | translate}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+          <div class="card prjct-card my-5" *ngFor="let projectOffer of projectOffers$ | async; let i = index">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-xl-2 col-lg-2 col-md-3 col-sm-12">
+                  <div class="prjct-img row">
+                    <img alt="" src="{{projectOffer.userImage}}">
+                    <i class="col-md-12">{{projectOffer.userName}}</i>
+                  </div>
+
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-8" style="padding:20px 20px;">
+                  <div class="hire-txt">
+
+                    <p>{{projectOffer.details}}</p>
+                    <i>{{projectOffer.createdDate | amTimeAgo}}</i>
+                    <!-- <div class="">
+                      <a href="#" class="badge badge-primary" *ngIf="projectOffer.status == 1">Pending</a>
+                      <a href="#" class="badge badge-secondary" *ngIf="projectOffer.status == 2">Nomination</a>
+                      <a href="#" class="badge badge-warning" *ngIf="projectOffer.status == 3">Excluded</a>
+                      <a href="#" class="badge badge-success" *ngIf="projectOffer.status == 4">Accepted</a>
+                      <a href="#" class="badge badge-primary"
+                        *ngIf="projectOffer.status == 5">CompletedBYProjectOwner</a>
+                      <a href="#" class="badge badge-success" *ngIf="projectOffer.status == 6">Completed</a>
+                    </div> -->
+                  </div>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-3 col-sm-12 expert-rate" style="padding:20px 20px;">
+                  <div class="d-flex justify-content-center ">
+                    <div class="pt-3">
+                      <h6> OMR {{projectOffer.yourDues}}</h6>
+                      <h5> {{projectOffer.deliveryTerm}} days</h5><a class="btn btn-green btn-sm m-1"
+                        *ngIf="projectOffer.status == 2" (click)="acceptStatus(projectOffer.id)"> Accept
+                      </a>
+                      <a class="btn btn-green btn-sm m-1" *ngIf="projectOffer.status == 1"
+                        (click)="updateOfferStatus(projectOffer.id , 2)"> {{'PROJECT_BIDS.NOMINATION' | translate}}
+                      </a>
+                      <!-- <a class="btn btn-green btn-sm m-1" *ngIf="projectOffer.status == 4"
+                        [routerLink]="'/projects/completeProject/'+projectOffer.id">Completed </a> -->
+                      <a class="btn btn-blue btn-sm"
+                        [routerLink]="'/projects/projectPage/projectOwner/'+projectOffer.id" *ngIf="projectOffer.status >= projectOfferStatus.Accepted && projectOffer.status <=
+                projectOfferStatus.CompletedByExpert ||  projectOffer.status <= projectOfferStatus.Nomination">
+                        {{'PROJECT_BIDS.PROJECT_PAGE' | translate}} </a>
+                      <a class="btn btn-blue btn-sm m-1" [routerLink]="'/account/userDetails/'+projectOffer.userId">
+                        {{'PROJECT_BIDS.EXPERT_DETAILS' | translate}} </a>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- <p *ngIf="!project">
+                        No records available
+                    </p> -->
+          <nav aria-label="Page navigation example custom-pagination">
+            <ul class="pagination justify-content-center">
+              <li class="page-item">
+                <!-- <pagination-controls (pageChange)="p = $event"></pagination-controls> -->
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+<!-- The Modal -->
+<div class="modal" id="myModal" [style.display]="showModal ? 'block' : 'none'" style="overflow-y: scroll !important;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Edit Project - </h4>
+        <button type="button" class="close" data-dismiss="modal" (click)="hide()">&times;</button>
+      </div>
+      <!-- Modal body -->
+      <form>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label for="">{{ 'Add More Description' }}</label>
+                <textarea id="inputMessage" ng-model="editprojects.additional_descriptions"
+                  ng-readonly="editprojects.additional_descriptions == ''" cols="60" rows="6"
+                  placeholder="Describe more about project here" required></textarea>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <p>{{ 'What Skills Are Required?' }}</p>
+            </div>
+            <div class="col-md-6">
+              <div class="input-group-prepend ml-3">
+                <select>
+                  <option value="">{{ 'Select your skills and expertise' }}</option>
+                  <!-- <option *ngFor="let skills of expertskillslist" value="{{skills.id}}">{{skills.name}}</option> -->
+                </select>
+              </div>
+            </div>
+            <div class="col-md-12" style="margin-top: 15px;">
+              <button type="submit" class="btn btn-green" style="margin-right: 15px;">Submit</button>
+              <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="hide()">Cancel</button>
+            </div>
+
+          </div>
+
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<app-project-footer></app-project-footer>

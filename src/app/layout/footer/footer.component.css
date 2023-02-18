@@ -1,0 +1,107 @@
+.ftr-btn {
+    margin-top: 24px;
+}
+
+.ftr-btn:hover {
+    background-color: #d5f7fa !important;
+}
+
+a.btn.btn-whte.p-3.px-5.ftr-btn {
+    background-color: #138d9a !important;
+    color: #fff !important;
+}
+
+a.btn.btn-whte.p-3.px-5.ftr-btn:hover {
+    background-color: #ffffff !important;
+    color: #333 !important;
+}
+
+.arabic li::before {
+    left: 150px !important;
+}
+
+.blog .blue-title {
+    color: #138d9a !important;
+    font-size: 15px !important;
+}
+
+.blog .para-text {
+    font-family: "Montserrat";
+    font-size: 12px;
+}
+.blog .pt-3, .py-3 {
+    padding-top: 0rem!important;
+}
+
+.blog .col-xl-8.col-lg-8.col-md-8.col-sm-8.col-12.card {
+    padding: 10px 10px;
+}
+
+.row.blog {
+    margin-bottom: 8px;
+}
+
+
+/* 
+  ##Device = Most of the Smartphones Mobiles (Portrait)
+  ##Screen = B/w 320px to 479px
+*/
+
+@media (min-width: 320px) and (max-width: 480px) {
+.arabic li::before {
+    right: -5px !important;
+  }
+
+  .clm{
+    text-align: center !important;
+    padding: 5px 0px;
+    border-left: 1px dashed #000000;
+   
+  }
+
+  #mobile-footer{
+    position: fixed;
+    bottom: 0px;
+    background-color: #eefbfd;
+    padding: 0px;
+    z-index: 999;
+  }
+
+  .footer-bottom{
+    margin-bottom: 65px !important;
+}
+
+.logoo{
+  height: 40px !important;
+  padding: 3px !important;
+}
+
+}
+
+/* 
+  ##Device = Desktops
+  ##Screen = 1281px to higher resolution desktops
+*/
+
+@media (min-width: 1281px) {
+  
+    #mobile-footer{
+        display: none !important;
+    }
+    
+  }
+  
+  /* 
+    ##Device = Laptops, Desktops
+    ##Screen = B/w 1025px to 1280px
+  */
+  
+  @media (min-width: 1025px) and (max-width: 1280px) {
+    
+    #mobile-footer{
+        display: none !important;
+    }
+    
+  }
+  
+

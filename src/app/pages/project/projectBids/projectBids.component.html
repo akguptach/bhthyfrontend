@@ -1,0 +1,149 @@
+<div class="col-md-12">
+  <table class="rwd-table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">{{'BASE.PROJECT_NAME' | translate}}</th>
+        <th scope="col">{{'BASE.CATEGORY' | translate}}</th>
+        <th scope="col">
+          <span *ngIf="userType === 'Expert'">{{'PROJECT_BIDS.PROJECT_OWNER' | translate}}</span>
+          <span *ngIf="userType === 'ProjectOwner'">{{'PROJECT_BIDS.EXPERT_NAME' | translate}}</span>
+        </th>
+        <th scope="col">{{'PROJECT_BIDS.BID_DATE' | translate}}</th>
+        <th scope="col">{{'PROJECT_BIDS.DELIVERY_TERM' | translate}}</th>
+        <th scope="col">{{'PROJECT_BIDS.BID_PRICE' | translate}}</th>
+        <th scope="col">{{'BASE.ACTION' | translate}}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let projectBid of projectsBids$ | async; let i = index">
+        <td>{{i+1}}</td>
+        <td>{{projectBid.projectName}}</td>
+        <td>{{projectBid.serviceName}}</td>
+        <td>
+          <span *ngIf="userType === 'Expert'">{{projectBid.projectOwnerName}}</span>
+          <span *ngIf="userType === 'ProjectOwner'">{{projectBid.expertName}}</span>
+        </td>
+        <td>{{projectBid.createdDate | amTimeAgo }}</td>
+        <td>{{projectBid.deliveryTerm}}</td>
+        <td>{{projectBid.yourDues}}</td>
+        <td>
+          <button type="button" class="btn btn-success btn-sm nav-link dropdown-toggle"
+            data-toggle="dropdown">Action</button>
+          <ul class="dropdown-menu shadow-sm" *ngIf="userType === 'Expert'">
+		    <li class="dropdown-item">
+			    <a class="btn btn-green btn-sm m-1" [routerLink]="'/projects/projectView/'+projectBid.projectId">Project Details</a>
+			</li>
+            <li class="dropdown-item" *ngIf="projectBid.status === projectOfferStatus.CompletedBYProjectOwner">
+			    <a class="btn btn-green btn-sm m-1" [routerLink]="'/projects/confirmCompleteProject/'+projectBid.id">Confirm Completed </a>
+			</li>
+            <li class="dropdown-item" *ngIf="projectBid.status >= projectOfferStatus.Accepted && projectBid.status <=
+                projectOfferStatus.CompletedByExpert || projectBid.status === projectOfferStatus.Nomination">
+				<a class="btn btn-blue btn-sm m-1" [routerLink]="'/projects/projectPage/expert/'+projectBid.id">project page</a>
+			</li>
+           
+            <li class="dropdown-item" *ngIf="projectBid.status == projectOfferStatus.SendInvite">
+			    <a class="btn btn-green btn-sm" (click)="updateOfferStatus(projectBid.id , projectOfferStatus.Nomination)"> Accept Bids
+                Invite</a>
+			</li>
+            <li class="dropdown-item" *ngIf="projectBid.status == projectOfferStatus.InviteByAdmin">
+				<a class="btn btn-green btn-sm" (click)="updateOfferStatus(projectBid.id , projectOfferStatus.Nomination)"> Accept Bids Invite</a>
+			</li>
+            <li class="dropdown-item" *ngIf="projectBid.status == projectOfferStatus.Accepted">
+			   <a class="btn btn-green btn-sm" (click)="updateOfferStatus(projectBid.id , projectOfferStatus.WaitingForReview)">
+                Complete Development</a>
+			</li>
+
+            <li class="dropdown-item" *ngIf="projectBid.status >= projectOfferStatus.Accepted">
+			   <a class="btn btn-blue btn-sm" (click)="addNewComplaint(projectBid.projectId , projectBid.id)">Add
+                Complaint</a>
+			</li>
+          </ul>
+          <ul class="dropdown-menu shadow-sm" *ngIf="userType === 'ProjectOwner'">
+           
+			<li class="dropdown-item" *ngIf="projectBid.status == projectOfferStatus.Nomination || projectBid.status ==
+                projectOfferStatus.AcceptedInvite">
+			    <a class="btn btn-green btn-sm"  (click)="acceptBids(projectBid.id)">
+                Accept And Start Development </a>
+			</li>
+            <li class="dropdown-item" *ngIf="projectBid.status == projectOfferStatus.Pending">
+				<a class="btn btn-green btn-sm" 
+                (click)="updateOfferStatus(projectBid.id , projectOfferStatus.Nomination)"> Nomination </a>
+			</li>
+            <li class="dropdown-item" *ngIf="projectBid.status == projectOfferStatus.CompletedByExpert">
+				<a class="btn btn-green btn-sm" (click)="updateOfferStatus(projectBid.id , projectOfferStatus.Completed)"> Complete </a>
+			</li>
+            <li class="dropdown-item" *ngIf="projectBid.status == projectOfferStatus.WaitingForReview">
+			   <a class="btn btn-green btn-sm" [routerLink]="'/projects/completeProject/'+projectBid.id">Completed Development</a>
+			</li>
+            <li class="dropdown-item" *ngIf="projectBid.status >=
+                projectOfferStatus.Accepted && projectBid.status <=
+                projectOfferStatus.CompletedByExpert || projectBid.status <= projectOfferStatus.Nomination">
+			   <a class="btn btn-blue btn-sm" [routerLink]="'/projects/projectPage/projectOwner/'+projectBid.id" >project
+                page</a>
+			</li>
+            <li class="dropdown-item" *ngIf="projectBid.status >= projectOfferStatus.Accepted">
+			   <a class="btn btn-blue btn-sm" (click)="addNewComplaint(projectBid.projectId , projectBid.id)">Add
+                Complaint</a>
+			</li>
+            <li class="dropdown-item">
+			   <a class="btn btn-blue btn-sm" [routerLink]="'/account/userDetails/'+projectBid.userId">
+                UserDetails </a>
+			</li>
+          </ul>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<!-- The Modal -->
+<div class="modal" id="myModal" [style.display]="showModal ? 'block' : 'none'" style="overflow-y: scroll !important;">
+ 
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">{{ 'Add Complaint' }}</h4>
+        <button type="button" class="close" data-dismiss="modal" (click)="hide()">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <form [formGroup]="complaintForm">
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label for="ComplaintTypeId" class="control-label label">{{ 'complaint Type' }}</label>
+                <ng-select formControlName="ComplaintTypeId">
+                  <ng-option *ngFor="let complaintType of complaintTypes$ | async" [value]="complaintType.id">
+                    {{complaintType.name}}
+                  </ng-option>
+                </ng-select>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="form-group">
+                <label for="Type" class="control-label label">{{ 'Other complaint Type' }}</label>
+                <input id="Type" class="form-control" formControlName="Type" placeholder="Enter {{'complaint Type' }}"
+                  required />
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="form-group">
+                <label for="">{{ 'Description' }}</label>
+                <textarea id="Description" formControlName="Description" cols="60" rows="6" class="form-control"
+                  placeholder="Enter {{'Description' }}" required></textarea>
+              </div>
+            </div>
+            <div class="col-md-12" style="margin-top: 15px;">
+              <button type="button" (click)="saveComplaint()" class="btn btn-green" style="margin-right: 15px;">Add
+                Complaint</button>
+              <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="hide()">Cancel</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

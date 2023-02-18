@@ -1,0 +1,24 @@
+.card
+{
+  padding: 50px !important;
+}
+
+button.btn.btn-primary {
+  background-color: #138d9a;
+}
+
+button.btn.btn-primary:hover {
+  background-color: #9cc33b;
+  border: #9cc33b !important;
+}
+
+li.one::marker {
+  color: #138d98 !important;
+}
+
+img.img-fluid.icon-img{
+  background-color: #effafb;
+  padding: 9px;
+  border-radius: 15px;
+  box-shadow: 0 3px 6px rgb(0 0 0 / 16%), 0 3px 6px rgb(0 0 0 / 23%);
+}

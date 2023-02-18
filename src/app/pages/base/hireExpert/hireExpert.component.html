@@ -1,0 +1,323 @@
+<main>
+  <!-- inner banner -->
+  <section class="inner-bg">
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-12">
+          <div class="inner-title">
+            <h1 *ngIf="!customFunctions.IsRTL()">
+              <img src="assets/images/icon/hire.png" alt="" class="img-fluid icon-img" style="max-width: 7%;">
+
+              {{'NAV.HIRE_EXPERT' | translate}}
+            </h1>
+
+            <h1 *ngIf="customFunctions.IsRTL()" style="text-align: right;">
+              <img src="assets/images/icon/hire.png" alt="" class="img-fluid icon-img" style="max-width: 7%;">
+
+              {{'NAV.HIRE_EXPERT' | translate}}
+            </h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pt-90" style="padding-top: 0px; margin-top:-100px;">
+    <div class="container">
+      <div class="row">
+        <div class="card find-project col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+          <div class="card-body">
+            <div class="search-form prjct-form">
+
+              <form class="form-s" [formGroup]="searchfilterForm" (ngSubmit)="onSubmit()">
+                <div class="row">
+                  <div class="col-md-4">
+                    <!-- <div class="input-group mt-3 mb-3"> -->
+                    <input type="text" formControlName="search" class="form-control m-1"
+                      placeholder="{{'BASE.SEARCH_BY_WORDS' | translate}}">
+                    <!-- </div> -->
+                  </div>
+                  <div class="col-md-4">
+                    <!-- <div class="input-group-prepend ml-3"> -->
+                    <ng-select formControlName="ServiceId" class="m-1" (change)="onSelectService($event)">
+                      <ng-option value="">{{ 'What Type of service?' }}</ng-option>
+                      <ng-option *ngFor="let service of services$ |async" [value]="service.id">
+                        {{service.name}}
+                      </ng-option>
+                    </ng-select>
+                    <!-- </div> -->
+                  </div>
+
+                  <div class="col-md-4">
+                    <button type="button" (click)="searchHire()" class="btn btn-green pt-2"> search</button>
+                    <button *ngIf="projectId != ''" [disabled]="expertIDs.length <= 0" type="button" (click)="onSendInvitationClick()" class="ml-2 btn btn-blue pt-2">Send Invitation</button>
+                    <!-- <div class="col-md-6 ">
+                      <ng-select formControlName="skills" class="m-1">
+                        <ng-option value="">{{ 'Type to Filter by Skills' }}</ng-option>
+                        <ng-option *ngFor="let skill of skills$ | async" [value]="skill.id">{{skill.name}}</ng-option>
+                      </ng-select>
+                    </div> -->
+                    <!-- <div class="col-md-6">
+                      <ng-select formControlName="rate" class="m-1">
+                        <ng-option value="">{{ 'Any Hourly Rate' }}</ng-option>
+                        <ng-option value="hourly_rate_min=10"> $10.00/{{ 'hour' }}</ng-option>
+                        <ng-option value="hourly_rate_max=20&hourly_rate_min=10"> $10.00 - $20.00/{{ 'hour' }}
+                        </ng-option>
+                        <ng-option value="hourly_rate_max=30&hourly_rate_min=21"> $21.00 - $30.00/{{ 'hour' }}
+                        </ng-option>
+                        <ng-option value="hourly_rate_max=40&hourly_rate_min=31"> $31.00 - $40.00/{{ 'hour' }}
+                        </ng-option>
+                        <ng-option value="hourly_rate_min=40"> $40.00/{{ 'hour' }}</ng-option>
+                      </ng-select>
+                    </div> -->
+                  </div>
+                </div>
+
+              </form>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="row">
+        <!-- <div class="no-result col-md-12">
+          <p *ngIf="!customFunctions.IsRTL()">{{'HIRE_EXPERT.SUB_TITLE' | translate}}</p>
+          <p *ngIf="customFunctions.IsRTL()" style="text-align: right;">{{'HIRE_EXPERT.SUB_TITLE' | translate}}</p>
+        </div> -->
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+          <div class="row" style="margin-top: 50px;">
+            <div class="col-md-3 card prjct-card m-1" *ngFor="let users of  usersList; let i = index">
+              <div class="card-body">
+                <!-- <div class="row"> -->
+                <!-- <div class="col-xl-2 col-lg-2 col-md-3 col-sm-12"> -->
+                <div class="prjct-img">
+                  <img class="" alt="" [src]="users?.image ? users.image: 'assets/images/male.png'"
+                  onError="this.src='assets/images/male.png'">
+                  <div><a routerLink="/userdetails/{{users.id}}"
+                      style="font-weight: 500; text-decoration: none;">{{users.fullName}}</a></div>
+                  <!-- <div class="hire-txt">
+                      <h6>{{users.about_me}}</h6>
+                      <div class="rating-star">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                      </div>
+                    </div>
+                    <div class="">
+                      <div class="pt-3">
+                        <h6>${{users.hourly_rate}}</h6>
+                        <p>{{ 'Hourly Rate' }}</p>
+                      </div>
+                    </div> -->
+
+                </div>
+                <div class="text-center">
+                  <input *ngIf="projectId != ''" type="checkbox" (change)="fieldsChange($event, users.id)" class="mr-2" />
+                  <a (click)="goToUserDetailsPage(users.id)" class="btn btn-blue btn-sm">
+                    {{'BASE.DETAILS' | translate}}
+                  </a>
+                  <a (click)="onClick(users.id)" id="{{users.id}}" class="btn btn-green b-btn">{{'HIRE_EXPERT.HIRE_ME' |
+                    translate}}</a>
+                </div>
+                <!-- </div> -->
+                <!-- <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+
+                </div> -->
+                <!-- <div class="col-xl-4 col-lg-4 col-md-3 col-sm-12 expert-rate">
+                  <div class="d-flex justify-content-center ">
+                    <div class="pt-3">
+                      <h6>${{users.hourly_rate}}</h6>
+                      <p>{{ 'Hourly Rate' }}</p>
+                    </div>
+                  </div>
+                  <div>
+                    <a (click)="onClick($event)" id="{{users.id}}" class="btn btn-green">{{ 'Hire Me' }}</a>
+                  </div>
+
+                </div> -->
+                <!-- </div> -->
+              </div>
+            </div>
+          </div>
+
+          <p *ngIf="usersList.length === 0">
+            No records available
+          </p>
+
+          <nav aria-label="Page navigation example custom-pagination">
+            <ul class="pagination justify-content-center">
+              <li class="page-item">
+                <!-- <pagination-controls  (pageChange)="p($event)"></pagination-controls>                                 -->
+              </li>
+
+            </ul>
+          </nav>
+        </div>
+        <!----------------------
+   Our profile cards
+------------------------>.
+        <div class="cards-container row">
+          <div class="card card-one" style="display: none;">
+            <div class="cards-container">
+
+              <div class=" card card-two" *ngFor="let user of  usersList; let i = index">
+                <header>
+                  <div class="avatar">
+                    <img *ngIf="user.image" [src]="user.image? user?.image: 'assets/images/expert.png'"
+                      alt="Allison Walker" />
+                    <img *ngIf="!user.image" src="assets/images/expert.png" alt="Allison Walker" />
+                  </div>
+                </header>
+                <h3>{{user.fullName}}</h3>
+                <div class="desc">{{user.aboutMe}}</div>
+                <div class=" card card-two">
+                  <header>
+                    <div class="avatar">
+                      <img src="https://randomuser.me/api/portraits/women/21.jpg" alt="Allison Walker" />
+                    </div>
+                  </header>
+
+                  <h3>Allison Walker</h3>
+                  <div class="desc">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit et cupiditate deleniti.
+                  </div>
+                  <div class="contacts">
+                    <a href=""><i class="fa fa-plus"></i></a>
+                    <a href=""><i class="fa fa-whatsapp"></i></a>
+                    <a href=""><i class="fa fa-envelope"></i></a>
+                    <div class="clear"></div>
+                  </div>
+
+                  <footer>
+                    <p>
+                      <a (click)="onClick(user.id)" class="btn btn-green btn-sm">{{ 'Hire Me' }}</a>
+                      <a [routerLink]="'/account/userDetails/'+user.id" class="btn btn-blue btn-sm">
+                        Details
+                      </a>
+                      <!-- <a href=""><i class="fa fa-facebook"></i></a>
+              <a href=""><i class="fa fa-linkedin"></i></a>
+              <a href=""><i class="fa fa-twitter"></i></a>
+              <a href=""><i class="fa fa-instagram"></i></a> -->
+                      <a href=""><i class="fa fa-facebook"></i></a>
+                      <a href=""><i class="fa fa-linkedin"></i></a>
+                      <a href=""><i class="fa fa-twitter"></i></a>
+                      <a href=""><i class="fa fa-instagram"></i></a>
+                    </p>
+                  </footer>
+                </div>
+
+                <div class="clear"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+
+<!-- The Modal -->
+<div class="modal" id="myModal" [style.display]="multiUserModal ? 'block' : 'none'" style="overflow-y: scroll !important;">
+  <!-- <div class="modal" id="myModal" style="overflow-y: scroll !important;"> -->
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">{{ 'Invite to Bid My Project' }}</h4>
+        <button type="button" class="close" data-dismiss="modal" (click)="multiUserModal = false">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <form (ngSubmit)="onMultiHideClick()">
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label for="">{{ 'Private Note' }}</label>
+                <textarea id="inputMessage" (input)="onPrivateMsgUpdate($event)" class="form-control" cols="60"
+                  rows="6"></textarea>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <p>{{ 'Select your listed project to ask this profile to place bid.' }}? *</p>
+            </div>
+
+
+
+            <div class="col-md-12" style="margin-top: 15px;">
+              <div *ngIf="activeProjectsCount == 0" class="alert alert-danger text text-info">
+                You Have Not Private Projects Please Add Private Project To Invite It To An Expert
+              </div>
+              <button type="submit" class="btn btn-green" *ngIf="activeProjectsCount > 0" style="margin-right: 15px;"
+                [disabled]="activeProjectsCount === 0">Submit</button>
+              <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="multiUserModal = false">Cancel</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <!-- </div> -->
+</div>
+
+<div class="modal" id="myModal" [style.display]="showModal ? 'block' : 'none'" style="overflow-y: scroll !important;">
+  <!-- <div class="modal" id="myModal" style="overflow-y: scroll !important;"> -->
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">{{ 'Invite to Bid My Project' }}</h4>
+        <button type="button" class="close" data-dismiss="modal" (click)="hide()">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <form [formGroup]="hireForm" (ngSubmit)="onHire()">
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label for="">{{ 'Private Note' }}</label>
+                <textarea id="inputMessage" formControlName="InviteMessage" class="form-control" cols="60"
+                  rows="6"></textarea>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <p>{{ 'Select your listed project to ask this profile to place bid.' }}? *</p>
+            </div>
+            <div class="col-md-12 row">
+              <div class="checkbox col-md-5" *ngFor="let project of activeProject$ |async">
+                <label for="pro_{{project.id}}" class="custom-checkbox">
+                  <input type="radio" id="pro_{{project.id}}" formControlName="ProjectId"
+                    (change)="onProjectnameChange($event,project.id)" value="{{project.id}}">
+                  {{project.name}}</label>
+              </div>
+            </div>
+
+
+            <div class="col-md-12" style="margin-top: 15px;">
+              <div *ngIf="activeProjectsCount == 0" class="alert alert-danger text text-info">
+                You Have Not Private Projects Please Add Private Project To Invite It To An Expert
+              </div>
+              <button type="submit" class="btn btn-green" *ngIf="activeProjectsCount > 0" style="margin-right: 15px;"
+                [disabled]="activeProjectsCount === 0">Submit</button>
+              <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="hide()">Cancel</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <!-- </div> -->
+</div>
+
+<app-footer></app-footer>

@@ -1,0 +1,222 @@
+.loadWrapper {
+    background: rgba(0,0,0,0.3);
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top:0px;
+    left:0px;
+    z-index: 99999;
+}
+.loader {
+    border: 5px solid #f3f3f3; /* Light grey */
+    border-top: 5px solid #3d3e3f; /* gray */
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+
+.user-img[_ngcontent-pxi-c92] {
+    height: 100px !important;
+    width: 100px !important;
+}
+
+.col-xl-2.col-lg-3.col-md-3.border-right.sidebar {
+    display: none;
+}
+/*
+.borde {
+    padding: 0px 15px 0px 115px;
+}
+
+.gradient_card.my-5.borde {
+    padding: 55px;
+}
+*/
+
+.user-info h4 {
+    
+    font-size: 32px !important;
+  
+    padding-top: 18px;
+}
+
+.user-info p.text-member {
+    font-weight: 500;
+}
+
+a.btn.btn-green.float-right{
+    position: relative !important;
+    /*top: -18px !important;
+    left: 128px !important;*/
+}
+
+.icon-img{
+    background-color: #effafb;
+    padding: 9px;
+    border-radius: 15px;
+    box-shadow: 0 3px 6px rgb(0 0 0 / 16%), 0 3px 6px rgb(0 0 0 / 23%);
+    padding: 25px;
+
+}
+
+.user-info p {
+    text-align: center;
+    color: #138d9a;
+}
+
+span.percent {
+    background: #138d9a;
+    padding: 3px 4px 3px 4px;
+    position: absolute;
+    right: 6px;
+    top: -12px;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #fff;
+    font-weight: 700;
+}
+
+p.text-member {
+    background: #9cc33b;
+    color: #fff !important;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+    color: #fff;
+    background-color: #138d9a !important;
+}
+
+.nav-pills .nav-link.active:hover, .nav-pills .show>.nav-link:hover {
+    color: #fff;
+    background-color: #9cc33b !important;
+}
+
+ul.ul-pa {
+    padding-bottom: 80px;
+}
+
+li.nav-item a {
+    color: #000;
+    background: #effafb;
+}
+
+li.nav-item a:active {
+    color: #fff !important;
+}
+
+
+li.nav-item .nav-link .active{
+    color: #fff !important; 
+}
+
+/* 
+  ##Device = Most of the Smartphones Mobiles (Portrait)
+  ##Screen = B/w 320px to 479px
+*/
+
+@media (min-width: 320px) and (max-width: 480px) {
+  
+    .col-md-2.clm.us-per {
+        width: 50%;
+    }
+
+    span.percent{
+      
+        right: 19px !important;
+
+    }
+
+    .user-img {
+      
+        margin-left: 36px !important;
+    }
+    
+  }
+
+  li.nav-item a {
+    font-size: 14px !important;
+}
+
+
+
+.cardd {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: #ffffff;
+    margin: 0 0px;
+    width: 100%;
+    height: 350px;
+    border-radius: 5px;
+    box-shadow: 0 10px 20px -10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .cardd .percent {
+    position: relative;
+  }
+  
+  .cardd svg {
+    position: relative;
+    width: 210px;
+    height: 210px;
+    transform: rotate(-90deg);
+  }
+  
+  .cardd svg circle {
+    width: 100%;
+    height: 100%;
+    fill: none;
+    stroke: #f0f0f0;
+    stroke-width: 10;
+    stroke-linecap: round;
+  }
+  
+  .cardd svg circle:last-of-type {
+    stroke-dasharray: 625px;
+    stroke-dashoffset: calc(625px - (625px * var(--percent)) / 100);
+    stroke: #3498db; 
+  }
+  
+  .cardd .number {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .cardd .number h3 {
+    font-weight: 200;
+    font-size: 2.5rem;
+  }
+  
+  .cardd .number h3 span {
+    font-size: 2rem;
+  }
+  
+  .cardd .title h2 {
+    margin: 25px 0 0;
+  }
+  
+  .cardd:nth-child(1) svg circle:last-of-type {
+    stroke: #138d9a;
+  }
+  
+  .cardd:nth-child(2) svg circle:last-of-type {
+    stroke: #2ecc71;
+  }
+  
+  .pr-hd{
+    font-size: 17px;
+    font-weight: 600;
+  }

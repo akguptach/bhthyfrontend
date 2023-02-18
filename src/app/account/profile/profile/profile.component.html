@@ -1,0 +1,446 @@
+<main>
+  <section>
+    <div class="" style="margin: 10px;">
+      <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+          <!-- user info -->
+          <div class="my-5 borde" *ngIf="(userInfo$ | async) as userInfo">
+            <div class="row img-row">
+              
+              <div class="col-xl-2 col-lg-3 col-md-3 border-right sidebar">
+                <img alt="" src="assets/images/expert.png" class="user-img">
+              </div>
+              <div class="col-xl-3 col-lg-3 col-md-3">
+                
+                <div class="gradient_card my-5 ">
+                 
+                    <ul style="padding-left: 0px;" class="ul-pa">
+                    <li><a [routerLink]="['/account']" class="btn btn-green float-right"><i
+                      class="fas fa-user-edit"></i></a></li>
+                    <li class="">
+                      <img alt="" src="{{userInfo.image}}" class="user-img text-center">
+                    </li>
+                    <li class="text-center">
+                      <div class="user-info">
+                        <h4 class="text-center">{{userInfo.fullName}}</h4>
+
+                        <br>
+                        <p class="" style="text-align: center;">{{userInfo.aboutMe}}</p>
+                        <br>
+                        <p class="text-member text-center" style="display: none;">{{'PROFILE.MEMBER_SINCE' | translate}} 2020</p>
+                        <div class="rating-star text-center" style="display: none;">
+                          <i class="fas fa-star" aria-hidden="true"></i>
+                          <i class="fas fa-star" aria-hidden="true"></i>
+                          <i class="fas fa-star" aria-hidden="true"></i>
+                          <i class="fas fa-star" aria-hidden="true"></i>
+                          <i class="fas fa-star" aria-hidden="true"></i>
+                        </div>
+                      </div>
+                      </li>
+                      </ul>
+                 
+                </div>
+
+              </div>
+
+
+              <div class="col-xl-9 col-lg-9 col-md-9">
+
+
+                <div class="row my-12" style="display: none;">
+                  <div class="col-md-3">
+      
+                    <div class="cardd">
+                      <div class="percent">
+                        <svg>
+                          <circle cx="105" cy="105" r="100"></circle>
+                          <circle cx="105" cy="105" r="100" style="--percent: 80"></circle>
+                        </svg>
+                        <div class="number">
+      
+                          <h3>       
+                            80<span>%</span></h3>
+      
+                        </div>
+                      </div>
+                      <div class="title">
+                        <h2 class="pr-hd">
+                          <img src="assets/images/icon/return.png" alt="" class="img-fluid" style="max-width: 16%; margin-left: 25px;"> {{'PROFILE.REPEAT_HIRE_RATE' | translate}}</h2>
+                      </div>
+                    </div>
+                    
+                   
+                  </div>
+      
+                  <div class="col-md-3">
+      
+                    <div class="cardd">
+                      <div class="percent">
+                        <svg>
+                          <circle cx="105" cy="105" r="100"></circle>
+                          <circle cx="105" cy="105" r="100" style="--percent: 48"></circle>
+                        </svg>
+                        <div class="number">
+      
+                          <h3>       
+                            48<span>%</span></h3>
+      
+                        </div>
+                      </div>
+                      <div class="title">
+                        <h2 class="pr-hd">
+                          <img src="assets/images/icon/project.png" alt="" class="img-fluid" style="max-width: 16%; margin-left: 25px;"> {{'PROFILE.PROJECT_COMPLETED' | translate}}</h2>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-3">
+      
+                    <div class="cardd">
+                      <div class="percent">
+                        <svg>
+                          <circle cx="105" cy="105" r="100"></circle>
+                          <circle cx="105" cy="105" r="100" style="--percent: 48"></circle>
+                        </svg>
+                        <div class="number">
+      
+                          <h3>       
+                            48<span>%</span></h3>
+      
+                        </div>
+                      </div>
+                      <div class="title">
+                        <h2 class="pr-hd">
+                          <img src="assets/images/icon/balance.png" alt="" class="img-fluid" style="max-width: 16%; margin-left: 25px;"> {{'PROFILE.TOTAL_BALANCE' | translate}}</h2>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- <div class="col-md-3">
+                    <div class="gradient_card purple-gradient ">
+                      <h5><i class="fa fa-dollar user-icon"></i>
+                        0%</h5>
+                      <p>O{{'USER.ON_TIME' | translate}}</p>
+                    </div>
+                  </div> -->
+                  <div class="col-md-3">
+      
+                    <div class="cardd">
+                      <div class="percent">
+                        <svg>
+                          <circle cx="105" cy="105" r="100"></circle>
+                          <circle cx="105" cy="105" r="100" style="--percent: 10"></circle>
+                        </svg>
+                        <div class="number">
+      
+                          <h3>       
+                            10<span>%</span></h3>
+      
+                        </div>
+                      </div>
+                      <div class="title">
+                        <h2 class="pr-hd">
+                          <img src="assets/images/icon/money.png" alt="" class="img-fluid" style="max-width: 16%; margin-left: 25px;"> {{'PROFILE.WITHDRAWAL_BALANCE' | translate}}</h2>
+                      </div>
+                    </div>
+      
+                  </div>
+                  
+                </div>
+                
+                <br><br>
+               
+                <div class="user-info">
+                  
+                 
+                  <!-- user tab -->
+                  <!-- user tab -->
+                  <div class="row">
+                    <div class="col-md-12">
+                      <ul class="nav nav-pills mb-3 user-tab" id="pills-tab" role="tablist">
+                        <li class="nav-item">
+                          <a class="nav-link active" (click)="userslog()" id="pills-skill-tab" data-toggle="pill"
+                            href="#pills-skill" role="tab" aria-selected="true">{{'PROFILE.MY_SKILL' | translate}}</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" (click)="portfolios()" id="pills-portfolio-tab" data-toggle="pill"
+                            href="#pills-portfolio" role="tab" aria-selected="false">{{'PROFILE.FREELANCER_WORK' | translate}}</a>
+                        </li>
+                        <!-- <li class="nav-item">
+                  <a class="nav-link" (click)="reviews()" id="pills-review-tab" data-toggle="pill" href="#pills-review"
+                    role="tab" aria-selected="false">{{ 'recent reviews' }}</a>
+                </li> -->
+                        <!-- *ngIf="authService.hasAnyRoles(['ExpertAndClient' , 'Client'])" -->
+                        <!-- href="#pills-portfolio" role="tab" aria-selected="false">{{ 'Portfolios' }}</a>
+                </li> -->
+                        <li class="nav-item">
+                          <a class="nav-link" (click)="reviews()" id="pills-review-tab" data-toggle="pill"
+                            href="#pills-review" role="tab" aria-selected="false">{{'PROFILE.RECENT_REVIEWS' | translate}}</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" (click)="experience()" id="pills-exprnc-tab" data-toggle="pill"
+                            href="#pills-exprnc" role="tab" aria-selected="false">{{'PROFILE.EXPERIENCE' | translate}}</a>
+                        </li> 
+                        <!-- <li class="nav-item">
+                          <a class="nav-link" (click)="education()" id="pills-educations-tab" data-toggle="pill"
+                            href="#pills-educations" role="tab" aria-selected="false">educations</a>
+                        </li>
+
+                        <li class="nav-item">
+                          <a class="nav-link" (click)="certification()" id="pills-certi-tab" data-toggle="pill"
+                            href="#pills-certi" role="tab" aria-selected="false">{{ 'Certifications' }}</a>
+                        </li> -->
+
+                        <!-- <li class="nav-item">
+                  <a class="nav-link" (click)="publication()" id="pills-publicaton-tab" data-toggle="pill"
+                    href="#pills-publicaton" role="tab" aria-selected="false">{{ 'PUBLICATIONS' }}</a>
+                </li> -->
+                        <!-- </li>  -->
+                      </ul>
+                      <div class="tab-content user-content " id="pills-tabContent">
+                        <!-- skiil -->
+                        <div class="tab-pane fade show active" id="pills-skill" role="tabpanel"
+                          aria-labelledby="pills-home-tab">
+                          <app-freeLancer-skills></app-freeLancer-skills>
+                        </div>
+                        <!-- skill-end -->
+
+                        <!-- portfolio -->
+                        <div class="tab-pane fade" id="pills-portfolio" role="tabpanel"
+                          aria-labelledby="pills-profile-tab">
+                          <app-freeLancer-works></app-freeLancer-works>
+                          <div *ngFor="let portfoilio of portfolioslist">
+                            <img alt="" src="{{portfoilio['attachment']['filename']}}" class="certifcate-img">
+                            <p>{{portfoilio.title}}</p>
+                            <p>{{portfoilio.view_count}}</p>
+                            <p>{{portfoilio.message_count}}</p>
+                          </div>
+
+                        </div>
+                        <!-- portfoilio end  *ngIf="authService.hasAnyRoles(['ExpertAndClient' , 'Client'])" -->
+
+                        <!-- recent review -->
+                        <div class="tab-pane fade" id="pills-review" role="tabpanel" aria-labelledby="pills-review-tab">
+                          <div class="col-md-12 row mr-1 card-body" *ngFor="let project of userReview$ | async">
+                            <div class="">
+                              <!-- <star-rating [starType]="'icon'" [rating]="2.63"></star-rating>
+                         -->
+
+                              <ngx-stars [readonly]="true" [maxStars]="5" [initialStars]="3.5"></ngx-stars>
+                              <p>{{project.projectName}}</p>
+                              <span>{{project.createdDate | date }}</span> --
+                              <span>{{project?.rating?.date | date }}</span>
+                            </div>
+                            <div class="container mt-1">
+                              <div class="row  d-flex justify-content-center">
+                                <div class="col-md-12">
+
+                                  <div class="card p-3">
+
+                                    <div class="d-flex justify-content-between align-items-center">
+
+                                      <div class="user d-flex flex-row align-items-center">
+                                        <img src="{{project?.rating.projectOwnerImage}}" width="30"
+                                          class="user-img rounded-circle mr-2">
+                                        <span><small
+                                            class="font-weight-bold text-primary">{{project?.rating.projectOwnerName}}</small>
+                                          <p class="font-weight-bold">{{project?.rating.projectOwnerMessage}}</p>
+                                        </span>
+                                      </div>
+                                      <small>{{project?.rating.createdDate | amTimeAgo}}</small>
+                                    </div>
+                                  </div>
+                                  <div class="card p-3 mt-2">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                      <div class="user d-flex flex-row align-items-center">
+                                        <img src="https://i.imgur.com/C4egmYM.jpg" width="30"
+                                          class="user-img rounded-circle mr-2">
+                                        <span><small
+                                            class="font-weight-bold text-primary">{{project?.rating.expertName}}</small>
+                                          <p class="font-weight-bold">{{project?.rating.expertMessage}} </p>
+                                        </span>
+                                      </div>
+                                      <small>{{project?.rating.updatedDate | amTimeAgo}}</small>
+                                    </div>
+
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <!-- <p *ngIf="(userReview$ | async) as review.length === 0">No record available</p> -->
+                        </div>
+                        <!-- review end -->
+
+                        <!-- experiance -->
+                        <div class="tab-pane fade" id="pills-exprnc" role="tabpanel"
+                          aria-labelledby="pills-experiance-tab">
+                          <div class="row">
+                            <div class="col-md-12">
+                              <app-freeLancer-experience></app-freeLancer-experience>
+                              <div class="card prjct-card mt-3" *ngFor="let experience of experiencelist">
+                                <div class="card-body">
+                                  <div class="row">
+                                    <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12">
+                                      <div class="edcu-txt">
+                                        <h6>{{experience.company}}</h6>
+                                        <p>{{experience.description}}</p>
+                                      </div>
+                                    </div>
+                                    <div class="col-xl-4 col-lg-4 col-md-3 col-sm-12 education-box">
+                                      <div class="d-flex justify-content-center pt-4">
+                                        <div class="p-3">
+                                          <h6>{{experience.from_month_year}}</h6>
+                                        </div>
+                                        <div class="p-3">
+                                          <h6>-</h6>
+                                        </div>
+                                        <div class="p-3">
+                                          <h6>{{experience.to_month_year}}</h6>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div class="alert alert-danger" *ngIf="!experiencelist">
+                                <strong>No Records Available</strong>
+                              </div>
+                            </div>
+                          </div>
+
+                          <!-- <div class="row mt-4">
+                                        <div class="col-md-12 text-right">
+                                            <a href="#" class="btn btn-green"> Add More</a>
+                                        </div>
+                                    </div> -->
+                        </div>
+                        <!-- experiance end -->
+
+                        <!-- educations -->
+                        <div class="tab-pane fade" id="pills-educations" role="tabpanel"
+                          aria-labelledby="pills-educations-tab">
+                          <div class="row">
+                            <div class="col-md-12">
+                              <div class="card prjct-card" *ngFor="let education of educationlist">
+                                <div class="card-body">
+
+                                  <div class="row">
+                                    <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12">
+                                      <div class="edcu-txt">
+                                        <h6>{{education.title}}</h6>
+                                      </div>
+                                    </div>
+                                    <div class="col-xl-4 col-lg-4 col-md-3 col-sm-12 education-box">
+                                      <div class="d-flex justify-content-center ">
+                                        <div class="p-3">
+                                          <h6>{{education.from_year}}</h6>
+                                        </div>
+                                        <div class="p-3">
+                                          <h6>-</h6>
+                                        </div>
+                                        <div class="p-3">
+                                          <h6>{{education.to_year}}</h6>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div class="alert alert-danger" *ngIf="!educationlist">
+                                <strong>No Records Available</strong>
+                              </div>
+                            </div>
+                          </div>
+
+
+                        </div>
+                        <!-- educations end -->
+
+                        <!-- certifications -->
+                        <div class="tab-pane fade" id="pills-certi" role="tabpanel" aria-labelledby="pills-certi-tab">
+                          <div class="row">
+                            <div class="col-md-12">
+                              <div class="card prjct-card" *ngFor="let certification of certificationlist">
+                                <div class="card-body">
+                                  <div class="row">
+
+                                    <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12">
+                                      <div class="edcu-txt">
+                                        <h6>{{certification.title}}</h6>
+
+                                      </div>
+                                    </div>
+                                    <div class="col-xl-4 col-lg-4 col-md-3 col-sm-12 education-box">
+                                      <div class="d-flex justify-content-center ">
+                                        <div class="p-3">
+                                          <h6>{{certification.year}}</h6>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="alert alert-danger" *ngIf="!certificationlist">
+                                <strong>No Records Available</strong>
+                              </div>
+
+                            </div>
+                          </div>
+
+
+                        </div>
+                        <!-- certi end -->
+
+                        <!-- publication -->
+                        <div class="tab-pane fade" id="pills-publicaton" role="tabpanel"
+                          aria-labelledby="#pills-publicaton-tab">
+                          <div class="row">
+                            <div class="col-md-12">
+
+                              <div class="card prjct-card mt-3" *ngFor="let publication of publicationlist">
+                                <div class="card-body">
+                                  <div class="row">
+                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                                      <div class="edcu-txt">
+                                        <h6>{{publication.title}}
+                                        </h6>
+                                        <p>{{publication.publisher}}</p>
+                                        <p>{{publication.description}}</p>
+                                      </div>
+                                    </div>
+
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div class="alert alert-danger" *ngIf="!publicationlist">
+                                <strong>No Records Available</strong>
+                              </div>
+
+                            </div>
+                          </div>
+
+
+                        </div>
+                        <!-- publications end -->
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div class="loadWrapper" *ngIf="showProgress">
+  <div class="loader"></div>
+</div>
+
+<app-account-footer style="position: fixed; left: 0; bottom: 0; width: 100%;"></app-account-footer>

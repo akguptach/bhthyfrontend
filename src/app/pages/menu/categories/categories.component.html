@@ -1,0 +1,24 @@
+<div class="category-page segments-page">
+  <div class="container">
+    <div class="wrap-title">
+      <h3>Category</h3>
+    </div>
+    <div class="row">
+      <div class="col s6" *ngFor="let category of (categories$ | async)">
+        <a [routerLink]="'/products/'+category.id">
+          <div class="content">
+            <img src="{{category.categoryImage}}" style="width: 100%;
+    height: 270px;
+    min-height: 200px;
+    max-height: 300px;
+    margin: 5px;" alt="">
+            <div class="mask"></div>
+            <div class="wrap-caption">
+              <h4>{{category.nameAr}} -- {{category.nameEn}}</h4>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+  </div>

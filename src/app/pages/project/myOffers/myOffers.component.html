@@ -1,0 +1,65 @@
+<main>
+  <!-- inner banner -->
+  <section class="inner-bg">
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-12">
+          <div class="inner-title">
+            <h1>My Offers</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+          <div class="card prjct-card my-5" *ngFor="let project of myOffers; let i = index">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
+                  <div class="hire-txt m-2 row">
+                    <div class="col-md-9">
+                      <h6>{{project.projectName}}</h6>
+                      <span>{{project.createdDate| amTimeAgo}}</span>
+                      <p>{{project.details}}</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2">
+                  <a href="#" class="badge badge-primary" *ngIf="project.status == 1">Pending</a>
+                  <a href="#" class="badge badge-secondary" *ngIf="project.status == 2">Nomination</a>
+                  <a href="#" class="badge badge-warning" *ngIf="project.status == 3">Excluded</a>
+                  <a href="#" class="badge badge-success" *ngIf="project.status == 4">Accepted</a>
+                  <a href="#" class="badge badge-primary" *ngIf="project.status == 5">CompletedBYProjectOwner</a>
+                  <a href="#" class="badge badge-success" *ngIf="project.status == 6">Completed</a>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 expert-rate">
+                  <div class="d-flex justify-content-center">
+                    <div class="pt-3">
+                      <h6>OMR &nbsp;{{project.yourDues}}</h6>
+                      <h6>In {{project.deliveryTerm}} days</h6>
+                    </div>
+                  </div>
+                  <a class="btn btn-green btn-sm m-1" *ngIf="project.status == 5"
+                    [routerLink]="'/projects/confirmCompleteProject/'+project.id">
+                    Confirm Completed </a>
+                  <a class="btn btn-blue btn-sm m-1" *ngIf="project.status === 2 || project.status === 4"
+                    [routerLink]="'/projects/chat/'+project.id">chat room</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <nav aria-label="Page navigation example custom-pagination">
+            <ul class="pagination justify-content-center">
+              <li class="page-item">
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+<app-project-footer></app-project-footer>

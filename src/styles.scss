@@ -1,0 +1,36 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~ng-snotify/styles/material";
+// regular style toast
+// @import '~ngx-toastr/toastr';
+
+// bootstrap style toast
+// or import a bootstrap 4 alert styled design (SASS ONLY)
+// should be after your bootstrap imports, it uses bs4 variables, mixins, functions
+// @import '~ngx-toastr/toastr-bs4-alert';
+
+// if you'd like to use it without importing all of bootstrap it requires
+// @import '~bootstrap/scss/functions';
+// @import '~bootstrap/scss/variables';
+// @import '~bootstrap/scss/mixins';
+// @import '~ngx-toastr/toastr-bs4-alert';
+@import "~@ng-select/ng-select/themes/default.theme.css";
+// @import '~css-star-rating/scss/star-rating';
+
+// ... or
+// @import "~@ng-select/ng-select/themes/material.theme.css";
+.is-invalid {
+  border-color: #f46a6a;
+  padding-right: calc(1.5em + 0.94rem);
+  background-image: url("data:image/svg+xml,%3csvgxmlns='http://www.w3.org/2000/svg'");
+  background-repeat: no-repeat;
+  background-position: right calc(0.375em + 0.235rem) center;
+  background-size: calc(0.75em + 0.47rem) calc(0.75em + 0.47rem);
+}
+
+.invalid-feedback {
+  display: none;
+  width: 100%;
+  margin-top: 0.25rem;
+  font-size: 80%;
+  color: #f46a6a;
+}

@@ -1,0 +1,111 @@
+<!-- inner banner -->
+<section class="inner-bg">
+  <div class="container">
+    <div class="row">
+      <div class="col-xl-12 col-lg-12 col-md-12 col-12">
+        <div class="inner-title">
+          <h1 *ngIf="!customFunctions.IsRTL()">
+            <img src="assets/images/icon/login.png" alt="" class="img-fluid icon-img" style="max-width: 7%;">
+
+            {{'NAV.LOGIN' | translate}}</h1>
+          <h1 *ngIf="customFunctions.IsRTL()" style="text-align: right;">
+            <img src="assets/images/icon/login.png" alt="" class="img-fluid icon-img" style="max-width: 7%;">
+
+            {{'NAV.LOGIN' | translate}}</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Login banner -->
+<section class="" id="loginSction">
+	<div class="container">
+		<div class="row">
+			<div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 login">
+				<div class="card shadow-sm">
+			  <div class="card-body">
+				<form class="login_Form" [formGroup]="loginForm">
+				   <div class="row col-md-12 mb-3">
+					
+					
+					<div class="col-md-12" *ngIf="!customFunctions.IsRTL()">
+					  <div class="form-check-inline" *ngFor="let loginType of loginTypes">
+						<label class="form-check-label">
+						  <input type="radio" class="form-check-input" formControlName="LoginType" name="LoginType" [value]="loginType.id">{{loginType.title}}
+						</label>
+					  </div>
+					  
+					</div>
+					<div class="col-md-12" *ngIf="customFunctions.IsRTL()" style="float:right;">
+					  
+						<div class="form-check-inline" style="float:right;">
+						  <label class="form-check-label">
+							<input type="radio" formcontrolname="LoginType" name="LoginType" class="form-check-input" value="1"> تسجيل الدخول برقم الهاتف
+						  </label>
+						</div>
+						<div class="form-check-inline" style="float:right;">
+						  <label  class="form-check-label">
+							<input  type="radio" formcontrolname="LoginType" name="LoginType" class="form-check-input" value="2"> تسجيل الدخول بالبريد الإلكتروني
+						  </label>
+						</div>
+					  
+					  
+					</div>
+				  </div>
+				  <div class="form-group">
+					<input type="text" formControlName="PhoneNumber" class="form-control" id="username"
+					  placeholder="{{'BASE.PHONE_NUMBER_OR_EMAIL' | translate}}" name="username" required>
+				   
+				  </div>
+				  <div class="form-group">
+					<input type="password" formControlName="Password" class="form-control" id="pwd"
+					  placeholder="{{'BASE.PASSWORD' | translate}}" name="pswd" required>
+				   
+				  </div>
+				  <div class="row my-2">
+					<div class="col-md-6 col-sm-6 col-6">
+					  <div class="form-group form-check">
+						<label class="form-check-label">
+						  <input class="" type="checkbox" name="remember">
+						  &nbsp;{{'BASE.REMEMBER_ME' | translate}}
+						</label>
+					  </div>
+					</div>
+					<div class="col-md-6 text-right">
+					  <a [routerLink]="['/account/forgetPassword']" class="forgt_txt">{{'BASE.FORGET_PASSWORD' | translate}}
+						</a>
+					</div>
+				  </div>
+				  <button type="button" (click)="login()"
+					class="btn btn-green  btn-block">{{'NAV.LOGIN' | translate}}</button>
+				</form>
+			  </div>
+			
+		 
+		<div class="row">
+		  <div class="col-md-12 text-center">
+			<p class="para-text m-0 my-3">- {{'BASE.LOGIN_WITH' | translate}} -</p>
+		  </div>
+		</div>
+		<div class="row">
+		  <div class="col-md-12 text-center mb-3">
+			<!-- <a class="btn btn-fb mr-3 " (click)="faceBookLogin()"> <i class="fab fa-facebook-f social-icn"></i>
+			  Facebook</a> -->
+			<a class="btn btn-gmail" (click)="googleLogin()"><i class="far fa-envelope social-icn"></i>Google</a>
+			<a class="btn btn-fb" (click)="linkedInLogin()"><i class="fa fa-linkedin social-icn"></i>linkedIn</a>
+		  </div>
+		</div>
+		<div class="row">
+		  <div class="col-md-12 text-center">
+			<p class="para-text m-0 my-3">{{'BASE.HAVE_NOT_ACCOUNT' | translate}} 
+			  <a [routerLink]="['/account/register']" class="btn-signup"> {{'NAV.REGISTER' | translate}} </a>
+			</p>
+		  </div>
+		</div>
+	  </div>
+			</div>
+		</div>
+    </div>
+</section>
+
+<app-account-footer style="position: fixed; left: 0; bottom: 0; width: 100%;"></app-account-footer>

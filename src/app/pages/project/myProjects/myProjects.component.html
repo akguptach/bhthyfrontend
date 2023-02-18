@@ -1,0 +1,185 @@
+<div class="col-md-12">
+  <table class="rwd-table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">{{ 'BASE.PROJECT_NAME' | translate}}</th>
+        <th scope="col">{{ 'BASE.CATEGORY' | translate}}</th>
+        <th scope="col">{{ 'PROJECT_BIDS.BUDGET' | translate}}</th>
+        <th scope="col">{{ 'PROJECT_BIDS.BIDS' | translate}}</th>
+        <th scope="col">{{ 'PROJECT_BIDS.AVERAGE_BID' | translate}}</th>
+        <th scope="col">{{ 'PROJECT_BIDS.LOWEST_BID' | translate}}</th>
+        <th scope="col">{{ 'PROJECT_BIDS.BID_EXPIRY_DATE' | translate}}</th>
+        <th scope="col">{{ 'BASE.ACTION' | translate}} </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let project of projects ; let i = index">
+        <td>{{i+1}}</td>
+        <td>
+          <h6>{{project.name}}</h6>
+          <div>
+            <button *ngIf="project.isUrgent == 1" class="btn btn-danger">{{'BASE.URGENT' | translate}}</button>
+            <button *ngIf="project.isPrivate == 1" class="btn btn-primary">{{'BASE.PRIVATE' | translate}}</button>
+            <button *ngIf="project.isHiddenBid == 1" class="btn btn-success">{{'BASE.SEALED' | translate}}</button>
+            <button *ngIf="project.inviteBids == 1" class="btn btn-info">{{'BASE.INVITE_BIDS' | translate}}</button>
+          </div>
+        </td>
+        <td>{{project.serviceName}}</td>
+        <td>{{project.priceMinAmount}} - {{project.priceMaxAmount}}</td>
+        <td>{{project.bids}}</td>
+        <td>{{project.averageBid}}</td>
+        <td>{{project.lowestBid}}</td>
+        <td>{{project.bidExpiryDate | date}}</td>
+        <td>
+          <button type="button" class="btn btn-success btn-sm nav-link dropdown-toggle"
+            data-toggle="dropdown">{{ 'BASE.ACTION' | translate}}</button>
+          <div class="dropdown-menu shadow-sm">
+            <a class="dropdown-item btn btn-info btn-sm" [routerLink]="['/projects/editProject/'+project.id]">
+              {{ 'BASE.EDIT' | translate}}</a>
+            <a class="dropdown-item btn btn-sm btn-success" *ngIf="project.status === 0"
+              (click)="updateProjectStatus(project.id , 1 , 'Opening For Biding')">
+              {{ 'DASHBOARD.OPENING_FOR_BIDING' | translate}}</a>
+            <a class="dropdown-item btn btn-sm btn-primary" *ngIf="project.status !== 0 && !project.isUrgent"
+              [routerLink]="['/projects/projectOffers/'+project.id]">{{ 'PROJECT_BIDS.BIDS' | translate}}
+            </a>
+
+            <a class="dropdown-item"><a class="btn btn-green btn-sm" *ngIf="project.isUrgentDoc==false&&project.isUrgent && project.paymentType
+              "
+                (click)="acceptPayment(project.id, project.paymentType,project)">
+             {{project.paymentType== "FullPayment" ?'Full Payment':
+              project.paymentType== "PartialPay" ? 'Partial Pay':
+              project.paymentType== "BankTransfer"? 'Bank Transfer' :'Contract' }} </a></a>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<section class="pt-90" style="display: none;">
+  <div class="container">
+    <div class="row">
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+        <div class="card find-project">
+          <div class="card-body">
+            <div class="search-form prjct-form">
+              <h4>{{ 'My Posted Projects' }}</h4>
+              <p>We have 2500 freelance jobs online. Send a quote now to get hired.</p>
+              <form class="form-s row" [formGroup]="searchfilterForm">
+                <div class="col-md-12">
+                  <div class="input-group col-md-12 ml-1 mb-1">
+                    <input type="text" formControlName="search" class="form-control"
+                      placeholder="{{'Search by keywords' }}">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="input-group-prepend ml-1 mb-1">
+                    <ng-select formControlName="ServiceId" class=" col-md-12">
+                      <ng-option value="">Project By Categories</ng-option>
+                      <ng-option *ngFor="let service of services$ | async" [value]="service.id">
+                        {{service.name}}</ng-option>
+                    </ng-select>
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="input-group-prepend ml-1">
+                    <ng-select formControlName="project_range_id" class=" col-md-12">
+                      <ng-option value="">Budget Range</ng-option>
+                      <ng-option *ngFor="let priceRange of priceRanges$ | async" [value]="priceRange.id">
+                        From {{priceRange.minAmount}} To {{priceRange.maxAmount}}</ng-option>
+                    </ng-select>
+                  </div>
+                </div>
+                <div class="input-group-append col-md-6">
+                  <button type="button" (click)="searchProjects()" class="btn btn-green pt-2"> search</button>
+                </div>
+              </form><br>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- The Accept Modal -->
+<div class="modal" id="myModal" [style.display]="showAcceptModal ? 'block' : 'none'" style="overflow-y: scroll !important;">
+  <!-- <div class="modal" id="myModal" style="overflow-y: scroll !important;"> -->
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">{{ 'Accept Payment' }}</h4>
+        <button type="button" class="close" data-dismiss="modal" (click)="showAcceptModal = false" >&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <form [formGroup]="paymentForm">
+        <div class="modal-body">
+          <div class="row">
+
+            <div *ngIf="paymentForm.get('PaymentType')?.value == 'PartialPay' || paymentForm.get('PaymentType')?.value == 'BankTransfer'" class="col-md-12">
+              <div class="form-group">
+                <label for="Type" class="control-label label">{{ 'Amount' }}</label>
+                <input id="Type" type="number" class="form-control" formControlName="Amount" placeholder="Enter {{'Amount' }}"
+                  required />
+              </div>
+            </div>
+
+            <div *ngIf="paymentForm.get('PaymentType')?.value == 'BankTransfer'" class="col-md-12">
+              <div class="form-group">
+                <label for="Type" class="control-label label">{{ 'Transection No.' }}</label>
+                <input id="Type" class="form-control" formControlName="Transection" placeholder="Enter {{'Transection No.' }}"
+                  required />
+              </div>
+            </div>
+            <div *ngIf="paymentForm.get('PaymentType')?.value == 'BankTransfer'" class="col-md-12">
+              <div class="form-group">
+                <label for="Type" class="control-label label">{{ 'Recipt' }}</label>
+                <input type="file" class="form-control" (input)="onSelectFile($event, 'Recipt')"
+                  />
+              </div>
+            </div>
+            <div *ngIf="paymentForm.get('PaymentType')?.value == 'Contract'" class="col-md-12">
+              <div class="form-group">
+                <label for="Type" class="control-label label">{{ 'Account No.' }}</label>
+                <input id="Type" class="form-control" formControlName="AccountNo" placeholder="Enter {{'Account No.' }}" readonly
+                  required />
+              </div>
+            </div>
+
+            <div *ngIf="paymentForm.get('PaymentType')?.value == 'Contract'" class="col-md-12">
+              <div class="form-group">
+                <label for="Type" class="control-label label">{{ 'Amount Holder Name' }}</label>
+                <input id="Type" class="form-control" formControlName="AmountHolder" placeholder="Enter {{'Name' }}" readonly
+                  required />
+              </div>
+            </div>
+            <div *ngIf="paymentForm.get('PaymentType')?.value == 'Contract'" class="col-md-12">
+              <div class="form-group">
+                <label for="Type" class="control-label label">{{ 'Beneficiary No.' }}</label>
+                <input id="Type" class="form-control" formControlName="BeneficiaryNo" placeholder="Enter {{'Number' }}" readonly
+                  required />
+              </div>
+            </div>
+            <div *ngIf="paymentForm.get('PaymentType')?.value == 'Contract'" class="col-md-12">
+              <div class="form-group">
+                <label for="Type" class="control-label label">{{ 'Upload Documents' }}</label>
+                <input type="file" class="form-control"   (input)="onSelectFile($event, 'Documents')"
+                  required />
+              </div>
+            </div>
+            <div class="col-md-12" style="margin-top: 15px;">
+              <button type="button" class="btn btn-green" style="margin-right: 15px;" (click)="onSubmitForm()">
+                Submit</button>
+              <button style="float: right;" type="button" class="btn btn-danger" data-dismiss="modal" (click)="showAcceptModal = false" >Cancel</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <!-- </div> -->
+</div>

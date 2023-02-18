@@ -1,0 +1,350 @@
+<!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet"> -->
+<div class="container">
+
+  <!-- Page header start -->
+  <div class="page-title">
+    <div class="row gutters">
+      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+       <!-- <h5 class="title">{{'PROJECT_BIDS.PROJECT_PAGE' | translate}}</h5> -->
+       <br><br>
+      </div>
+      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"> </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header alert alert-info">
+      <div class="row">
+        <div class="col-md-4">{{'PROJECT_PAGE.EXPERT_AWARDED' | translate}}</div>
+        <div class="col-md-4"> {{'PROJECT_PAGE.REPUTATION' | translate}}</div>
+        <div class="col-md-4">{{'PROJECT_BIDS.BID_PRICE' | translate}}</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="gradient_ca">
+            <div class="row">
+              <div class="col-xl-4 col-lg-4 col-md-4 border-right">
+                <img alt="" src="{{projectDetails?.userImage}}" onError="this.src='assets/images/default_user.png'" class="user-img">
+              </div>
+              <div class="col-xl-8 col-lg-8 col-md-8">
+                <div class="user-info">
+                  <h4>{{projectDetails?.userName}}</h4>
+                  <h4>{{projectDetails?.name}}</h4>
+                  <p class="text-member">{{projectDetails?.description}}</p>
+                  <p class="text-member">{{ 'Create Date' + projectDetails?.createdDate| amTimeAgo }} 2020</p>
+                  <div class="rating-star">
+                    <i class="fas fa-star" aria-hidden="true"></i>
+                    <i class="fas fa-star" aria-hidden="true"></i>
+                    <i class="fas fa-star" aria-hidden="true"></i>
+                    <i class="fas fa-star" aria-hidden="true"></i>
+                    <i class="fas fa-star" aria-hidden="true"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="rating-star">
+            <i class="fas fa-star" aria-hidden="true"></i>
+            <i class="fas fa-star" aria-hidden="true"></i>
+            <i class="fas fa-star" aria-hidden="true"></i>
+            <i class="fas fa-star" aria-hidden="true"></i>
+            <i class="fas fa-star" aria-hidden="true"></i>
+          </div>
+          <div>0 {{'PROJECT_PAGE.REVIEW' | translate}}</div>
+          {{'PROJECT_PAGE.COMPLETION_RATE' | translate}} 56%
+        </div>
+        <div class="col-md-4">
+          <div class="payment text-center">{{offerInfo?.yourDues}} OMR</div>
+          <div class="day text-center">in {{offerInfo?.deliveryTerm}} {{'PROJECT_PAGE.DAYS' | translate}}</div>
+        </div>
+        <div class="col-md-12">
+          <a class="m-1 btn btn-sm btn-danger" *ngIf="userType === 'admin'"
+            (click)="updateOfferStatus(offerInfo.id , projectOfferStatus.Closed , 'Close This Project')">
+            {{'PROJECT_PAGE.CLOSE_PROJECT' | translate}}</a>
+          <a class="m-1 btn btn-sm btn-success" *ngIf=" userType==='admin'"
+            (click)="updateOfferStatus(offerInfo?.id , projectOfferStatus.ReturnToUnderDevelopment , ' Return Project To Under Development')">
+            {{'PROJECT_PAGE.RETURN_TO_UNDER_DEVELOPMENT' | translate}}
+          </a>
+          <a class="m-1 btn btn-sm btn-success"
+            *ngIf=" userType==='expert'&& offerInfo?.status === projectOfferStatus.Accepted"
+            (click)="updateOfferStatus(offerInfo?.id , projectOfferStatus.WaitingForReview , 'Complete This    Project')">
+            {{'PROJECT_BIDS.COMPLETE' | translate}} </a>
+          <a class="btn btn-green btn-sm m-1"
+            *ngIf="userType === 'expert' && offerInfo?.status === projectOfferStatus.CompletedBYProjectOwner"
+            [routerLink]="'/projects/confirmCompleteProject/'+offerInfo.id">{{'PROJECT_BIDS.CONFIRM_COMPLETED' | translate}}
+          </a>
+          <a class="btn btn-green btn-sm"
+            *ngIf="userType === 'projectOwner' && offerInfo?.status == projectOfferStatus.WaitingForReview"
+            [routerLink]="'/projects/completeProject/'+offerInfo?.id">{{'PROJECT_BIDS.CONFIRM_COMPLETED' | translate}}</a>
+          <a class="btn btn-green btn-sm"
+            *ngIf="userType === 'projectOwner' && offerInfo?.status == projectOfferStatus.CompletedByExpert"
+            (click)="updateOfferStatus(offerInfo?.id , projectOfferStatus.Completed , 'Complete This Project')">
+            {{'PROJECT_BIDS.CONFIRM_COMPLETED' | translate}}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Page header end -->
+  <div class="row">
+    <div class="col-md-12">
+      <ul class="nav nav-pills mb-3 user-tab" id="pills-tab" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link active" id="pills-messages-tab" data-toggle="pill" href="#pills-messages" role="tab"
+            aria-selected="true">{{'PROJECT_PAGE.MESSAGES' | translate}}</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="pills-milestone-tab" data-toggle="pill" href="#pills-milestone" role="tab"
+            aria-selected="false">{{'PROJECT_PAGE.MILESTONES' | translate}}</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="pills-invoice-tab" data-toggle="pill" href="#pills-invoice" role="tab"
+            aria-selected="false">{{'PROJECT_PAGE.INVOICE' | translate}}</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="pills-files-tab" data-toggle="pill" href="#pills-files" role="tab"
+            aria-selected="false">{{'PROJECT_PAGE.FILES' | translate}}</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="pills-transaction-tab" data-toggle="pill" href="#pills-transaction" role="tab"
+            aria-selected="false">{{'PROJECT_PAGE.TRANSACTION' | translate}}</a>
+        </li>
+
+      </ul>
+      <div class="tab-content user-content " id="pills-tabContent">
+        <!-- messages -->
+        <div class="tab-pane fade show active" id="pills-messages" role="tabpanel" aria-labelledby="pills-messages-tab">
+
+          <div class="msger">
+            <header class="msger-header">
+              <div class="msger-header-title">
+                <i class="fas fa-comment-alt"></i> Chat With <span *ngIf="userType === 'expert'">Expert</span><span *ngIf="userType != 'expert'">Client</span>
+              </div>
+
+            </header>
+
+            <main  class="msger-chat scrollbar" id="style-1">
+            <div #scrollMe class="force-overflow">
+              <div *ngFor="let message of offersMessages" >
+                <div style="width:70%;float:left;">
+                  <div class="msg left-msg">
+                    <div  class="msg-bubble">
+                      <div class="msg-info">
+                        <div class="msg-info-name">{{message.senderName}}</div>
+                        <div class="msg-info-time">{{message.date | amTimeAgo}}</div>
+                      </div>
+
+                      <div class="msg-text">
+                        {{message.message}}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div style="width:30%;float:right;">
+                  <div class="msg right-msg">
+                    <div class="msg-img" style="background-image: url({message.senderImage})"
+                    ></div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+			</main>
+
+            <form [formGroup]="chatRoomForm" class="msger-inputarea">
+
+                  <input type="text" formControlName="Message" class="form-control" placeholder="Type your message here...">
+
+                  <button type="submit" (click)="sendMessage()" class="msger-send-btn">Send</button>
+
+            </form>
+
+            </div>
+
+
+        </div>
+        <!-- milestone -->
+        <div class="tab-pane fade " id="pills-milestone" role="tabpanel" aria-labelledby="pills-milestone-tab">
+          <div class="row">
+            <div class="col-md-12">
+              <table class="rwd-table">
+                <thead class="thead-info">
+                  <tr>
+                    <th>#</th>
+                    <th>{{'BASE.TITLE' | translate}}</th>
+                    <th> {{'BASE.AMOUNT' | translate}}</th>
+                    <th> {{'BASE.STATUS' | translate}}</th>
+                    <th>{{'BASE.CREATED_DATE' | translate}}</th>
+                    <th>{{'BASE.ACTION' | translate}}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let milestone of projectMilestones$ | async; let i=index">
+                    <td>{{i+1}}</td>
+                    <td>{{milestone.name}}</td>
+                    <td>{{milestone.amount}}</td>
+                    <td>
+                      <span *ngIf="milestone.status === 1"
+                        class=" text text-success ">{{'BASE.STATUS_NEW' | translate}}</span>
+                      <span *ngIf="milestone.status === 4"
+                        class=" text text-danger ">{{'BASE.REJECTED' | translate}}</span>
+                    </td>
+                    <td>{{milestone.createdDate | date}}</td>
+                    <td>
+                      <button class="btn btn-success btn-sm" *ngIf="userType === 'expert'"
+                        (click)="updateMilestoneStatus(milestone.id , 2 , 'Complete ')">{{'BASE.COMPLETE' | translate}}</button>
+                      <!-- <button class="btn btn-success btn-sm" *ngIf="userType === 'projectOwner'"
+                            (click)="updateMilestoneStatus(milestone.id , 3 , 'Invoice ')">Invoice</button> -->
+                      <!-- <button class="btn btn-danger btn-sm">Reject</button> -->
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="col-md-12" *ngIf="userType === 'expert' && (offerInfo?.status <= projectOfferStatus.Accepted &&
+            offerInfo?.status <= projectOfferStatus.CompletedBYProjectOwner)">
+              <div class="user-info my-4">
+                <form [formGroup]="projectMilestoneForm">
+                  <div class="form-group">
+                    <input type="text" formControlName="Name" class="form-control" id="Name"
+                      placeholder="{{'BASE.TITLE' | translate}}" required>
+                  </div>
+                  <div class="form-group">
+                    <input type="number" formControlName="Amount" class="form-control" id="Amount"
+                      placeholder="{{'BASE.AMOUNT' | translate}}" required>
+                  </div>
+
+                  <div class="input-group my-4">
+                    <div class="input-group-append">
+                      <button class="btn btn-green" (click)="addNewProjectMilestone()"
+                        type="button">{{'BASE.SAVE' | translate}}</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- invoice -->
+        <div class="tab-pane fade" id="pills-invoice" role="tabpanel" aria-labelledby="pills-invoice-tab">
+          <div class="row">
+            <div class="col-md-12">
+              <table class="rwd-table">
+                <thead class="thead-info">
+                  <tr>
+                    <th>#</th>
+                    <th>{{'BASE.TITLE' | translate}}</th>
+                    <th>{{'BASE.AMOUNT' | translate}}</th>
+                    <th>{{'BASE.CREATED_DATE' | translate}}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let invoice of projectInvoice$ | async; let i=index">
+                    <td>{{i+1}}</td>
+                    <td>{{invoice.name}}</td>
+                    <td>{{invoice.amount}}</td>
+                    <td>{{invoice.createdDate | date}}</td>
+                    <td>
+                      <button class="btn btn-success btn-sm mr-1" *ngIf="userType === 'projectOwner'"
+                        (click)="updateMilestoneStatus(invoice.id , 3 , 'Confirm   Complete')">{{'PROJECT_BIDS.CONFIRM_COMPLETED' | translate}}</button>
+                      <button class="btn btn-danger btn-sm ml-1" *ngIf="userType === 'projectOwner'"
+                        (click)="updateMilestoneStatus(invoice.id , 4 , 'Reject Completion Of Milestones ')">{{'PROJECT_PAGE.REJECT' | translate}}</button>
+
+
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <!-- FILES  -->
+        <div class="tab-pane fade" id="pills-files" role="tabpanel" aria-labelledby="#pills-files-tab">
+          <div class="row">
+            <div class="col-md-12">
+              <table class="rwd-table">
+                <thead class="thead-info">
+                  <tr>
+                    <th>#</th>
+                    <th>{{'BASE.TITLE' | translate}}</th>
+                    <th>{{'PROJECT_PAGE.FILE_PATH' | translate}}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let file of projectFiles$ | async; let i=index">
+                    <td>{{i+1}}</td>
+                    <td>{{file.name}}</td>
+                    <td>
+                      <button class="btn btn-success btn-sm mr-1" *ngIf="userType === 'projectOwner'"
+                        (click)="updateProjectFileStatus(file.id , 2 )">{{'BASE.ACCEPT' | translate}}</button>
+                      <a href="{{file.file_Path}}" target="_blank"
+                        class="btn btn-info btn-sm ml-1">{{'BASE.DOWNLOAD' | translate}}</a>
+					   <button *ngIf="userType === 'projectOwner'" (click)="onDeleteFile(file.id)" class="btn btn-danger btn-sm ml-1">{{'BASE.DELETE_FILE' | translate}}</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="col-md-12" *ngIf="userType === 'expert' && (offerInfo?.status <= projectOfferStatus.Accepted &&
+            offerInfo?.status <= projectOfferStatus.CompletedBYProjectOwner)">
+              <div class="user-info my-4">
+                <button class="btn btn-sm btn-primary mb-1">{{ 'BASE.NEW' | translate }}</button>
+                <form [formGroup]="projectFileForm">
+                  <div class="form-group">
+                    <input type="text" formControlName="Name" class="form-control" id="Name"
+                      placeholder="{{ 'BASE.TITLE' | translate }}" required>
+                  </div>
+                  <div class="form-group col-md-12">
+                    <label for="" class="label">{{ 'BASE.ATTACH_FILE' | translate }} </label>
+                    <input (change)="onSelectFile($event)" type="file" formControlName="File" class="form-control" />
+                  </div>
+                  <div class="input-group my-4">
+                    <div class="input-group-append">
+                      <button class="btn btn-green" (click)="addNewProjectFile()"
+                        type="button">{{ 'BASE.SAVE' | translate }}</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- transaction -->
+        <div class="tab-pane fade" id="pills-transaction" role="tabpanel" aria-labelledby="#pills-transaction-tab">
+          <div class="row">
+            <div class="col-md-12">
+              <table class="rwd-table">
+                <thead class="thead-info">
+                  <tr>
+                    <th>#</th>
+                    <th>{{ 'BASE.TITLE' | translate }}</th>
+                    <th>{{ 'BASE.AMOUNT' | translate }}</th>
+                    <th>{{ 'BASE.CREATED_DATE' | translate }}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let projectTransaction of projectTransactions$ | async; let i=index">
+                    <td>{{i+1}}</td>
+                    <td>{{projectTransaction.name}}</td>
+                    <td>{{projectTransaction.amount}}</td>
+                    <td>{{projectTransaction.createdDate | date}}</td>
+
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+</div>
+<app-project-footer></app-project-footer>

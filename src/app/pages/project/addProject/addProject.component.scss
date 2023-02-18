@@ -1,0 +1,119 @@
+.img-fluid.icon-img {
+    background-color: #effafb;
+    padding: 9px;
+    border-radius: 15px;
+    box-shadow: 0 3px 6px rgb(0 0 0 / 16%), 0 3px 6px rgb(0 0 0 / 23%);
+}
+
+h2.b-hd{
+    position: relative !important;
+    left: 75px !important;
+    top: -47px !important;;
+    color: #138d9a !important;;
+  }
+
+h5.list-hd{
+    font-size: 19px !important;
+    color: #138d9a !important;
+    font-weight: 500 !important;
+}
+
+h4.free {
+    background-color: #138d9a;
+    width: 10%;
+    font-size: 15px;
+    font-weight: 700;
+    color: #fff;
+    padding: 3px 8px 5px 0px;
+    position: absolute !important;
+    right: 0px !important;
+    border-radius: 3px;
+}
+
+h4.free:hover {
+    transform: translate(-625%, 20%) scale(1.0) !important;
+    transition: 0.5s cubic-bezier(0.6, 0.03, 0.28, 0.98);
+}
+
+h5.suc {
+    color: #9cc33b;
+}
+
+p {
+    font-size: 14px;
+    margin-bottom: 30px;
+}
+
+h5.project {
+    margin-bottom: 35px;
+}
+
+
+@media (min-width: 320px) and (max-width: 480px) {
+  
+    img.img-fluid.icon-img{
+    max-width: 18% !important;
+}
+
+
+.search-form {
+    
+    left: 0px !important;
+}
+.inner-title h1 {
+    display: none !important;
+}
+
+
+.col-xl-6col-lg-6.col-md-6.col-sm-6.col-6.bhthy-col {
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+    margin-bottom: 30px;
+}
+
+button.btn {
+    margin-right: 0px !important;
+    margin-top: 10px !important;
+}
+
+h4.free {
+    width: 15% !important;
+    border-radius: 3px;
+}
+
+h4.free:hover {
+    transform: translate(-625%, 20%) scale(1.0) !important;
+    transition: 0.5s cubic-bezier(0.6, 0.03, 0.28, 0.98);
+}
+
+}
+
+h4.free:hover {
+    transform: translate(-625%, 20%) scale(1.0) !important;
+    transition: 0.5s cubic-bezier(0.6, 0.03, 0.28, 0.98);
+}
+
+button.btn {
+    margin-right: 13px !important;
+}
+
+.row.ra {
+    background: #fbe6e8 !important;
+    padding: 20px 10px !important;
+    border-radius: 7px !important;
+}
+
+.row.raa {
+    background: #e5f0fb !important;
+    padding: 20px 10px !important;
+    border-radius: 7px !important;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.row.raaa {
+    background: #cbfbd6  !important;
+    padding: 20px 10px !important;
+    border-radius: 7px !important;
+    margin-bottom: 10px;
+}

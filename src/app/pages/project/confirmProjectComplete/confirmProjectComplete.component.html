@@ -1,0 +1,71 @@
+<section class="pt-90" *ngIf="projectOffer$ | async as projectOffer">
+  <div class="container">
+    <div class="row">
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+        <div class="card find-project">
+          <div class="card-body">
+            <div class="search-form prjct-form">
+              <h4>{{projectOffer?.projectName}}</h4>
+              <p>{{projectOffer?.userName}}</p>
+
+              <div class="row">
+                <div class="col-md-4">
+                  <h5>{{'BASE.DATE' | translate}} <span
+                      class="badge badge-secondary">{{projectOffer?.createdDate | date : 'medium'}}</span></h5>
+                </div>
+                <div class="col-md-4">
+                  <h5>{{'PROJECT_BIDS.BID_PRICE' | translate}} <span
+                      class="badge badge-secondary">${{projectOffer?.price}}</span>
+                  </h5>
+                </div>
+              </div>
+            </div>
+            <form class="form-s" [formGroup]="projectOfferRatingForm">
+              <div class="row">
+                <div class="col-md-12">
+                  <ngx-star-rating [disabled]="true" formControlName="Rating" [id]="'rating'"></ngx-star-rating>
+                </div>
+              </div>
+              <div class="row">
+                <ul class="chat-box chatContainerScroll">
+                  <li class="chat-right">
+                    <div class="chat-avatar">
+                      <img src="assets/images/male.png" alt="Retail Admin">
+                      <div class="chat-name"> {{projectOffer?.rating.expertName}}</div>
+                    </div>
+                    <div class="chat-text">{{projectOffer?.rating.projectOwnerMessage}}.</div>
+                    <!-- <div class="chat-hour">{{projectOffer?.rating.date | date : 'medium'}} <span
+                        class="fa fa-check-circle"></span>
+                    </div> -->
+                  </li>
+                </ul>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for=""> {{'BASE.NOTES' | translate}}</label>
+                    <textarea id="description" formControlName="description" cols="70" rows="6"
+                      [ngClass]="{'is-invalid': submitted && projectOfferRatingForm.controls.description.errors}"
+                      placeholder="{{'BASE.NOTES' | translate}}"></textarea>
+                  </div>
+                  <div *ngIf="submitted && form.description.errors" class="invalid-feedback">
+                    <span *ngIf="form.description.errors">{{'BASE.IS_REQUIRED' | translate}}</span>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-8">
+                  <button type="button" (click)="onSubmit()"
+                    class="btn btn-success btn-block">{{'BASE.SUBMIT' | translate}}</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</section>
+<app-project-footer></app-project-footer>

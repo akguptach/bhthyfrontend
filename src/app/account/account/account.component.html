@@ -1,0 +1,366 @@
+<main>
+  <!-- dashboard banner -->
+  <section class="dash-sec">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-12 col-12 pr-md-0 ">
+          <!-- Nav pills -->
+          <ul class="nav nav-pills dashboard_nav sidenav" role="tablist">
+            <li class="nav-item text-center">
+              <img alt="" *ngIf="userInfo?.image" [src]="userInfo?.image"  onError="this.src='assets/images/default_user.png'" class="profile-img">
+              <a href="#" class="profile-name">
+                {{userInfo?.fullName}}
+                
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" data-toggle="pill" href="#myaccount">
+                <i class="fas fa-user mr-2"></i> {{'ACCOUNT.MYACCOUNT' | translate}}
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" (click)="cashwithdraw()" data-toggle="pill" href="#cashwithdraw">
+                <i class="far fa-money-bill-alt mr-2"></i> {{'ACCOUNT.CAST_WITHDRAWALS' | translate}}
+              </a>
+            </li>
+            <li class="nav-item" style="display:none;">
+              <a class="nav-link" data-toggle="pill" href="#transferac">
+                <i class="fa fa-fw fa-book mr-2"></i> {{'ACCOUNT.MONEY_TRANSFER_TO_ACCOUNT' | translate}}
+              </a>
+            </li>
+            <li class="nav-item" style="display:none;">
+              <a class="nav-link" (click)="transactions()" data-toggle="pill" href="#transaction">
+                <i class="fa fa-fw fa-credit-card-alt mr-2"></i> {{'ACCOUNT.TRANSACTION' | translate}}
+              </a>
+            </li>
+            <li class="nav-item" style="display:none;">
+              <a class="nav-link" data-toggle="pill" href="#addtowallet">
+                <i class="fas fa-wallet mr-2"></i> {{'ACCOUNT.ADD_TO_WALLET' | translate}}
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="pill" href="#changepwd">
+                <i class="fa fa-key fa-fw mr-2"></i> {{'ACCOUNT.CHANGE_PASSWORD' | translate}}
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="javascript:void();" (click)="logOut()">
+                <i class="fas fa-sign-out-alt mr-2"></i> {{'ACCOUNT.LOGOUT' | translate}}
+              </a>
+            </li>
+
+          </ul>
+        </div>
+        <div class="col-xl-9 col-lg-9 col-md-8 col-sm-12 col-12 ">
+          <div class="tab-content shadow-sm p-3 sidenav">
+            <div>
+              <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item ">
+                    <a href="#">{{'ACCOUNT.MYACCOUNT' | translate}}</a>
+                  </li>
+                </ol>
+              </nav>
+            </div>
+            <div class="tab-pane container active" id="myaccount" *ngIf="(userInfo$ |async) as userInfo">
+              <form class="acc_Form" [formGroup]="updateForm" enctype="multipart/form-data">
+                <div class="row">
+                  <div class="row col-md-12 mb-3">
+                    <label for="role" class="label col-md-12"></label>
+                    <div class="col-md-12">
+                      <img src="assets/images/icon/work.png" alt="" class="img-fluid icon-img" style="max-width: 8%; margin-left: 42px;">
+                      <img src="assets/images/icon/hire.png" alt="" class="img-fluid icon-img" style="max-width: 8%; margin-left: 129px;">
+                      <img src="assets/images/icon/both.png" alt="" class="img-fluid icon-img" style="max-width: 8%; margin-left: 150px;">
+                      <br>
+                      <br>
+                      <div class="form-check-inline" *ngFor="let role of roleTypes">
+                        <label class="form-check-label radio-lbl" style="font-weight: 600;">
+                          <input type="radio" [checked]="role.id === selectedRole" class="form-check-input"
+                            (ngModelChange)="onSelectUserType($event)" formControlName="Role" name="Role"
+                            [value]="role.id" id="role.id">
+
+                          {{role.title}}</label>
+                      </div>
+                      <br>
+                      <div *ngIf="submitted">
+                        <p>Please select either value</p>
+                      </div>
+                      
+                    </div>
+                  </div>
+                  
+                  <div class="form-group col-md-12" *ngIf="isFreelancer === true">
+                    <label for="" class="label">{{'ACCOUNT.SERVICE_TYPE' | translate}}</label>
+                    <select class="form-control" [ngModel]="selectedService" formControlName="ServiceId">
+                      <option *ngFor="let service of services$ |async" [value]="service.id">{{service.name}}
+                      </option>
+                    </select>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <input type="text" class="form-control" id="fanme" placeholder="{{'ACCOUNT.ENTER_A_FLL_NAME' | translate}}"
+                        formControlName="fullName" [value]="userInfo.fullName">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <textarea class="form-control" rows="4" id="bio" placeholder="{{'ACCOUNT.WRITE_SOMTHING_ABOUT_YOUR_SELF' | translate}}"
+                        required formControlName="aboutMe"></textarea>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div *ngIf="isFreelancer === true" class="col-md-4">
+                    <div class="form-group">
+                      <input type="text" class="form-control" id="rate" placeholder="{{'ACCOUNT.HOURLY_RATE' | translate}}" formControlName="HourlyRate" required>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <input type="text" class="form-control" id="location" placeholder="{{'ACCOUNT.LOCATION' | translate}}" required
+                        formControlName="location">
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <input type="text" class="form-control" id="zipcode" placeholder="{{'ACCOUNT.ZIP_CODE' | translate}}" required
+                        formControlName="zipCode">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-7">
+                    <div class="custom-file2 mb-3 row">
+                      <label class=" control-label col-md-12 img-lbl text-center">{{'ACCOUNT.UPLOAD_YOUR_IMAGE' | translate}}
+                        <img src="assets/images/camera.png" style="width: 20px; position: relative; right: 39%;">
+                        <input type="file" class="col-md-12" id="customFile" value="Upload you Image" name="file"
+                        formControlName="file" accept=".png, .jpg, .jpeg" (change)="onSelectFile($event)">
+                        </label>
+
+                    </div>
+                  </div>
+                  <div class="col-md-5">
+                    <p class="para-text m-0">{{'ACCOUNT.MAXIMUM_ALLOWED_SIZE' | translate}}: 2 MB</p>
+                    <p class="para-text m-0"> {{'ACCOUNT.ALLOWED_EXTENSIONS' | translate}}: jpg,jpeg,gif,png</p>
+                  </div>
+                </div>
+
+                <button type="button" (click)="UpdateUser()" class="btn btn-green float-right"> {{'BASE.SAVE' | translate}}</button>
+              </form>
+            </div>
+            <div class="tab-pane container fade" id="cashwithdraw">
+              <div class="row my-3">
+                
+                  <div class="col-md-12 text-right">
+                    <div class="alert alert-success">
+                      <h2 style="font-size: 22px; margin-top: 10px;">{{'ACCOUNT.YOUR_CURRENT_BALANCE' | translate}} : <b>OMR 0.00</b></h2>
+                    </div>
+                  </div>
+                
+                <div class="card col-md-12 with-form">
+				  
+                  <div class="card-header">
+                    {{'ACCOUNT.NEW_WIDHRAWAL_REQUEST' | translate}}
+                  </div>
+                  <div class="card-body">
+                    <form class="" [formGroup]="cashWithdrawalForm">
+                      <label for="amount" class=" control-label">{{'ACCOUNT.MONEY_AMOUNT' | translate}}</label>
+                      <input class="form-control" formControlName="Amount" type="number" id="amount">
+                      <div>
+                        <button type="button" class="btn btn-success m-1" style="margin-top:20px !important;"
+                          (click)="newWithdrawalRequest()">{{'ACCOUNT.SUBMIT' | translate}}</button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+                <div class="col-md-12 text-right" style="margin-top:20px !important;">
+                  <form class="w-25 float-right">
+                    <select #mySelect (change)='getCashWithdrawal(mySelect.value)' class="custom-select">
+                      <option selected>{{'ACCOUNT.SELECT_WIDHRAWAL_STATUS' | translate}}</option>
+                      <option [value]="1">{{'ACCOUNT.NEW' | translate}}</option>
+                      <option [value]="2">{{'ACCOUNT.PENDING' | translate}}</option>
+                      <option [value]="3">{{'ACCOUNT.PAYED' | translate}}</option>
+                      <option [value]="4">{{'ACCOUNT.REJECT' | translate}}</option>
+                    </select>
+                  </form>
+                </div>
+              </div>
+              <table class="table cust-tbl shadow-sm ">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th scope="col">{{'ACCOUNT.DATE' | translate}}</th>
+                    <th scope="col">{{'ACCOUNT.MONEY_TRANSFER' | translate}}</th>
+                    <th scope="col">{{'ACCOUNT.ACTION' | translate}}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let cashWithdrawal of cashWithdrawal$ | async; let i=index">
+                    <td>{{i+1}}</td>
+                    <td>{{cashWithdrawal.createdDate | date}}</td>
+                    <td>{{cashWithdrawal.amount}}</td>
+                    <td>
+                      <a class="btn btn-primary btn-sm  ml4" *ngIf="cashWithdrawal.status === 3"
+                        href="{{cashWithdrawal.image}}" target="_blank">
+                        Show Invoice Image</a>
+                    </td>
+                  </tr>
+
+                </tbody>
+              </table>
+            </div>
+            <div class="tab-pane container fade" id="transferac">
+
+              <div class="row">
+                <div class="col-md-12">
+                  <table class="table cust-tbl shadow-sm my-5">
+                    <thead>
+                      <tr>
+                        <th>#</th>
+                        <th scope="col">{{'ACCOUNT.DATE' | translate}}</th>
+                        <th scope="col">{{'ACCOUNT.MONEY_TRANSFER' | translate}}</th>
+                        <th scope="col">{{'ACCOUNT.ACTION' | translate}}</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let transaction of monthTransferToAccount$ | async; let i=index">
+                        <td>{{i+1}}</td>
+                        <td>{{transaction.createdDate | date}}</td>
+                        <td>{{transaction.amount}}</td>
+                        <td>{{transaction.projectName}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane container fade" id="transaction">
+              <!-- <div class="row mt-3">
+                <div class="col-md-12 text-right">
+                  <div class="alert alert-info">
+                    <h2>Your wallet Amount : <b>$105.00</b></h2>
+                  </div>
+                </div>
+              </div> -->
+
+              <!-- <div class="row my-3">
+                <div class="col-md-12 text-right">
+                  <form class="w-25 float-right">
+                    <select #mySelect (change)='onOptionsSelected(mySelect.value)' class="custom-select">
+                      <option selected>Sort By</option>
+                      <option value="all">{{'All' }}</option>
+                      <option value="today">{{ 'Today' }}</option>
+                      <option value="this_week">{{'This Week' }}</option>
+                      <option value="this_month">{{ 'This Month' }}</option>
+
+                    </select>
+                  </form>
+                </div>
+              </div> -->
+
+              <div class="row">
+                <div class="col-md-12">
+                  <table class="table cust-tbl shadow-sm ">
+                    <thead>
+                      <tr>
+                        <th>#</th>
+                        <th scope="col">{{'ACCOUNT.MONEY_TRANSFER' | translate}}</th>
+                        <th scope="col">{{'ACCOUNT.PROJECT_NAME' | translate}}</th>
+                        <th scope="col">{{'ACCOUNT.DATE' | translate}}</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let transaction of transactions$ | async; let i=index">
+                        <td>{{i+1}}</td>
+                        <td>{{transaction.amount}}</td>
+                        <td>{{transaction.projectName}}</td>
+                        <td>{{transaction.createdDate | date}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <!-- <p *ngIf="transaction==''">No records available</p> -->
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane container fade" id="addtowallet">
+              <form class="acc_Form">
+                <div class="row my-3">
+                  <div class="col-md-12 text-right">
+                    <div class="alert alert-success">
+                      <h2 style="font-size: 22px; margin-top: 10px;">{{'ACCOUNT.YOUR_CURRENT_BALANCE' | translate}} : <b>OMR 0.00</b></h2>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-8">
+                    <div class="form-group">
+                      <input type="number" class="form-control" placeholder="{{'ACCOUNT.ENTER_YOUR_AMOUNT' | translate}}">
+                    </div>
+                  </div>
+                  <div class="col-md-4 ">
+                    <p class="para-text m-0">{{'ACCOUNT.MINIMUM_AMOUNT' | translate}}: OMR 10.00
+                    </p>
+                    <p class="para-text m-0">{{'ACCOUNT.MAXIMUM_AMOUNT' | translate}}: OMR 20,000.00</p>
+                  </div>
+                </div>
+                <div class="row my-5">
+                  <div class="col-xl-2 col-lg-2 col-md-3 ">
+                    <a href="#"><img src="assets/images/paypal.png" class="img-fluid "></a>
+                  </div>
+                  <div class="col-md-5">
+                    <a href="#" class="btn btn-green mt-2">{{'ACCOUNT.PAY_NOW' | translate}}</a>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-xl-8 col-lg-8 col-md-12">
+                       <p class="para-text m-0" *ngIf="!customFunctions.IsRTL()">By clicking the Pay Now button, you agree to these <a href="#" class="/#/terms">Terms of Service</a></p>
+					  <p class="para-text m-0" style="text-align:right;" *ngIf="customFunctions.IsRTL()">By clicking the Pay Now button, you agree to these <a href="/#/terms" class="t">Terms of Service</a></p>
+                  </div>
+                </div>
+
+              </form>
+            </div>
+            <div class="tab-pane container fade" id="changepwd">
+              <form class="acc_Form p-4" [formGroup]="forgotPasswordForm" (ngSubmit)="onChangepass()">
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <input type="password" class="form-control" id="pwd" placeholder="{{'ACCOUNT.CURRENT_PASSWORD' | translate}}"
+                        formControlName="CurrentPassword">
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <input type="password" class="form-control" id="npwd" placeholder="{{'ACCOUNT.NEW_PASSWORD' | translate}}"
+                        formControlName="NewPassword">
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <input type="password" class="form-control" id="cpwd" placeholder="{{'ACCOUNT.CONFIRM_PASSWORD' | translate}}"
+                        formControlName="ConfirmNewPassword">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row ">
+                  <div class="col-md-5">
+                    <button type="button" (click)="changePassword()" href="#" class="btn btn-green mt-2">
+                      {{'ACCOUNT.SUBMIT' | translate}}</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+<app-account-footer></app-account-footer>

@@ -1,0 +1,203 @@
+<main>
+  <!-- inner banner -->
+  <section class="inner-bg">
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-12">
+          <div class="inner-title">
+            <h1 *ngIf="!customFunctions.IsRTL()">
+
+              <img src="assets/images/icon/project.png" alt="" class="img-fluid icon-img" style="max-width: 7%;">
+
+              {{'PROJECTS.FIND_WORKS' | translate}}</h1>
+
+              <h1 *ngIf="customFunctions.IsRTL()" style="text-align: right;">
+
+                <img src="assets/images/icon/project.png" alt="" class="img-fluid icon-img" style="max-width: 7%;">
+
+                {{'PROJECTS.FIND_WORKS' | translate}}</h1>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pt-90" style="padding-top: 0px; margin-top:-100px;">
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+          <div class="card find-project">
+            <div class="card-body b">
+              <div class="search-form prjct-form c">
+
+                <form class="form-s row" [formGroup]="searchfilterForm">
+
+
+                  <div class="col-md-3">
+                    <div class="input-group-prepend ml-1 mb-1 row">
+                      <input type="text" formControlName="search" class="form-control"
+                        placeholder="{{'BASE.SEARCH_KEY_WORD' | translate}}" style="margin-top: 28px;">
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="input-group-prepend ml-1 mb-1 row">
+                      <label *ngIf="!customFunctions.IsRTL()" for="" class="col-md-12">{{'BASE.PROJECT_BY_CATEGORIES' | translate}}</label>
+                      <label *ngIf="customFunctions.IsRTL()" style="display: block; text-align:right;" for="" class="col-md-12">{{'BASE.PROJECT_BY_CATEGORIES' | translate}}</label>
+
+                      <ng-select formControlName="ServiceId" class=" col-md-12">
+                        <option></option>
+                        <ng-option *ngFor="let service of services$ | async" [value]="service.id">
+                          {{service.name}}</ng-option>
+                      </ng-select>
+                    </div>
+                  </div>
+
+                  <div class="col-md-3">
+                    <div class="input-group-prepend ml-1 row">
+                      <label *ngIf="!customFunctions.IsRTL()" for="" class="col-md-12">{{'BASE.BUDGET_RANGE' | translate}}</label>
+                      <label *ngIf="customFunctions.IsRTL()" style="display: block; text-align:right;" for="" class="col-md-12">{{'BASE.BUDGET_RANGE' | translate}}</label>
+
+                      <ng-select formControlName="project_range_id" class=" col-md-12">
+                        
+                        <ng-option *ngFor="let priceRange of priceRanges$ | async" [value]="priceRange.id">
+                          From {{priceRange.minAmount}} To {{priceRange.maxAmount}}</ng-option>
+                      </ng-select>
+                    </div>
+                  </div>
+                  <div class="col-md-3" style="margin-top: 28px;">
+                    <button type="button" (click)="searchProjects()" class="btn btn-green pt-2"> {{'BASE.SEARCH' | translate}}</button>
+                  </div>
+                </form><br>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section>
+    <div class="container" style="margin-bottom: 50px;">
+      <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+          
+
+          <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 expert-rate">
+            <div class="row" style="margin-top: 50px;">
+            <div class="col-xl-12 col-lg-6 col-md-12 col-sm-12 card prjct-card mb-2"
+              *ngFor="let project of projects ; let i = index">
+              <div class="card-body">
+                <div class="row" >
+                  <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2">
+                    <div class="prjct-img row">
+                      <img class="" alt="" [src]="project?.userImage ? project.userImage: 'assets/images/default_user.png'"
+                       onError="this.src='assets/images/default_user.png'">
+                      <i class="col-md-12 blue-title" style="font-size: 12px !important; font-weight:600;" > {{project.userName}}</i>
+                    </div>
+                  </div>
+                  <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
+                    <div class="hire-txt">
+                      <div class="row">
+                        <h6 *ngIf="!customFunctions.IsRTL()" class="col-md-12">{{project.name}}</h6>
+                        <h6 *ngIf="customFunctions.IsRTL()" class="col-md-12" style="text-align: right;">{{project.name}}</h6>
+
+                       
+                      </div>
+                      <p class="lmt">{{project.description}}</p>
+                      <i class="time-b">{{project.createdDate | amTimeAgo}}</i>
+                     
+                    </div>
+                  </div>
+                  
+                  <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 expert-rate">
+				        <div *ngIf="!customFunctions.IsRTL()" class="state">
+                          <button *ngIf="project.isFeatured == 1" class="btn btn-warning">{{'BASE.FEATURED' | translate}}</button>
+                          <button *ngIf="project.isUrgent == 1" class="btn btn-danger">{{'BASE.URGENT' | translate}}</button>
+                          <button *ngIf="project.isPrivate == 1" class="btn btn-primary">{{'BASE.PRIVATE' | translate}}</button>
+                          <button *ngIf="project.isHiddenBid == 1" class="btn btn-success">{{'BASE.SEALED' | translate}}</button>
+                        </div>
+                        <div *ngIf="customFunctions.IsRTL()" class="state">
+                          <button *ngIf="project.isFeatured == 1" class="btn btn-warning" style="right: 290px; top:-44px;">{{'BASE.FEATURED' | translate}}</button>
+                          <button *ngIf="project.isUrgent == 1" class="btn btn-danger" style="right: 302px; top:-44px;">{{'BASE.URGENT' | translate}}</button>
+                          <button *ngIf="project.isPrivate == 1" class="btn btn-primary" style="right: 302px; top:-44px;">{{'BASE.PRIVATE' | translate}}</button>
+                          <button *ngIf="project.isHiddenBid == 1" class="btn btn-success" style="right: 302px; top:-44px;">{{'BASE.SEALED' | translate}}</button>
+                        </div>
+                    <div class="d-flex justify-content-center text-center">
+                      <div class="pt-12">
+                        <h6 class="price">OMR&nbsp;{{project.priceMinAmount}} To OMR&nbsp;{{project.priceMaxAmount}}</h6>
+                      </div>
+                    </div>
+                    <a *ngIf="getTime(project.createdDate) && !customFunctions.IsRTL()" class="btn btn-blue btn-sm m-1 cus-btn" (click)="goToProjectPage(project.id)" style="position: relative; left:28px; font-weight: 700;"> {{'PROJECTS.BID_NOW' | translate}} </a>
+                    <a *ngIf="getTime(project.createdDate) && customFunctions.IsRTL()" class="btn btn-blue btn-sm m-1 cus-btn" (click)="goToProjectPage(project.id)" style="position: relative; left:32px; font-weight: 700;"> {{'PROJECTS.BID_NOW' | translate}} </a>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+<!-- The Modal -->
+<div class="modal" id="myModal" [style.display]="showModal ? 'block' : 'none'" style="overflow-y: scroll !important;"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Edit Project - </h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Edit Project - </h4>
+        <button type="button" class="close" data-dismiss="modal" (click)="hide()">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <form>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label for="">{{ 'Add More Description' }}</label>
+                <textarea id="inputMessage" ng-model="editprojects.additional_descriptions"
+                  ng-readonly="editprojects.additional_descriptions == ''" cols="60" rows="6"
+                  placeholder="Describe more about project here" required></textarea>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <p>{{ 'What Skills Are Required?' }}</p>
+            </div>
+            <div class="col-md-6">
+              <div class="input-group-prepend ml-3">
+                <select>
+                  <option value="">{{ 'Select your skills and expertise' }}</option>
+                  <!-- <option *ngFor="let skills of expertskillslist" value="{{skills.id}}">{{skills.name}}</option> -->
+                </select>
+              </div>
+            </div>
+            <div class="col-md-12" style="margin-top: 15px;">
+              <button type="submit" class="btn btn-green" style="margin-right: 15px;">Submit</button>
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+
+              <div class="col-md-12" style="margin-top: 15px;">
+                <button type="submit" class="btn btn-green" style="margin-right: 15px;">Submit</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="hide()">Cancel</button>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<app-project-footer></app-project-footer>

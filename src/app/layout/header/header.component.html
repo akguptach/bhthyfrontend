@@ -1,0 +1,423 @@
+<header>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Ubuntu:wght@300&display=swap"
+    rel="stylesheet">
+  <!-- menu -->
+  <nav class="navbar navbar-expand-lg top-nav">
+    <div class="container" style="position: relative;">
+      <a class="navbar-brand" [routerLink]="['/home']">
+        <img src="assets/logo/logo.png" class="logo  " style="height: 60px;width: 160px;">
+      </a>
+      <!-----english End nav-------------->
+      <ul *ngIf="!customFunction.IsRTL() && authService.hasRole('ExpertAndClient')" class="navbar-nav mt-2 h-mbl" style=" margin-right: auto !important;">
+        <li class="nav-item" >
+          <a class="nav-link" [routerLink]="['/home']">{{'NAV.HOME' | translate}}</a>
+        </li>
+
+        <li class="nav-item" *ngIf="authService.hasRole('Expert') || (authService.isLoggedIn() && isExpert() === true)">
+          <a class="nav-link" [routerLink]="['/projects']">{{'PROJECTS.FIND_WORKS' | translate}}</a>
+        </li>
+        <li class="nav-item"
+          *ngIf="authService.hasRole('Client') ||(authService.isLoggedIn() && isExpert() === false)">
+          <a class="nav-link" [routerLink]="['/hireExpert']">{{'NAV.HIRE_EXPERT' | translate}}</a>
+        </li>
+        <li class="nav-item"
+          *ngIf="authService.hasRole('Client') || (authService.isLoggedIn() && isExpert() === false)">
+          <a class="nav-link" [routerLink]="['/projects/addProject']">{{'NAV.POST_PROJECT' | translate}}</a>
+        </li>
+      </ul>
+	  
+	  <ul *ngIf="!customFunction.IsRTL() && authService.hasRole('Expert')" class="navbar-nav mt-2 h-mbl" style=" margin-right: auto !important;">
+        <li class="nav-item" >
+          <a class="nav-link" [routerLink]="['/home']">{{'NAV.HOME' | translate}}</a>
+        </li>
+
+        <li class="nav-item" *ngIf="authService.hasRole('Expert') || (authService.isLoggedIn() && isExpert() === true)">
+          <a class="nav-link" [routerLink]="['/projects']">{{'PROJECTS.FIND_WORKS' | translate}}</a>
+        </li>
+        
+      </ul>
+	  
+	  <ul *ngIf="!customFunction.IsRTL() && authService.hasRole('Client')" class="navbar-nav mt-2 h-mbl" style=" margin-right: auto !important;">
+        <li class="nav-item" >
+          <a class="nav-link" [routerLink]="['/home']">{{'NAV.HOME' | translate}}</a>
+        </li>
+
+        <li class="nav-item"
+          *ngIf="authService.hasRole('Client') || (authService.isLoggedIn() && isExpert() === false)">
+          <a class="nav-link" [routerLink]="['/hireExpert']">{{'NAV.HIRE_EXPERT' | translate}}</a>
+        </li>
+        <li class="nav-item"
+          *ngIf="authService.hasRole('Client') || (authService.isLoggedIn() && isExpert() === false)">
+          <a class="nav-link" [routerLink]="['/projects/addProject']">{{'NAV.POST_PROJECT' | translate}}</a>
+        </li>
+        
+      </ul>
+	  
+	  <!-----End nav-------------->
+
+      <ul *ngIf="customFunction.IsRTL() && authService.hasRole('ExpertAndClient')" class="navbar-nav mt-2 h-mbl" style="text-align: right; margin-left: auto;">
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/home']">{{'NAV.HOME' | translate}}</a>
+        </li>
+        <li class="nav-item" *ngIf="authService.hasRole('Expert') || (authService.isLoggedIn() && isExpert() === true)">
+          <a class="nav-link" [routerLink]="['/projects']">{{'PROJECTS.FIND_WORKS' | translate}}</a>
+        </li>
+        <li class="nav-item"
+          *ngIf="authService.hasRole('Client') || (authService.isLoggedIn() && isExpert() === false)">
+          <a class="nav-link" [routerLink]="['/hireExpert']">{{'NAV.HIRE_EXPERT' | translate}}</a>
+        </li>
+        <li class="nav-item"
+          *ngIf="authService.hasRole('Client') || (authService.isLoggedIn() && isExpert() === false)">
+          <a class="nav-link" [routerLink]="['/projects/addProject']">{{'NAV.POST_PROJECT' | translate}}</a>
+        </li>
+      </ul>
+	  
+	  <!----End arabic  ---->
+
+      <div class="languages">
+        <span *ngIf="!customFunction.IsRTL()" class="current" title="English">E</span>
+        <span *ngIf="customFunction.IsRTL()" class="current" title="Arabic">A</span>
+        <span class="hover">{{countryName}}</span>
+        <ul>
+          <li><a href="javascript:void(0);" class="dropdown-item" *ngFor="let item of listLang"
+              (click)="setLanguage(customFunction.translateText(item.textAr , item.textEn) , item.lang, item.flag)"
+              [ngClass]="{'active': cookieValue === item.lang}">
+              <img src="{{item.flag}}" alt="user-image" class="me-1" height="12"> <span
+                class="align-middle">{{customFunction.translateText(item.textAr , item.textEn) }}</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <ul class=" top-header">
+
+          <li><a [routerLink]="['/aboutUs']" class="about-btn">{{'NAV.ABOUT_US' | translate}} </a></li>
+          <li><a [routerLink]="['/contactUs']" class="contact-btn">{{'NAV.CONTACT_US' | translate}}</a></li>
+          <li *ngIf="authService.hasRole('ExpertAndClient')">
+            <label *ngIf="!customFunction.IsRTL()" class="toggleSwitch nolabel" onclick="">
+              <input type="checkbox" checked />
+              <a></a>
+              <span>
+			    <span [ngClass]="userType() === 'client' ? 'active-user-type' : '' " (click)="switchUser('client')"
+                  class="right-span">{{'BASE.CLIENT' | translate}}</span>
+                <span [ngClass]="userType() === 'expert' ? 'active-user-type' : '' " (click)="switchUser('expert')"
+                  class="left-span">{{'BASE.EXPERT' | translate}}</span>
+                
+              </span>
+            </label>
+
+            <label *ngIf="customFunction.IsRTL()" class="toggleSwitchh nolabel" onclick="">
+              <input type="checkbox" checked />
+              <a></a>
+              <span>
+                <span [ngClass]="userType() === 'expert' ? 'active-user-type' : '' " (click)="switchUser('expert')"
+                  class="left-span">{{'BASE.EXPERT' | translate}}</span>
+                <span [ngClass]="userType() === 'client' ? 'active-user-type' : '' " (click)="switchUser('client')"
+                  class="right-span">{{'BASE.CLIENT' | translate}}</span>
+              </span>
+            </label>
+          </li>
+
+          <li class="nav-item dropdown cust-drop" style="display: none;">
+
+            <button type="button" class="btn nav-link dropdown-toggle" id="navbardrop" data-toggle="dropdown">
+              <img class="flag-img" *ngIf="flagvalue !== undefined" src="{{flagvalue}}" alt="Header Language"
+                height="16"> <span class="ms-1">{{countryName}}</span>
+              <img class="flag-img" *ngIf="flagvalue === undefined" src="{{valueset}}" alt="Header Language"
+                height="16">
+              <span *ngIf="flagvalue === undefined" class="ms-1">English</span>
+            </button>
+            <div class="dropdown-menu shadow-sm">
+              <a href="javascript:void(0);" class="dropdown-item" *ngFor="let item of listLang"
+                (click)="setLanguage(customFunction.translateText(item.textAr , item.textEn) , item.lang, item.flag)"
+                [ngClass]="{'active': cookieValue === item.lang}">
+                <img src="{{item.flag}}" alt="user-image" class="me-1" height="12"> <span
+                  class="align-middle">{{customFunction.translateText(item.textAr , item.textEn) }}</span>
+              </a>
+
+            </div>
+          </li>
+
+
+          <li class="nav-item dropdown cust-drop" style="display: none;">
+
+            <button type="button" class="btn nav-link dropdown-toggle" id="navbardrop" data-toggle="dropdown">
+              <img class="flag-img" *ngIf="flagvalue !== undefined" src="{{flagvalue}}" alt="Header Language"
+                height="16"> <span class="ms-1">{{countryName}}</span>
+              <img class="flag-img" *ngIf="flagvalue === undefined" src="{{valueset}}" alt="Header Language"
+                height="16">
+              <span *ngIf="flagvalue === undefined" class="ms-1">English</span>
+            </button>
+            <div class="dropdown-menu shadow-sm">
+              <a href="javascript:void(0);" class="dropdown-item" *ngFor="let item of listLang"
+                (click)="setLanguage(customFunction.translateText(item.textAr , item.textEn) , item.lang, item.flag)"
+                [ngClass]="{'active': cookieValue === item.lang}">
+                <img src="{{item.flag}}" alt="user-image" class="me-1" height="12"> <span
+                  class="align-middle">{{customFunction.translateText(item.textAr , item.textEn) }}</span>
+              </a>
+
+            </div>
+          </li>
+
+        </ul>
+      </div>
+
+      <!-- Brand -->
+
+      <div class="nav-item dropdown cust-drop mobile-only" *ngIf="authService.isLoggedIn()">
+        <a class="nav-link " id="navbardrop" data-toggle="dropdown" (click)="readReceiverMessages()"
+          style="padding-top: 10px;">
+          <i class="fa	fas fa-bell">
+            <span class="badge badge-danger">{{notificationsCount}}</span>
+          </i>
+        </a>
+        <div class="dropdown-menu shadow-sm" style="max-height: 300px; overflow: auto;">
+          <a class="dropdown-item" style="padding: 0;">
+            <!-- *ngFor="let notification of chatRoomNotificationns" -->
+            <div class="notification row" *ngFor="let notification of notifications$ | async"
+              [routerLink]="getNotificationUrl(notification)">
+
+              <div class="notify-content col-md-12 row">
+                <div class="col-md-12">{{notification.message}}</div>
+                <div class="notify-sender col-md-12 row"> <span class="notify-sender-title col-md-2">{{'NAV.BY' |
+                    translate}} : </span>
+                  <span class="notify-sender-name col-md-6"> {{notification.senderName}}</span>
+                  <span class="notify-time" class="col-md-4">
+                    {{notification.createdAt | amTimeAgo}}</span>
+                </div>
+                <!-- <span class="notify-time" class="col-md-12">1 day ago </span> -->
+              </div>
+              <!-- {{moment(notification.createdAt, 'YYYYMMDD').fromNow()}} -->
+            </div>
+            <button class="btn btn-info btn-sm notifications-btn"
+              [routerLink]="'/notifications'">{{'NAV.ALL_NOTIFICATIONS' | translate}}</button>
+          </a>
+        </div>
+      </div>
+
+      <!-- Toggler/collapsibe Button -->
+      <button class="navbar-toggler menu-icon" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <!-- Navbar links -->
+      <div>
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+          <ul class="navbar-nav ml-auto mt-2">
+
+            <li class="mobile-only">
+              <a [routerLink]="['/home']" class="about-btn">{{'NAV.HOME' | translate}} </a>
+
+              <a [routerLink]="['/aboutUs']" class="contact-btn">{{'NAV.ABOUT_US' | translate}} </a>
+
+              <a [routerLink]="['/contactUs']" class="contact-btn">{{'NAV.CONTACT_US' | translate}}</a>
+
+              <a *ngIf="authService.hasRole('Expert') || (authService.isLoggedIn() && isExpert() === true)"
+                class="contact-btn" [routerLink]="['/projects']">{{'PROJECTS.FIND_WORKS' | translate}}</a>
+
+              <a *ngIf="authService.hasRole('Expert') || (authService.isLoggedIn() && isExpert() === false)"
+                class="contact-btn" [routerLink]="['/hireExpert']">{{'NAV.HIRE_EXPERT' | translate}}</a>
+              <br>
+              <a *ngIf="authService.hasRole('Expert') || (authService.isLoggedIn() && isExpert() === false)"
+                class="contact-btn" [routerLink]="['/projects/addProject']">{{'NAV.POST_PROJECT' | translate}}</a>
+
+            </li>
+
+            <li class="nav-item mobile-only" style="display: none;">
+              <a class="nav-link" [routerLink]="['/home']">{{'NAV.HOME' | translate}}</a>
+            </li>
+            <li class="nav-item mobile-only" style="display: none;"
+              *ngIf="authService.hasRole('Expert') || (authService.isLoggedIn() && isExpert() === true)">
+              <a class="nav-link" [routerLink]="['/projects']">{{'NAV.PROJECTS' | translate}}</a>
+            </li>
+            <li class="nav-item mobile-only" style="display: none;"
+              *ngIf="authService.hasRole('Expert') || (authService.isLoggedIn() && isExpert() === false)">
+              <a class="nav-link" [routerLink]="['/hireExpert']">{{'NAV.HIRE_EXPERT' | translate}}</a>
+            </li>
+
+            <li class="nav-item" style="display: none;"
+              *ngIf="authService.hasRole('Expert') || (authService.isLoggedIn() && isExpert() === false)">
+              <a class="nav-link" [routerLink]="['/projects/addProject']">{{'NAV.POST_PROJECT' | translate}}</a>
+            </li>
+            <li class="nav-item" *ngIf="authService.isLoggedIn()" class="dash">
+              <a class="nav-link" [routerLink]="['/projects/dashboard']">
+                <i class="fa fa-dashboard" style="font-size: 25px; color:#138d9a; position: relative; top: 3px;"></i>
+                {{'NAV.DASHBOARD' | translate}}</a>
+            </li>
+            <div class="mobile-only">
+
+
+              <li *ngIf="authService.hasRole('ExpertAndClient')">
+                <br>
+                <label *ngIf="!customFunction.IsRTL()" class="toggleSwitch nolabel" onclick="">
+                  <input type="checkbox" checked />
+                  <a></a>
+                  <span>
+                    <span [ngClass]="userType() === 'expert' ? 'active-user-type' : '' " (click)="switchUser('expert')"
+                      class="left-span">{{'BASE.EXPERT' | translate}}</span>
+                    <span [ngClass]="userType() === 'client' ? 'active-user-type' : '' " (click)="switchUser('client')"
+                      class="right-span">{{'BASE.CLIENT' | translate}}</span>
+                  </span>
+                </label>
+
+                <label *ngIf="customFunction.IsRTL()" class="toggleSwitchh nolabel" onclick="">
+                  <input type="checkbox" checked />
+                  <a></a>
+                  <span>
+                    <span [ngClass]="userType() === 'expert' ? 'active-user-type' : '' " (click)="switchUser('expert')"
+                      class="left-span">{{'BASE.EXPERT' | translate}}</span>
+                    <span [ngClass]="userType() === 'client' ? 'active-user-type' : '' " (click)="switchUser('client')"
+                      class="right-span">{{'BASE.CLIENT' | translate}}</span>
+                  </span>
+                </label>
+
+              </li>
+            </div>
+
+            <li *ngIf="user_response" class="nav-item dropdown cust-drop" style="margin-top: 10px;">
+              <a class="nav-link dropdown-toggle" id="navbardrop" data-toggle="dropdown"></a>
+              <a class="nav-link dropdown-toggle" href="user-profile.html" id="navbardrop" data-toggle="dropdown">
+                Services
+              </a>
+              <div class="dropdown-menu shadow-sm">
+                <a class="dropdown-item" [routerLink]="['/services']">Institute Services</a>
+                <a class="dropdown-item" [routerLink]="['/academicservices']">Academic Services</a>
+              </div>
+            </li>
+            <!-- <li *ngIf="user_response" class="nav-item dropdown cust-drop" style="margin-top: 18px;position: relative;left: 10px;">
+                        <select #langSelect (change)="changeLang(langSelect.value)">
+                       *ngIf="authService.hasAnyRoles(['ExpertAndClient' , 'Client'])"
+                       *ngIf="authService.hasAnyRoles(['ExpertAndClient' , 'Client'])"
+                       *ngIf="authService.hasAnyRoles(['ExpertAndClient' , 'Client'])" <option
+                         *ngFor="let lang of translate.getLangs()" (value)="lang">{{lang}}</option>
+                        </select>
+                    </li> -->
+
+            <!-- <li *ngIf="authService.isLoggedIn()" class="nav-item dropdown cust-drop">
+              <a class="nav-link dropdown-toggle" id="navbardrop" data-toggle="dropdown">
+                <img alt="" src="assets/images/male.png">
+                {{authService.getUserName()}}
+                            <option *ngFor="let lang of translate.getLangs()" (value)="lang">{{lang}}</option>
+                        </select>
+                    </li>  -->
+            <li class="nav-item dropdown cust-drop not" *ngIf="authService.isLoggedIn()">
+              <a class="nav-link " id="navbardrop" data-toggle="dropdown" (click)="readReceiverMessages()"
+                style="padding-top: 10px;">
+                <i class="fa fas fa-bell">
+                  <span class="badge badge-danger">{{notificationsCount}}</span>
+                </i>
+              </a>
+              <div class="dropdown-menu shadow-sm" style="max-height: 300px; overflow: auto;width: 400px;">
+                
+                  <!-- *ngFor="let notification of chatRoomNotificationns" -->
+                  <div class="notification row" *ngFor="let notification of notifications$ | async"
+                    [routerLink]="getNotificationUrl(notification)">
+
+                    <div class="notify-content col-md-12">
+                      <p>{{notification.message}}</p>
+                      <div class="notify-sender">
+					    <p class="notify-sender-title">{{'NAV.BY' | translate}} : <span class="notify-sender-name">{{notification.senderName}}</span>&nbsp;&nbsp;<span class="notify-time">{{notification.createdAt | amTimeAgo}}</span></p>
+                       
+                        
+                      </div>
+                      
+                    </div>
+                    
+                  </div>
+                  <button class="btn btn-info btn-sm notifications-btn"
+                    [routerLink]="'/notifications'">{{'NAV.ALL_NOTIFICATIONS' | translate}}</button>
+                
+              </div>
+            </li>
+            <li class="nav-item dropdown cust-drop" *ngIf="authService.isLoggedIn()">
+              <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                <img alt="" [src]="(userInfo$|async )?.image ?(userInfo$|async)?.image : 'assets/images/default_user.png'"
+                onError="this.src='assets/images/default_user.png'"
+                  class="user-img">
+                {{username}}
+
+              </a>
+              <div class="dropdown-menu shadow-sm">
+                <a class="dropdown-item" [routerLink]="['/projects/dashboard']">{{'NAV.DASHBOARD' | translate}}</a>
+                <a class="dropdown-item" [routerLink]="['/account/profile']"
+                  *ngIf="authService.hasRole('Expert') || isExpert() === true">{{'NAV.PROFILE' | translate}}</a>
+                <a class="dropdown-item" [routerLink]="['/account/account']">{{'NAV.MY_ACCOUNT' | translate}}</a>
+                <!-- <a class="dropdown-item" [routerLink]="['/projects/offers/MyOffers']"
+                  *ngIf="authService.hasAnyRoles(['ExpertAndClient' , 'Expert'])">My Offers</a>
+                <a class="dropdown-item" [routerLink]="['/projects/offers/InviteOffers']"
+                  *ngIf="authService.hasAnyRoles(['ExpertAndClient' , 'Expert'])">Invite Offers</a> -->
+                <a class="dropdown-item"  (click)="logOut();">{{'NAV.LOGOUT' | translate}}</a>
+              </div>
+            </li>
+          </ul>
+          <div *ngIf="!authService.isLoggedIn()" class="rgstr">
+            <div *ngIf="!user_response" style="margin-top: 8px;">
+
+              <a class="font-weight-bold btn" id="bhthy-register-btn" [routerLink]="['/account/register']">
+                <img src="assets/images/register-icon.svg" class="logo"
+                  style="height: 30px;width: 30px;padding: 0px;margin: 0px 5px 0px 0px;"> {{'NAV.REGISTER' |
+                translate}}</a>
+              <a class="font-weight-bold btn" id="bhthy-login-btn" [routerLink]="['/account/login']">
+                <img src="assets/images/login-icon.svg" class="logo"
+                  style="height: 30px;width: 30px;padding: 0px;margin: 0px 5px 0px 0px;"> {{'NAV.LOGIN' |
+                translate}}</a>
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="langs != 'en'">
+          <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="navbar-nav ml-auto mt-2">
+              <li class="nav-item">
+                <!-- <a class="nav-link" [routerLink]="['/home']">{{ 'Home' | translate }}</a> -->
+              </li>
+              <li class="nav-item">
+                <!-- <a class="nav-link" [routerLink]="['/projects/Projects']"> {{ 'Find Works' | translate }}</a> -->
+              </li>
+              <li class="nav-item">
+                <!-- <a class="nav-link" [routerLink]="['/hireexpert']">{{ 'Hire Expert' | translate }}</a> -->
+              </li>
+              <!-- <li class="nav-item">
+                        <a class="nav-link" [routerLink]="['/transtech/certified']">Get Certified</a>
+                    </li> -->
+              <li *ngIf="user_response" class="nav-item dropdown cust-drop" style="margin-top: 10px;">
+                <a class="nav-link dropdown-toggle" href="user-profile.html" id="navbardrop" data-toggle="dropdown">
+                  <!-- {{ 'Services' | translate }} -->
+                </a>
+                <div class="dropdown-menu shadow-sm">
+                  <a class="dropdown-item" [routerLink]="['/services']">Institute Services</a>
+                  <a class="dropdown-item" [routerLink]="['/academicservices']">Academic Services</a>
+                </div>
+              </li>
+              <li *ngIf="user_response" class="nav-item dropdown cust-drop"
+                style="margin-top: 18px;position: relative;left: 10px;">
+                <select #langSelect (change)="changeLang(langSelect.value)">
+                  <!-- <option *ngFor="let lang of translate.getLangs()" (value)="lang">{{lang}}</option> -->
+                </select>
+              </li>
+
+              <li *ngIf="user_response" class="nav-item dropdown cust-drop">
+                <a class="nav-link dropdown-toggle" href="user-profile.html" id="navbardrop" data-toggle="dropdown">
+                  <img alt="" src="assets/images/male.png">
+                  {{username}}
+                </a>
+                <div class="dropdown-menu shadow-sm">
+                  <!-- <a class="dropdown-item" [routerLink]="['/dashboard']">{{ 'Dashboard' | translate }}</a>
+                            <a class="dropdown-item" [routerLink]="['/profile']">{{ 'Profile' | translate }}</a>
+                            <a class="dropdown-item" [routerLink]="['/account']">{{ 'My Account' | translate}}</a>
+                            <a class="dropdown-item" href="javascript:void();" (click)="logOut()">{{ 'Logout' | translate }}</a> -->
+                </div>
+              </li>
+            </ul>
+            <div *ngIf="!user_response">
+              <!-- <a class="btn btn-blue mr-2" [routerLink]="['/auth/signup']">{{ 'Register' | translate }}</a>
+                    <a class="btn btn-green" [routerLink]="['/auth/login']">{{ 'Login' | translate }}</a> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>

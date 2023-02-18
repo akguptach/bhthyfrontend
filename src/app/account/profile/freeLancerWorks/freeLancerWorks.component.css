@@ -1,0 +1,39 @@
+/*
+Hide the original input
+*/
+label input{border-radius: 0px !important   ;}
+
+.img-lbl input{
+    display: none !important;
+}
+
+
+/*
+The label acts as a button, so we style it accordingly
+*/
+.img-lbl{
+    padding:1rem 1.5rem;
+    background:#138d9a;
+    box-shadow:2px 2px 2px #aaa;
+    font:1em Arial, sans-serif;
+    color:#fff;
+    position:relative;
+    cursor:pointer;
+    border-radius: 10px;
+    /*
+    No text-selection on buttons
+    */
+    user-select:none; 
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+  }
+  
+  .img-lbl:hover{
+      background:#9cc33b;
+  }
+  
+  .img-lbl:active{
+   top:2px; 
+   box-shadow:none;
+  }

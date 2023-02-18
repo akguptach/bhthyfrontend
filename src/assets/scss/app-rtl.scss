@@ -1,0 +1,27 @@
+html {
+  direction: rtl;
+}
+
+.top-header {
+  z-index: 1;
+  list-style-type: none;
+  margin-bottom: 0;
+  position: absolute;
+  top: 0;
+  left: 16px;
+  direction: rtl;
+}
+
+.cust_list li::before {
+  margin-top: 2px;
+  position: absolute;
+  left: -13px !important;
+  width: 20px;
+  height: 20px;
+  background: transparent url(../images/check-icon.png) no-repeat;
+  content: " ";
+}
+
+.footer-list li::before {
+  left: -22px !important;
+}

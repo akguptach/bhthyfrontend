@@ -1,0 +1,187 @@
+        <!-- inner banner -->
+        <section class="inner-bg">
+          <div class="container">
+            <div class="row">
+              <div class="col-xl-12 col-lg-12 col-md-12 col-12">
+
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="pt-90" style="padding-top: 0px; margin-top:-100px;">
+          <div class="container" style="margin-bottom: 70px;">
+            <div class="row my-12">
+              <div class="col-xl-6col-lg-6 col-md-6 col-sm-6 col-6 bhthy-col">
+                <div class="card shadow-sm">
+                  <div class="card-body p-4">
+
+                    <div *ngIf="!customFunctions.IsRTL()">
+                      <img src="assets/images/icon/project.png" alt="" class="img-fluid icon-img" style="max-width: 12%;">
+
+                      <h2 class="b-hd"> {{'POST_PROJECT.HEADER_TITLE' | translate}}</h2>
+                      </div>
+
+                      <div *ngIf="customFunctions.IsRTL()" style="text-align:right;">
+                        <img src="assets/images/icon/project.png" alt="" class="img-fluid icon-img" style="max-width: 12%;">
+
+                        <h2 class="b-hd" style="right: 75px;"> {{'POST_PROJECT.HEADER_TITLE' | translate}}</h2>
+                        </div>
+                    <form class="login_Form" [formGroup]="projectForm">
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <label *ngIf="!customFunctions.IsRTL()" for="">{{'POST_PROJECT.PROJECT_NAME' | translate}}</label>
+                            <label *ngIf="customFunctions.IsRTL()" for="" style="text-align:right; display: block;">{{'POST_PROJECT.PROJECT_NAME' | translate}}</label>
+
+                            <input type="text" class="form-control" formControlName="name" id="name"
+                              placeholder="{{'BASE.ENTER_PROJECT_NAME' | translate}}">
+
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <label for="" *ngIf="!customFunctions.IsRTL()">{{'BASE.PROJECT_DESCRIPTION' | translate}}</label>
+                            <label for="" *ngIf="customFunctions.IsRTL()" style="text-align:right; display: block;">{{'BASE.PROJECT_DESCRIPTION' | translate}}</label>
+                            <textarea id="description" class="form-control" formControlName="description" cols="70" rows="6"
+                              placeholder="{{'BASE.ENTER_DESCRIPTION' | translate}}"></textarea>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="" *ngIf="!customFunctions.IsRTL()">{{'BASE.BUDGET_RANGE' | translate}}</label>
+                            <label for=""*ngIf="customFunctions.IsRTL()" style="text-align:right; display: block;">{{'BASE.BUDGET_RANGE' | translate}}</label>
+
+                            <ng-select formControlName="project_range_id" [(ngModel)]="selectedPriceRange">
+                              <ng-option *ngFor="let priceRange of priceRanges$ | async" [value]="priceRange.id">
+                                From {{priceRange.minAmount}} To {{priceRange.maxAmount}}</ng-option>
+                            </ng-select>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label *ngIf="!customFunctions.IsRTL()" for="">{{'BASE.BIDDING_DURATION' | translate}}</label>
+                            <label *ngIf="customFunctions.IsRTL()" for="" style="text-align:right; display: block;">{{'BASE.BIDDING_DURATION' | translate}}</label>
+                            <input type="number" class="form-control" formControlName="bid_duration"
+                              placeholder="{{'BASE.BIDDING_DURATION' | translate}}">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label *ngIf="!customFunctions.IsRTL()" for="">{{'BASE.WHAT_TYPE_OF_WORK_DO_YOU_REQUIRE' | translate}}</label>
+                            <label *ngIf="customFunctions.IsRTL()" for="" style="text-align:right; display: block;">{{'BASE.WHAT_TYPE_OF_WORK_DO_YOU_REQUIRE' | translate}}</label>
+
+                            <ng-select formControlName="ServiceId" (change)="onSelectService($event)"
+                              [(ngModel)]="selectedService">
+                              <ng-option *ngFor="let service of services$ |async" [value]="service.id">{{service.name}}
+                              </ng-option>
+                            </ng-select>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label *ngIf="!customFunctions.IsRTL()" for="">{{'BASE.WHAT_TYPE_SUB_SERVICE' | translate}}</label>
+                            <label *ngIf="customFunctions.IsRTL()" for="" style="text-align:right; display: block;">{{'BASE.WHAT_TYPE_SUB_SERVICE' | translate}}</label>
+
+                            <ng-select formControlName="SubServiceId" [(ngModel)]="selectedSubService">
+                              <ng-option *ngFor="let subService of subServices$ | async" [value]="subService.id">
+                                {{subService.name}}</ng-option>
+                            </ng-select>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <label *ngIf="!customFunctions.IsRTL()" for="">{{'BASE.WHAT_SKILLS_ARE_REQUIRED' | translate}}</label>
+                            <label *ngIf="customFunctions.IsRTL()" for="" style="text-align:right; display: block;">{{'BASE.WHAT_SKILLS_ARE_REQUIRED' | translate}}</label>
+
+                            <ng-select [ngModelOptions]="{standalone : true}" [multiple]="true" [(ngModel)]="selectedSkill">
+                              <ng-option *ngFor="let skill of skills$ | async" [value]="skill.id">{{skill.name}}</ng-option>
+                            </ng-select>
+                          </div>
+                        </div>
+                      </div>
+
+                      </form>
+                  </div>
+                </div>
+               </div>
+
+              <div class="col-xl-6col-lg-6 col-md-6 col-sm-6 col-6 bhthy-col">
+                <div class="card shadow-sm">
+                  <div class="card-body p-4">
+                    <form class="login_Form" [formGroup]="projectForm">
+
+                    <div class="row ra">
+                      <div class="col-md-12">
+                        <div class="checkbox">
+                          <label for="checkbox0" class="custom-checkbox">
+                            <h4 style="text-align: center;" class="free">{{'BASE.FREE' | translate}}</h4>
+                            <input type="radio" formControlName="project_type" value="is_urgent">
+                            <button type="button" class="btn btn-danger" style="margin-left: 13px;">{{'BASE.URGENT' | translate}}</button>
+                          </label>
+                          <p *ngIf="!customFunctions.IsRTL()">{{'POST_PROJECT.URGENT_DETAILS' | translate}}</p>
+                          <p *ngIf="customFunctions.IsRTL()" style="text-align: right;">{{'POST_PROJECT.URGENT_DETAILS' | translate}}</p>
+
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row raa">
+                      <div class="col-md-12">
+                        <div class="checkbox">
+                          <label for="checkbox0" class="custom-checkbox">
+                            <h4 style="text-align: center;" class="free">{{'BASE.FREE' | translate}}</h4>
+                            <input type="radio" formControlName="project_type" value="is_private">
+                            <button type="button" class="btn btn-primary" style="margin-left: 13px;">{{'BASE.PRIVATE' | translate}}</button>
+                          </label>
+                          <p *ngIf="!customFunctions.IsRTL()">{{'POST_PROJECT.PRIVATE_DETAILS' | translate}} </p>
+                          <p *ngIf="customFunctions.IsRTL()" style="text-align: right;">{{'POST_PROJECT.PRIVATE_DETAILS' | translate}} </p>
+
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row raaa">
+                      <div class="col-md-12">
+                        <div class="checkbox">
+                          <label for="checkbox0" class="custom-checkbox">
+                            <h4 style="text-align: center;" class="free">{{'BASE.FREE' | translate}}</h4>
+                            <input type="radio" formControlName="project_type" value="is_hidded_bid">
+                            <button type="button" class="btn btn-success" style="margin-left: 13px;">{{'BASE.SEALED' | translate}}</button>
+                          </label>
+                          <p *ngIf="!customFunctions.IsRTL()">{{'POST_PROJECT.SEALED_DETAILS' | translate}}</p>
+                          <p *ngIf="customFunctions.IsRTL()" style="text-align: right;">{{'POST_PROJECT.SEALED_DETAILS' | translate}}</p>
+
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <button class="btn btn-green  btn-block" *ngIf="action === 'new'" (click)="saveProject(1)">{{'POST_PROJECT.PUBLISH' | translate}}
+                          </button>
+                        <button class="btn btn-green  btn-block" *ngIf="action === 'edit'" (click)="updateProject()"> Save
+                          Changes</button>
+                      </div>
+                      <div class="col-md-6">
+                        <button type="button" *ngIf="action === 'new'" (click)="saveProject(0)"
+                          class="btn btn-green  btn-block"> {{'POST_PROJECT.SAVE_AS_DRAFT' | translate}}
+                        </button>
+                      </div>
+                    </div>
+
+                  </form>
+              </div>
+                </div>
+                  </div>
+
+            </div>
+          </div>
+        </section>
+
+    <app-project-footer></app-project-footer>

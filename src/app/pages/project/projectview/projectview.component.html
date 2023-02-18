@@ -1,0 +1,155 @@
+<section class="pt-90" *ngIf="project$ | async as project">
+  <div class="container">
+    <div class="row">
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+        <div class="card find-project">
+          <div class="card-body">
+            <div class="prjct-form">
+              <h4>{{project?.name}}</h4>
+              <p>{{project?.description}}</p>
+
+              <div class="row">
+                <div class="col-md-4">
+                  <h5>{{'PROJECT_BIDS.BIDS' | translate}} <span
+                      class="badge badge-secondary">{{project?.bid_status_id}}</span></h5>
+                </div>
+                <div class="col-md-4">
+                  <h5>{{'PROJECT_BIDS.AVERAGE_BID' | translate}} <span
+                      class="badge badge-secondary">OMR{{project?.amount}}</span>
+                  </h5>
+                </div>
+                <div class="col-md-4">
+                  <h5>{{'PROJECT_BIDS.BUDGET' | translate}} <span
+                      class="badge badge-secondary">{{'BASE.FROM' | translate}}
+                      OMR{{project?.priceMinAmount}}
+                      {{'BASE.TO' | translate}} OMR{{project?.priceMaxAmount}}
+                    </span></h5>
+                </div>
+              </div>
+            </div>
+            <form class="" [formGroup]="bidForm">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="" *ngIf="!customFunctions.IsRTL()">{{'PROJECT_BIDS.BID_PRICE' | translate}}</label>
+					<label for="" *ngIf="customFunctions.IsRTL()" style="float: right;">{{'PROJECT_BIDS.BID_PRICE' | translate}}</label>
+                    <input type="number" class="form-control" placeholder=" OMR {{'PROJECT_BIDS.BID_PRICE' | translate}}"
+                      [ngClass]="{'is-invalid': submitted && bidForm.controls.amount.errors}" formControlName="amount">
+                  </div>
+                  <div *ngIf="submitted && bidForm.controls.amount.errors" class="invalid-feedback">
+                    <span *ngIf="submitted && bidForm.controls.amount.errors">{{'BASE.IS_REQUIRED' | translate}}</span>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="" *ngIf="!customFunctions.IsRTL()">{{'PROJECT_BIDS.DELIVERY_TERM' | translate}}</label>
+					<label for="" *ngIf="customFunctions.IsRTL()" style="float: right;">{{'PROJECT_BIDS.DELIVERY_TERM' | translate}}</label>
+                    <input type="number" class="form-control"
+                      [ngClass]="{'is-invalid': submitted && bidForm.controls.amount.errors}"
+                      placeholder="{{'PROJECT_BIDS.DELIVERY_TERM' | translate}}" formControlName="duration">
+                  </div>
+                  <div *ngIf="submitted && bidForm.controls.duration.errors" class="invalid-feedback">
+                    <span
+                      *ngIf="submitted && bidForm.controls.duration.errors">{{'BASE.IS_REQUIRED' | translate}}</span>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label for="" *ngIf="!customFunctions.IsRTL()">{{'PROJECT_BIDS.ADDITIONAL_NOTES' | translate}}</label>
+					<label for="" *ngIf="customFunctions.IsRTL()" style="float: right;">{{'PROJECT_BIDS.ADDITIONAL_NOTES' | translate}}</label>
+                    <textarea class="form-control" id="description" formControlName="description" cols="70" rows="6"
+                      [ngClass]="{'is-invalid': submitted && bidForm.controls.description.errors}"
+                      placeholder="{{'PROJECT_BIDS.ADDITIONAL_NOTES' | translate}}"></textarea>
+                  </div>
+                  <div *ngIf="submitted && form.description.errors" class="invalid-feedback">
+                    <span *ngIf="form.description.errors">{{'BASE.IS_REQUIRED' | translate}}</span>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-3">
+                  <button type="button" (click)="onSubmit()" class="btn btn-success  btn-block">
+                    {{'BASE.SUBMIT' | translate}}</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<br>
+  <div class="container">
+    <div class="row">
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+        <div class="card find-project" style="border: none;">
+          <div class="card-body" style="background-color: #f8f8f8; border-radius: 7px;">
+            <div class="prjct-des">
+              <h4 class="blue-title" *ngIf="!customFunctions.IsRTL()">{{'BASE.PROJECT_DESCRIPTION' | translate}}</h4>
+			  <h4 class="blue-title" *ngIf="customFunctions.IsRTL()" style="text-align: right;">{{'BASE.PROJECT_DESCRIPTION' | translate}}</h4>
+              <p *ngIf="!customFunctions.IsRTL()">{{project?.description}}</p>
+			  <p *ngIf="customFunctions.IsRTL()" style="text-align: right;">{{project?.description}}</p>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+
+          <div class="card prjct-card my-5" *ngFor="let projectbids of project.offers">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-xl-2 col-lg-2 col-md-3 col-sm-12">
+                  <div class="prjct-img">
+                    <img alt="" src="assets/images/male.png">
+                    <div>
+                      <a>
+                        {{projectbids.expertName}}
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xl-8 col-lg-8 col-md-8col-sm-12" style="padding: 50px 30px;">
+                  <div class="hire-txt">
+                    <!-- <h6>0 Reviews</h6>
+                    <div class="rating-star">
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                    </div> -->
+                  </div>
+                  <a>
+                    {{projectbids.details}}
+                  </a>
+                </div>
+                <div class="col-xl-2 col-lg-2 col-md-3 col-sm-12">
+                  <div class="d-flex justify-content-center ">
+                    <div class="pt-3">
+                      <div id="triangle-topright"></div>
+                     
+					  <span class="payment">OMR&nbsp;{{projectbids.price}}</span>
+
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</section>
+<app-project-footer></app-project-footer>

@@ -1,0 +1,75 @@
+  <!-- <div *ngFor="let freeLancerWork of freeLancerWorks$ |async">
+    <img alt="" src="{{freeLancerWork.attachment}}" class="certifcate-img">
+    <p>{{freeLancerWork.name}}</p>
+    <p>{{freeLancerWork.date | date : 'medium'}}</p>
+    <p>{{freeLancerWork.details}}</p>
+  </div> -->
+  <div class="row">
+    <div class="card col-md-12 mr-2 prjct-card mt-3" *ngFor="let freeLancerWork of freeLancerWorks$ |async">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+            <div class="edcu-txt">
+              <h6>{{freeLancerWork.name}}</h6>
+              <p>{{freeLancerWork.details}}</p>
+            </div>
+          </div>
+          <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 education-box">
+            <div class="d-flex justify-content-center pt-4">
+              <div class="p-3">
+                <h6>{{freeLancerWork.date | date }}</h6>
+              </div>
+              <div class="p-3">
+                <button ngClass="btn btn-sm btn-success mr-1" (click)="editFreeLancerWork(freeLancerWork)">{{'PROFILE.EDIT' | translate}}</button>
+                <button ngClass="btn btn-sm btn-danger" (click)="confirmDelete(freeLancerWork.id)">{{'PROFILE.REMOVE' | translate}}</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="alert alert-danger" *ngIf="!(freeLancerWorks$ |async)">
+    <strong>{{'BASE.NOT_FOUND_SEARCH_RESULT' | translate}}</strong>
+  </div>
+  <div class="user-info my-4">
+    <button class="btn btn-sm btn-primary mb-1" (click)="addNew()">{{ 'Add Work' }}</button>
+    <form [formGroup]="freeLancerWorkForm">
+      <div class="form-group">
+        <input type="text" formControlName="Name" class="form-control" id="Name"
+          placeholder="{{'BASE.TITLE' | translate}}" required>
+      </div>
+      <div class="form-group">
+        <input type="date" formControlName="Date" class="form-control" id="date">
+      </div>
+      <div class="form-group">
+        <textarea type="text" formControlName="Details" class="form-control" id="Details"
+          placeholder="{{'BASE.DETAILS' | translate}}" name="Details" required></textarea>
+      </div>
+   
+     
+      <div class="form-group col-md-6">
+        <label *ngIf="!customFunctions.IsRTL()" class="control-label col-md-12 img-lbl text-center">{{'BASE.ATTACH_FILE' | translate}}
+          <img src="assets/images/file.png" style="width: 20px; position: relative; right: 56px; margin-left: -60px;">
+          <input (change)="onSelectFile($event)" type="file" class="col-md-12" id="customFile" value="Upload File" name="file"
+          formControlName="Attachment">
+        </label>
+
+        <label *ngIf="customFunctions.IsRTL()" class="control-label col-md-12 img-lbl text-center">{{'BASE.ATTACH_FILE' | translate}}
+          <img src="assets/images/file.png" style="width: 20px; position: relative; right: 14px; margin-left: 16px;">
+          <input (change)="onSelectFile($event)" type="file" class="col-md-12" id="customFile" value="Upload File" name="file"
+          formControlName="Attachment">
+        </label>
+      </div>
+      
+      <div class="input-group my-4">
+
+        <div class="input-group-append">
+          <button class="btn btn-green" *ngIf="action === 'new'" (click)="saveFreeLancerWork()"
+            type="button">{{ 'BASE.SAVE' | translate }}</button>
+          <button class="btn btn-green" *ngIf="action === 'edit'" (click)="updateFreeLancerWork()"
+            type="button">{{ 'BASE.EDIT' | translate }}</button>
+        </div>
+      </div>
+    </form>
+  </div>

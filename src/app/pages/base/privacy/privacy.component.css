@@ -1,0 +1,10 @@
+.blue-title{
+  font-size: 25px !important;
+}
+
+img.img-fluid.icon-img{
+  background-color: #effafb;
+  padding: 9px;
+  border-radius: 15px;
+  box-shadow: 0 3px 6px rgb(0 0 0 / 16%), 0 3px 6px rgb(0 0 0 / 23%);
+}

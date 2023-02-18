@@ -1,0 +1,801 @@
+<section id="slide">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 px-0">
+        <div id="home_slide" class="carousel slide" data-ride="carousel">
+          <!-- Indicators -->
+          <ul class="carousel-indicators">
+            <li data-target="#home_slide" data-slide-to="0" class="active"></li>
+            <li data-target="#home_slide" data-slide-to="1"></li>
+            <li data-target="#home_slide" data-slide-to="2"></li>
+
+          </ul>
+
+          <!-- The slideshow -->
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img src="assets/images/org-img/banner-11.jpg" alt="Banner" class="img-fluid">
+            </div>
+            <div class="carousel-item">
+              <img src="assets/images/org-img/banner-22.jpg" alt="Banner" class="img-fluid">
+            </div>
+            <div class="carousel-item">
+              <img src="assets/images/org-img/banner-33.jpg" alt="Banner" class="img-fluid">
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="search-form">
+    <p class="slider-p" *ngIf="!customFunction.IsRTL()">Thousands of jobs available for you anytime, anywhere. </p>
+    <h1 *ngIf="!customFunction.IsRTL()" class="blue-title" id="slider-title"> Find Perfect Experts For Your Projects Or
+      Look For Expert
+      Jobs Online</h1>
+
+    <p class="slider-p" style="text-align: right; padding-right:30px;" *ngIf="customFunction.IsRTL()"> مئات الوظائف
+      تتوفر لك متى ما شئت وأين ما كنت في كل زمان ومكان
+    </p>
+    <h1 *ngIf="customFunction.IsRTL()" id="slider-title" class="arabic-slider-title">
+      جد أفضل الخبراء لمشاريعك أو ابحث عن وظائف تخصصية للعمل عن بعد</h1>
+
+
+    <form [formGroup]="formGorup" (ngSubmit)="onSubmitForm()" class="form-s">
+      <div class="input-group mt-3 mb-3">
+        <input type="text" class="form-control" id="bhthy-input" formControlName="search"
+          placeholder="{{ 'BASE.SEARCH_KEY_WORD' | translate}}">
+        <div class="input-group-prepend mx-3">
+          <div class="input-group-prepend mx-3">
+            <select formControlName="category" id="bhthy-select">
+              <option value="">{{ 'BASE.SELECT' | translate}}</option>
+              <!--search option-->
+              <option value="Research services">{{ 'Research services' | translate}}</option>
+              <option value="Data Anlaysis">{{ 'Data Anlaysis' | translate}}</option>
+              <option value="Programing">{{ 'Programing' | translate}}</option>
+              <option value="Designing">{{ 'Research Design' | translate}}</option>
+              <option value="Translation">{{ 'Translation' | translate}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="input-group-append">
+          <button type="submit" class="btn btn-green pt-2">{{ 'BASE.SEARCH' | translate}}</button>
+        </div>
+      </div>
+
+      <div *ngIf="!customFunction.IsRTL()" class="keyword" style="display:none;">
+        <span *ngIf="!customFunction.IsRTL()" style="margin-right: 12px; font-size:14px; font-weight: 500;">Trending
+          Keywords: </span>
+        <br>
+        <a *ngIf="!customFunction.IsRTL()" href="#" class="trending-keyword">ASP .Net</a>
+        <a *ngIf="!customFunction.IsRTL()" href="#" class="trending-keyword">Flutter</a>
+        <a *ngIf="!customFunction.IsRTL()" href="#" class="trending-keyword">React Native</a>
+        <a *ngIf="!customFunction.IsRTL()" href="#" class="trending-keyword">Artist</a>
+        <a *ngIf="!customFunction.IsRTL()" href="#" class="trending-keyword">Singer</a>
+      </div>
+      <div *ngIf="customFunction.IsRTL()" class="keyword" style="text-align:right;" style="display:none;">
+        <span *ngIf="customFunction.IsRTL()" style="margin-right: 12px; font-size:14px; font-weight: 500;">الكلمات
+          الرئيسية الشائعة: </span>
+        <br>
+        <a *ngIf="customFunction.IsRTL()" href="#" class="trending-keyword">ASP صافي</a>
+        <a *ngIf="customFunction.IsRTL()" href="#" class="trending-keyword">رفرفة</a>
+        <a *ngIf="customFunction.IsRTL()" href="#" class="trending-keyword">رد الفعل الأصلي</a>
+        <a *ngIf="customFunction.IsRTL()" href="#" class="trending-keyword">فنان</a>
+        <a *ngIf="customFunction.IsRTL()" href="#" class="trending-keyword">مغني</a>
+      </div>
+    </form><br>
+    <!-- <a href="#" class="btn btn-whte mr-3" [routerLink]="['/projectsadd']">{{ 'Post your project' | translate }}</a>
+    <a href="#" class="btn btn-whte" [routerLink]="['/hireconsultant']">{{'Hire Consultant' | translate}}</a> -->
+  </div>
+</section>
+
+<section class="bg-blue pt-90" style="padding-top:0px !important; padding-bottom: 0px; display: none;">
+
+  <div id="projectFacts" class="sectionClass">
+    <div class="fullWidth eight columns">
+      <div class="projectFactsWrap ">
+        <div class="item wow fadeInUpBig animated animated" data-number="12" style="visibility: visible;">
+          <i class="fa fa-users"></i>
+          <p id="number4" class="number">+246</p>
+          <span></span>
+          <p>TELENTED EXPERTS</p>
+        </div>
+        <div class="item wow fadeInUpBig animated animated" data-number="55" style="visibility: visible;">
+          <i class="fa fa-smile-o"></i>
+          <p id="number2" class="number">155</p>
+          <span></span>
+          <p>HAPPY CLEINTS</p>
+        </div>
+        <div class="item wow fadeInUpBig animated animated" data-number="359" style="visibility: visible;">
+          <i class="fa fa-edit"></i>
+          <p id="number3" class="number">359</p>
+          <span></span>
+          <p>ONGOING PROJECT</p>
+        </div>
+        <div class="item wow fadeInUpBig animated animated" data-number="246" style="visibility: visible;">
+
+          <i class="fa fa-briefcase"></i>
+          <p id="number1" class="number">98</p>
+          <span></span>
+          <p>PROJECT DONE</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pt-90" style="padding-bottom: 60px; background-color: #cce9f175 !important;">
+
+
+  <div class="container">
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 text-center">
+      <h1 *ngIf="!customFunction.IsRTL()" class="blue-title one">How to use <span class="green">BHTHY</span> platform?
+      </h1>
+      <h1 *ngIf="customFunction.IsRTL()" class="blue-title one arabic-one"> كيف تستخدم منصة <span
+          class="green">بحثي؟</span></h1>
+
+
+    </div>
+
+
+    <br><br>
+    <div class="row">
+
+      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-2 col-12">
+
+        <img *ngIf="!customFunction.IsRTL()" src="assets/images/background-shape.png" alt="" class="img-fluid icon-back"
+        style="max-width: 20%; position: absolute; left: 0%; z-index: -1;">
+        <img *ngIf="customFunction.IsRTL()" src="assets/images/background-shape.png" alt=""
+        class="img-fluid icon-back arb-img" style="max-width: 20%; position: absolute; left: -20%; z-index: -1;">
+
+        <h3 *ngIf="!customFunction.IsRTL()" class="" id="step-heading">
+
+          <img src="assets/images/icon/expert.png" alt="" class="img-fluid icon-img" style="max-width: 12%;">
+          Experts
+          <p *ngIf="!customFunction.IsRTL()" class="para-text m-0 small-text">They can enter their information in detail
+            and find out the potential projects.</p>
+        </h3>
+
+        <h3 *ngIf="customFunction.IsRTL()" class="" id="step-heading" style="text-align: right;">
+
+          <img *ngIf="customFunction.IsRTL()" src="assets/images/icon/expert.png" alt="" class="img-fluid icon-img"
+            style="max-width: 12%;">
+          الخبراء:
+          <p *ngIf="customFunction.IsRTL()" style="position: relative; top:52px; left:78px;"
+            class="para-text m-0 small-text arb-p">يمكنهم إدخال معلوماتهم بالتفصيل، ومعرفة المشاريع المحتملة والمناسبة
+            لهم.</p>
+        </h3>
+        <br>
+        <div *ngIf="!customFunction.IsRTL()" class="navigation_menu" id="navigation_menu">
+          <ol *ngIf="!customFunction.IsRTL()" class="navigation_tabs" id="navigation_tabs">
+
+            <li class="tab_active para-text m-0">
+              <a *ngIf="!customFunction.IsRTL()" href="#">Create Profile.</a>
+            </li>
+            <li class="tab_active para-text m-0">
+              <a *ngIf="!customFunction.IsRTL()" href="#">Add file with attached documents.</a>
+            </li>
+            <li class="tab_active para-text m-0">
+              <a *ngIf="!customFunction.IsRTL()" href="#">Search for a project.</a>
+            </li>
+            <li class="tab_active para-text m-0">
+              <a *ngIf="!customFunction.IsRTL()" href="#">Bid on project.</a>
+            </li>
+            <li class="tab_active para-text m-0">
+              <a *ngIf="!customFunction.IsRTL()" href="#">Quit a project.</a>
+            </li>
+            <li class="tab_active para-text m-0">
+              <a *ngIf="!customFunction.IsRTL()" href="#">Review of an employer.</a>
+            </li>
+            <li class="tab_active para-text m-0">
+              <a *ngIf="!customFunction.IsRTL()" href="#">Receive live notifications.</a>
+            </li>
+          </ol>
+        </div>
+
+        <div *ngIf="customFunction.IsRTL()" class="navigation_menu arabic" id="navigation_menu" dir="rtl" lang="ar-sa">
+          <ol *ngIf="customFunction.IsRTL()" class="navigation_tabs" id="navigation_tabs" style="text-align: right;">
+
+            <li class="tab_active para-text m-0">
+              <a *ngIf="customFunction.IsRTL()" href="#">إنشاء ملف تعريفي.</a>
+            </li>
+            <li class="tab_active para-text m-0">
+              <a *ngIf="customFunction.IsRTL()" href="#">إضافة الملفات مع المستندات المرفقة.</a>
+            </li>
+            <li class="tab_active para-text m-0">
+              <a *ngIf="customFunction.IsRTL()" href="#">البحث عن المشروع المناسب.</a>
+            </li>
+            <li class="tab_active para-text m-0">
+              <a *ngIf="customFunction.IsRTL()" href="#">تقديم الخدمة.</a>
+            </li>
+            <li class="tab_active para-text m-0">
+              <a *ngIf="customFunction.IsRTL()" href="#">الانتهاء من المشروع.</a>
+            </li>
+            <li class="tab_active para-text m-0">
+              <a *ngIf="customFunction.IsRTL()" href="#">المراجعة مع صاحب المشروع.</a>
+            </li>
+            <li class="tab_active para-text m-0">
+              <a *ngIf="customFunction.IsRTL()" href="#">تلقي الإشعارات الفورية.</a>
+            </li>
+          </ol>
+        </div>
+      </div>
+
+
+      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-2 col-12" id="client-column">
+
+        <img *ngIf="!customFunction.IsRTL()" src="assets/images/background-shape.png" alt="" class="img-fluid icon-back1"
+        style="max-width: 20%; position: absolute; z-index: -1; left: 0%;">
+      <img *ngIf="customFunction.IsRTL()" src="assets/images/background-shape.png" alt=""
+        class="img-fluid icon-back1 arb-img-1" style="max-width: 20%; position: absolute; left: 180%; z-index: -1;">
+
+        <h3 *ngIf="!customFunction.IsRTL()" class="" id="step-heading">
+          <img src="assets/images/icon/client.png" alt="" class="img-fluid icon-img" style="max-width: 12%;">
+          Clients
+          <p *ngIf="!customFunction.IsRTL()" class="para-text m-0 small-text">They can easily login to the platform and
+            immediately start posting their own projects.
+          </p>
+        </h3>
+
+        <h3 *ngIf="customFunction.IsRTL()" class="" id="step-heading" style="text-align: right;">
+          <img *ngIf="customFunction.IsRTL()" src="assets/images/icon/client.png" alt="" class="img-fluid icon-img"
+            style="max-width: 12%;">
+          العملاء:
+          <p *ngIf="customFunction.IsRTL()" style="position: relative; top:-20px; left: 30px;"
+            class="para-text m-0 small-text arb-pp">يمكنهم بسهولة تسجيل الدخول إلى المنصة والبدء على الفور في نشر
+            مشاريعهم الخاصة.
+
+          </p>
+        </h3>
+
+        <br>
+
+        <div *ngIf="!customFunction.IsRTL()" class="navigation_menu" id="navigation_menu">
+          <ol class="navigation_tabs" id="navigation_tabs">
+
+            <li class="tab_active para-text m-0">
+              <a *ngIf="!customFunction.IsRTL()" href="#">They can search for suitable professionals and ask them to
+                join the project. </a>
+
+            </li>
+            <li class="tab_active para-text m-0">
+              <a *ngIf="!customFunction.IsRTL()" href="#">Create a profile.</a>
+            </li>
+            <li class="tab_active para-text m-0">
+              <a *ngIf="!customFunction.IsRTL()" href="#">Invite the experts to bid.</a>
+            </li>
+            <li class="tab_active para-text m-0">
+              <a *ngIf="!customFunction.IsRTL()" href="#">Complete their own project when the freelancer cannot fulfill
+                the needs.</a>
+            </li>
+            <li class="tab_active para-text m-0">
+              <a *ngIf="!customFunction.IsRTL()" href="#">Receive instant notifications.</a>
+            </li>
+
+          </ol>
+        </div>
+
+        <div *ngIf="customFunction.IsRTL()" class="navigation_menu arabic" id="navigation_menu" dir="rtl" lang="ar-sa">
+          <ol class="navigation_tabs" id="navigation_tabs" style="text-align: right;">
+
+            <li class="tab_active para-text m-0">
+              <a *ngIf="customFunction.IsRTL()" href="#">يمكنهم البحث عن خبراء مناسبين ومطالبتهم بالانضمام إلى
+                المشروع.</a>
+
+            </li>
+            <li class="tab_active para-text m-0">
+              <a *ngIf="customFunction.IsRTL()" href="#">إنشاء ملف تعريفي.</a>
+            </li>
+            <li class="tab_active para-text m-0">
+              <a *ngIf="customFunction.IsRTL()" href="#">دعوة الخبراء لتقديم الخدمة.</a>
+            </li>
+            <li class="tab_active para-text m-0">
+              <a *ngIf="customFunction.IsRTL()" href="#">اكمال مشروعهم الخاص عندما لا يستطيع أصحاب العمل المستقلون تلبية
+                احتياجاتهم.</a>
+            </li>
+            <li class="tab_active para-text m-0">
+              <a *ngIf="customFunction.IsRTL()" href="#">تلقي الإشعارات الفورية.</a>
+            </li>
+
+          </ol>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- why PRACTICE section -->
+<section class="pt-90" style="background-color: #fff;">
+  <div class="container" style="padding-bottom: 35px;">
+    <div class="row">
+      <img src="assets/images/background-shape.png" alt="" class="img-fluid shape"
+        style="max-width: 45%; position: absolute; right: 0px;">
+
+      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+        <div class="semicircle-infographic">
+          <div *ngIf="!customFunction.IsRTL()" class="center-circle">
+            <div class="content">
+              <h2 *ngIf="!customFunction.IsRTL()" class="blue-title" style="font-weight: 500;">WHY <span
+                  class="green">BHTHY</span>?</h2>
+
+            </div>
+          </div>
+
+          <div *ngIf="customFunction.IsRTL()" class="center-circle arb-circle" style="position:absolute; left: 150px;">
+            <div class="content">
+              <h2 *ngIf="customFunction.IsRTL()" class="blue-title arabic-one">لماذا منصة <span
+                  class="green">بحثي؟</span></h2>
+
+            </div>
+          </div>
+
+          <div class="semi-circle-container">
+            <div class="semi-circle">
+              <div class="circle-section"></div>
+              <div class="circle-section"></div>
+              <div class="circle-section"></div>
+              <div class="circle-section"></div>
+            </div>
+            <div class="inner-circle-container">
+              <div class="inner-circle">
+                <img src="assets/images/icon/flexible.png" alt="" class="img-fluid" style="max-width: 100%;">
+              </div>
+              <div class="inner-circle">
+                <img src="assets/images/icon/value.png" alt="" class="img-fluid" style="max-width: 100%;">
+
+              </div>
+              <div class="inner-circle">
+                <img src="assets/images/icon/security.png" alt="" class="img-fluid" style="max-width: 100%;">
+              </div>
+              <div class="inner-circle">
+                <img src="assets/images/icon/support.png" alt="" class="img-fluid" style="max-width: 100%;">
+
+              </div>
+            </div>
+
+            <div class="test-circle"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+        <ul *ngIf="!customFunction.IsRTL()" class="" style="padding-left: 0px !important;" class="why-ul">
+
+
+          <li class="black-title li-title" style="background-color: #138d9a; color: #fff;">
+            <h5>Flexibility</h5>
+            <p class="para-text m-0 why-p" style="color: #fff; font-weight: 500 !important;">We provide multiple payment
+              terms and flexible agreements
+              to enable you to work the way you want.</p>
+          </li>
+          <li class="black-title li-title" style="background-color: #29a8b6; color: #fff;">
+            <h5> value</h5>
+            <p class="para-text m-0 why-p" style="color: #fff; font-weight: 500 !important;">Our freelance platform has the most competitive
+fees and offers flexible pricing options for your convenience.</p>
+          </li>
+
+
+          <li class="black-title li-title" style="background-color: #9cc33b; color: #fff;">
+            <h5>Security</h5>
+            <p class="para-text m-0 why-p" style="color: #fff; font-weight: 500 !important;">
+              We offer safepay payment protection and your choice of preferred payment Method
+              for financial tranquility, security and stability.
+            </p>
+          </li>
+          <li class="black-title li-title" style="background-color: #84a13a; color: #fff;">
+            <h5>Support</h5>
+            <p class="para-text m-0 why-p" style="color: #fff; font-weight: 500 !important;">
+              Our dedicated support team works 24/7 to resolve all of your queries over the
+              phone or email, no matter where you are located.
+            </p>
+          </li>
+        </ul>
+
+
+        <ul *ngIf="customFunction.IsRTL()" class="" style="padding-left: 0px !important;" class="why-ul arabic-why">
+
+
+          <li class="black-title li-title" style="background-color: #138d9a; color: #fff;">
+            <h5>المرونة</h5>
+            <p class="para-text m-0 why-p" style="color: #fff; font-weight: 500 !important;"> نقدم لك آليات متعددة للدفع
+              واتفاقيات مرنة لتمكينك من العمل بالطريقة التي تريدها.</p>
+          </li>
+          <li class="black-title li-title" style="background-color: #29a8b6; color: #fff;">
+            <h5>القيمة</h5>
+            <p class="para-text m-0 why-p" style="color: #fff; font-weight: 500 !important;">لدينا أقل رسوم في هذا
+              المجال، ونوفر لك التكلفة الأقل.</p>
+          </li>
+
+
+          <li class="black-title li-title" style="background-color: #9cc33b; color: #fff;">
+            <h5>الأمان</h5>
+            <p class="para-text m-0 why-p" style="color: #fff; font-weight: 500 !important;">
+              نوفر لك خاصية الدفع الآمن، ونفتح المجال لك لاختيار أنسب طريقة للدفع؛ لراحة البال المالية.
+            </p>
+          </li>
+          <li class="black-title li-title" style="background-color: #84a13a; color: #fff;">
+            <h5>الدعم</h5>
+            <p class="para-text m-0 why-p" style="color: #fff; font-weight: 500 !important;">
+              يعمل فريق الدعم المخصص لدينا على مدار الساعة / طوال أيام الأسبوع لحل جميع استفساراتك عبر الهاتف أو البريد
+              الإلكتروني، بغض النظر عن مكان تواجدك.
+            </p>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- how does bhty work section -->
+<section class="pt-90 bg-blue" style="padding-bottom: 60px;">
+  <div class="container">
+
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 text-center">
+      <h1 *ngIf="!customFunction.IsRTL()" class="blue-title one" style="text-align: center; margin-bottom: 30px">How
+        does <span class="green">BHTHY</span> work? </h1>
+
+      <h1 *ngIf="customFunction.IsRTL()" class="blue-title arabic-one have"
+        style="text-align: center; margin-bottom: 30px">كيف تعمل منصة <span class="green">بحثي؟</span></h1>
+
+    </div>
+
+    <div class="row">
+
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 text-center">
+        <img src="assets/images/work.png" alt="" class="img-fluid" style="margin-bottom: 75px;">
+      </div>
+
+      <div  *ngIf="!customFunction.IsRTL()"  class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
+
+        <div class="sidebar-navigation">
+          <strong class="title">SERVICES</strong>
+          <ul>
+            <li><a href="#"><i class="fa fa-search"></i> Research </a></li>
+            <li><a href="#"><i class="fa fa-newspaper-o"></i>Data Analysis</a></li>
+            <li><a href="#"><i class="fa fa-laptop"></i>Programming</a></li>
+            <li><a href="#"><i class="fa fa-edit"></i>Designing</a></li>
+            <li><a href="#"><i class='fas fa-globe-asia'></i>Translation</a></li>
+          </ul>
+        </div>
+
+      </div>
+      <div  *ngIf="customFunction.IsRTL()"  class="arabic-one col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
+
+        <div class="sidebar-navigation">
+          <strong class="title" style="text-align: right;">الخدمات</strong>
+          <ul>
+            <li style="text-align: right;"><a href="#"><i class="fa fa-search"></i>&nbsp;الدراسات و البحوث</a></li>
+            <li style="text-align: right;"><a href="#"><i class="fa fa-newspaper-o"></i>&nbsp;تحليل البيانات</a></li>
+            <li style="text-align: right;"><a href="#"><i class="fa fa-laptop"></i>&nbsp;برمجة </a></li>
+            <li style="text-align: right;"><a href="#"><i class="fa fa-edit"></i>&nbsp;تصميم</a></li>
+            <li style="text-align: right;"><a href="#"><i class='fas fa-globe-asia'></i>&nbsp;الترجمة</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12">
+        <a href="assets/video/bhthyPlatfrom.mp4" target="_blank">
+          <img src="assets/images/org-img/bhthy-video-img.jpg" alt="" id="video-img" class="img-fluid">
+
+          <div *ngIf="!customFunction.IsRTL()"
+            style="margin-top: 20px; position: absolute; top: 5px; padding: 0px 0px 0px 20px;">
+            <img src="assets/images/play-green.png" alt="" class="img-fluid play-green" style="z-index:999;"
+              style="width: 10%; float: left; margin-right: 10px;">
+            <h6 style="margin-bottom: 14px; position: relative; top: 14px; color: #fff;" class="play-title">Watch Now
+            </h6>
+            <p class="para-text m-0" style="color:#c9c4c4;" class="play-p">Get started in minutes</p>
+          </div>
+
+          <div *ngIf="customFunction.IsRTL()"
+            style="margin-top: 20px; position: absolute; top: 5px; padding: 0px 0px 0px 40px;">
+            <img src="assets/images/play-green.png" alt="" class="img-fluid play-green" style="z-index:999;"
+              style="width: 10%; float: left; margin-right: 10px;">
+            <h6 style="margin-bottom: 14px; position: relative; top: 24px; color: #fff;" class="play-title">شاهد الآن
+            </h6>
+            <p *ngIf="!customFunction.IsRTL()" class="para-text m-0" style="color:#c9c4c4;" class="play-p">Get started
+              in minutes</p>
+          </div>
+
+        </a>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- our expert services -->
+<section class="pt-90" id="background-row">
+  <img *ngIf="!customFunction.IsRTL()" [src]="backgroundImg" class="background-img" alt="" style="position: absolute; background-repeat: no-repeat;
+  background-attachment: fixed; width: 100%; z-index: -1;">
+
+  <img *ngIf="customFunction.IsRTL()" [src]="backgroundImg" class="background-img" alt="" style="position: absolute; background-repeat: no-repeat;
+  background-attachment: fixed; width: 100%; z-index: -1; right: 0px;">
+
+
+  <div class="container">
+    <div class="row">
+      <div *ngIf="!customFunction.IsRTL()" class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 text-center">
+        <h1 class="blue-title one chgs"><span class="green">Our</span> Services </h1>
+        <p class="para-text" style="margin-top: 0px; margin-bottom: -40px;">A poineer in freelance work service in
+          multiple field. </p>
+      </div>
+
+      <div *ngIf="customFunction.IsRTL()" class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 text-center">
+        <h1 class="blue-title one chgs arabic-one">خدماتنا </h1>
+        <p class="para-text" style="margin-top: 0px; margin-bottom: -40px;">رائدون في تقديم خدمات الأعمال المستقلة في
+          مجالات عدّة.</p>
+      </div>
+    </div>
+
+    <div class="row" id="" style="margin-top: 88px">
+
+      <div *ngIf="!customFunction.IsRTL()" class="col-xl-2 col-lg-2 col-md-2 col-sm-5 col-12" id="bhthy-card">
+        <div class="zoom">
+          <img alt="" src="assets/images/icon/research.png" class="icon-services">
+        </div>
+        <div class="overlay">
+          <div class="line">
+            <h4 class="title">Research</h4>
+          </div>
+          <div class="content">
+            <ul class="cust_list">
+              <li class="para-text m-0">Research design</li>
+              <li class="para-text m-0">Research questions & objectives</li>
+              <li class="para-text m-0">Literature review</li>
+              <li class="para-text m-0">Proposal review</li>
+              <li class="para-text m-0">Manuscript review.</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+
+      <div *ngIf="customFunction.IsRTL()" class="col-xl-2 col-lg-2 col-md-2 col-sm-5 col-12" id="bhthy-card-arabic">
+        <div class="zoom">
+          <img alt="" src="assets/images/icon/research.png" class="icon-services">
+        </div>
+        <div class="overlay">
+          <div class="line">
+            <h4 class="title">كتابة البحوث</h4>
+          </div>
+          <div class="content">
+            <ul class="cust_list">
+              <li class="para-text m-0"> تصميم البحث</li>
+              <li class="para-text m-0"> أسئلة البحث وأهدافه</li>
+              <li class="para-text m-0">مراجعة الأدبيات</li>
+              <li class="para-text m-0">مراجعة التصورات والأوراق العلمية</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+
+      <div *ngIf="!customFunction.IsRTL()" class="col-xl-2 col-lg-2 col-md-2 col-sm-5 col-12 col-half-offset"
+        id="bhthy-card">
+        <div class="zoom">
+          <img alt="" src="assets/images/icon/data.png" class="icon-services">
+        </div>
+        <div class="overlay">
+          <div class="line">
+            <h4 class="title">Data Services</h4>
+          </div>
+          <div class="content">
+            <ul class="cust_list">
+              <li class="para-text m-0">Data collection</li>
+              <li class="para-text m-0">Data entry</li>
+              <li class="para-text m-0">Missing data</li>
+              <li class="para-text m-0">Validity & reliability checker</li>
+              <li class="para-text m-0">Data analysis</li>
+              <li class="para-text m-0">Graphs & tables</li>
+              <li class="para-text m-0">Interpretations</li>
+              <li class="para-text m-0">Writing statistical report & reviews</li>
+
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="customFunction.IsRTL()" class="col-xl-2 col-lg-2 col-md-2 col-sm-5 col-12 col-half-offset"
+        id="bhthy-card-arabic">
+        <div class="zoom">
+          <img alt="" src="assets/images/icon/data.png" class="icon-services">
+        </div>
+        <div class="overlay">
+          <div class="line">
+            <h4 class="title">خدمات البيانات</h4>
+          </div>
+          <div class="content">
+            <ul class="cust_list">
+              <li class="para-text m-0"> جمع البيانات</li>
+              <li class="para-text m-0">إدخال البيانات</li>
+              <li class="para-text m-0"> البيانات المفقودة</li>
+              <li class="para-text m-0">مدقق صِحّة وموثوقية البيانات وتحليلها</li>
+              <li class="para-text m-0">الرسوم البيانية والجداول والتفسيرات</li>
+              <li class="para-text m-0"> كتابة التقارير الإحصائية والمراجعات</li>
+
+
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="!customFunction.IsRTL()" class="col-xl-2 col-lg-2 col-md-2 col-sm-5 col-12 col-half-offset"
+        id="bhthy-card">
+        <div class="zoom">
+          <img alt="" src="assets/images/icon/design.png" class="icon-services">
+        </div>
+        <div class="overlay">
+          <div class="line">
+            <h4 class="title">Design</h4>
+          </div>
+          <div class="content">
+            <ul class="cust_list">
+              <li class="para-text m-0">Poster presentation</li>
+              <li class="para-text m-0">Designed research paper</li>
+            </ul>
+
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="customFunction.IsRTL()" class="col-xl-2 col-lg-2 col-md-2 col-sm-5 col-12 col-half-offset"
+        id="bhthy-card-arabic">
+        <div class="zoom">
+          <img alt="" src="assets/images/icon/design.png" class="icon-services">
+        </div>
+        <div class="overlay">
+          <div class="line">
+            <h4 class="title">التصميم</h4>
+          </div>
+          <div class="content">
+            <ul class="cust_list">
+              <li class="para-text m-0"> تصميم العروض التقديمية</li>
+              <li class="para-text m-0"> الأوراق البحثية</li>
+            </ul>
+
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="!customFunction.IsRTL()" class="col-xl-2 col-lg-2 col-md-2 col-sm-5 col-12 col-half-offset"
+        id="bhthy-card">
+        <div class="zoom">
+          <img alt="" src="assets/images/icon/programming.png" class="icon-services">
+        </div>
+        <div class="overlay">
+          <div class="line">
+            <h4 class="title">Programming</h4>
+          </div>
+          <div class="content">
+            <ul class="cust_list">
+              <li class="para-text m-0">Application for data collection</li>
+              <li class="para-text m-0">Application for data representation</li>
+              <li class="para-text m-0">Data science</li>
+              <li class="para-text m-0">Dashboard</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="customFunction.IsRTL()" class="col-xl-2 col-lg-2 col-md-2 col-sm-5 col-12 col-half-offset"
+        id="bhthy-card-arabic">
+        <div class="zoom">
+          <img alt="" src="assets/images/icon/programming.png" class="icon-services">
+        </div>
+        <div class="overlay">
+          <div class="line">
+            <h4 class="title">البرمجة</h4>
+          </div>
+          <div class="content">
+            <ul class="cust_list">
+              <li class="para-text m-0"> جمع البيانات</li>
+              <li class="para-text m-0">عرض وتمثيل البيانات</li>
+              <li class="para-text m-0">علوم البيانات</li>
+              <li class="para-text m-0">لوحة القيادة للبيانات</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="!customFunction.IsRTL()" class="col-xl-2 col-lg-2 col-md-2 col-sm-5 col-12 col-half-offset"
+        id="bhthy-card">
+        <div class="zoom">
+          <img alt="" src="assets/images/icon/translate.png" class="icon-services">
+        </div>
+        <div class="overlay">
+          <div class="line">
+            <h4 class="title">Translation</h4>
+          </div>
+          <div class="content">
+            <ul class="cust_list">
+              <li class="para-text m-0">Manuscript translation</li>
+              <li class="para-text m-0">Proposal translation</li>
+              <li class="para-text m-0">Proofreading</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="customFunction.IsRTL()" class="col-xl-2 col-lg-2 col-md-2 col-sm-5 col-12 col-half-offset"
+        id="bhthy-card-arabic">
+        <div class="zoom">
+          <img alt="" src="assets/images/icon/translate.png" class="icon-services">
+        </div>
+        <div class="overlay">
+          <div class="line">
+            <h4 class="title">الترجمة</h4>
+          </div>
+          <div class="content">
+            <ul class="cust_list">
+              <li class="para-text m-0">ترجمة المخطوطات الكتابية</li>
+              <li class="para-text m-0"> التصوّرات</li>
+              <li class="para-text m-0">التدقيق اللغوي</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+
+
+
+    </div>
+  </div>
+
+
+</section>
+
+
+
+
+<!-- our expert services -->
+<section class="pt-90" style="display: none;">
+  <div class="container">
+    <!-- <div class="row">
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 text-center">
+        <h1 class="blue-title">Our Expert Services </h1>
+        <p class="para-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+          Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an
+          unknown printer took a galley of type and scrambled it to make a type specimen book. </p>
+      </div>
+    </div> -->
+    <div class="row">
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+        <div class="expert-carousel owl-carousel owl-theme">
+          <div class="item">
+            <div class="card expert-card">
+              <div class="card-body">
+                <div class="expert-img">
+                  <img src="assets/images/expert.png" alt="" class="img-fluid">
+                  <div class="expert-overlay">
+                    <h6>customize your site</h6>
+                    <h5>wordpress</h5>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 text-center">
+        <p class="para-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+          Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an
+          unknown printer took a galley of type and scrambled it to make a type specimen book. </p>
+        <a href="#" class="btn btn-green"> read more</a>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<app-footer></app-footer>

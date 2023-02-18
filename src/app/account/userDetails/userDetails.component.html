@@ -1,0 +1,295 @@
+<main>
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+          <!-- user info -->
+          <div class="gradient_card my-5 ">
+            <div class="row">
+              <div class="col-xl-2 col-lg-3 col-md-3 border-right">
+                <img alt="" [src]="userDetails?.image ?
+                userDetails.image:'assets/images/male.png'" class="user-img"
+                onError="this.src='assets/images/male.png'">
+              </div>
+              <div class="col-xl-9 col-lg-9 col-md-9">
+                <div class="user-info">
+                  <h4>{{userDetails?.fullName}}</h4>
+                  <p>{{userDetails?.aboutMe}}</p>
+                  <!-- <p class="text-member">Member since 2020</p> -->
+                  <div class="rating-star">
+                    <i class="fas fa-star" aria-hidden="true"></i>
+                    <i class="fas fa-star" aria-hidden="true"></i>
+                    <i class="fas fa-star" aria-hidden="true"></i>
+                    <i class="fas fa-star" aria-hidden="true"></i>
+                    <i class="fas fa-star" aria-hidden="true"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- projects details -->
+          <!-- <div class="row my-12">
+            <div class="col-md-4">
+
+              <div class="cardd">
+                <div class="percent">
+                  <svg>
+                    <circle cx="105" cy="105" r="100"></circle>
+                    <circle cx="105" cy="105" r="100" style="--percent: 80"></circle>
+                  </svg>
+                  <div class="number">
+
+                    <h3>
+                      80<span>%</span></h3>
+
+                  </div>
+                </div>
+                <div class="title">
+                  <h2 class="pr-hd">
+                    <img src="assets/images/icon/project.png" alt="" class="img-fluid" style="max-width: 20%;"> {{'USER.COMPLETED_PROJECT' | translate}}</h2>
+                </div>
+              </div>
+
+
+            </div>
+
+            <div class="col-md-4">
+
+              <div class="cardd">
+                <div class="percent">
+                  <svg>
+                    <circle cx="105" cy="105" r="100"></circle>
+                    <circle cx="105" cy="105" r="100" style="--percent: 48"></circle>
+                  </svg>
+                  <div class="number">
+
+                    <h3>
+                      48<span>%</span></h3>
+
+                  </div>
+                </div>
+                <div class="title">
+                  <h2 class="pr-hd">
+                    <img src="assets/images/icon/money.png" alt="" class="img-fluid" style="max-width: 20%;"> {{'USER.ON_BUDGET' | translate}}</h2>
+                </div>
+              </div>
+            </div>
+           
+            <div class="col-md-4">
+
+              <div class="cardd">
+                <div class="percent">
+                  <svg>
+                    <circle cx="105" cy="105" r="100"></circle>
+                    <circle cx="105" cy="105" r="100" style="--percent: 10"></circle>
+                  </svg>
+                  <div class="number">
+
+                    <h3>
+                      10<span>%</span></h3>
+
+                  </div>
+                </div>
+                <div class="title">
+                  <h2 class="pr-hd">
+                    <img src="assets/images/icon/return.png" alt="" class="img-fluid" style="max-width: 20%;"> {{'USER.RATE' | translate}}</h2>
+                </div>
+              </div>
+
+            </div>
+
+          </div> -->
+          <br>
+          <!-- user tab -->
+
+          <div class="row">
+            <div class="col-md-12">
+              <ul class="nav nav-pills mb-3 user-tab" id="pills-tab" role="tablist">
+                <li class="nav-item">
+                  <a class="nav-link active" id="user-skill-tab" data-toggle="pill" href="#user-skill" role="tab"
+                    aria-selected="true"> {{'USER.SKILLS' | translate}} </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" id="user-experience-tab" data-toggle="pill" href="#user-experience" role="tab"
+                    aria-selected="false"> {{'USER.EXPERIENCE' | translate}} </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" id="user-works-tab" data-toggle="pill" href="#user-works" role="tab"
+                    aria-selected="false"> {{'USER.WORKS' | translate}} </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" id="user-review-tab" data-toggle="pill" href="#user-review" role="tab"
+                    aria-selected="false"> {{'USER.REVIEW' | translate}} </a>
+                </li>
+
+              </ul>
+              <div class="tab-content user-content " id="pills-tabContent">
+                <!-- skiil -->
+                <div class="tab-pane fade show active" id="user-skill" role="tabpanel" aria-labelledby="pills-home-tab">
+                  <table class="rwd-table">
+                    <thead class="thead-info">
+                      <tr>
+                        <th style="width:2%;">#</th>
+                        <th style="width:35%;">{{'USER.SKILLS' | translate}}</th>
+                        <th>{{'BASE.DETAILS' | translate}}</th>
+                        
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let skill of userSkills; let i=index">
+                        <td>{{i+1}}</td>
+                        <td>{{skill.name}}</td>
+                        <td>{{skill.details}} <a href="#" style="text-decoration: underline;">see more</a></td>
+                        
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <!-- skill-end -->
+
+
+                <div class="tab-pane fade" id="user-works" role="tabpanel" aria-labelledby="user-works-tab">
+                  <div class="row">
+                    <table class="rwd-table">
+                      <thead class="thead-info">
+                        <tr>
+                          <th>#</th>
+                          <th>{{'BASE.TITLE' | translate}}</th>
+                          <th colspan="2">{{'BASE.DETAILS' | translate}}</th>
+                          <th>C{{'BASE.DATE' | translate}}</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let work of userWorks; let i=index">
+                          <td>{{i+1}}</td>
+                          <td>{{work.name}}</td>
+                          <td colspan="2">{{work.details}}</td>
+                          <td>{{work.createdDate | date}}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <div class="tab-pane fade" id="user-experience" role="tabpanel" aria-labelledby="user-experience-tab">
+                  <div class="row">
+                    <table class="rwd-table">
+                      <thead class="thead-info">
+                        <tr>
+                          <th>#</th>
+                          <th>{{'BASE.TITLE' | translate}}</th>
+                          <th colspan="2">{{'BASE.COMPANY' | translate}}</th>
+                          <th>{{'BASE.START_DATE' | translate}}</th>
+                          <th>{{'BASE.END_DATE' | translate}}</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let experience of userExperience; let i=index">
+                          <td>{{i+1}}</td>
+                          <td>{{experience.company}}</td>
+                          <td colspan="2">{{experience.description}}</td>
+                          <td>{{experience.fromMonthYear | date}}</td>
+                          <td>{{experience.toMonthYear | date}}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <!-- review end -->
+                <!-- recent review -->
+                <div class="tab-pane fade" id="user-review" role="tabpanel" aria-labelledby="user-review-tab">
+                  <div class="row">
+                    <div class="col-md-12 row mr-1 card-body" *ngFor="let project of userReview">
+                      <div class="">
+                        <!-- <star-rating [starType]="'icon'" [rating]="2.63"></star-rating>
+                         -->
+
+                        <ngx-stars [readonly]="true" [maxStars]="5" [initialStars]="3.5"></ngx-stars>
+                        <p>{{project.projectName}}</p>
+                        <span>{{project.createdDate | date }}</span> --
+                        <span>{{project?.rating?.date | date }}</span>
+                      </div>
+                      <div class="container mt-1">
+                        <div class="row  d-flex justify-content-center">
+                          <div class="col-md-12">
+                            <div class="card p-3">
+                              <div class="d-flex justify-content-between align-items-center">
+
+                                <div class="user d-flex flex-row align-items-center">
+                                  <img src="{{project?.rating.projectOwnerImage}}" width="30"
+                                    class="user-img rounded-circle mr-2">
+                                  <span><small
+                                      class="font-weight-bold text-primary">{{project?.rating.projectOwnerName}}</small>
+                                    <p class="font-weight-bold">{{project?.rating.projectOwnerMessage}}</p>
+                                  </span>
+                                </div>
+                                <small>{{project?.rating.createdDate | amTimeAgo}}</small>
+                              </div>
+                            </div>
+                            <div class="card p-3 mt-2">
+                              <div class="d-flex justify-content-between align-items-center">
+                                <div class="user d-flex flex-row align-items-center">
+                                  <img src="https://i.imgur.com/C4egmYM.jpg" width="30"
+                                    class="user-img rounded-circle mr-2">
+                                  <span><small
+                                      class="font-weight-bold text-primary">{{project?.rating.expertName}}</small>
+                                    <p class="font-weight-bold">{{project?.rating.expertMessage}} </p>
+                                  </span>
+                                </div>
+                                <small>{{project?.rating.updatedDate | amTimeAgo}}</small>
+                              </div>
+
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- experiance -->
+                <div class="tab-pane fade" id="pills-exprnc" role="tabpanel" aria-labelledby="pills-experiance-tab">
+                  <div class="row">
+                    <div class="col-md-12">
+
+                      <div class="card prjct-card mt-3">
+                        <div class="card-body">
+                          <div class="row">
+                            <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12">
+                              <div class="edcu-txt">
+                                <h6>Research Assisstance</h6>
+                                <p>Participate in the design, administration and monitoring of clinical trials. Analyze
+                                  and &#10;evaluate clinical data gathered during research. Ensure compliance with
+                                  protocol and &#10;overall objectives.&#10;Major accomplishments:&#10; Worked a member
+                                  in research teams to carry out (and provide administrative and &#10;technical support)
+                                  research in soil and water management</p>
+                              </div>
+                            </div>
+                            <div class="col-xl-4 col-lg-4 col-md-3 col-sm-12 education-box">
+                              <div class="d-flex justify-content-center pt-4">
+                                <div class="p-3">
+                                  <h6>10-2014</h6>
+                                </div>
+                                <div class="p-3">
+                                  <h6>-</h6>
+                                </div>
+                                <div class="p-3">
+                                  <h6>12-2015</h6>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- experiance end -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+<app-account-footer></app-account-footer>

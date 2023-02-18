@@ -1,0 +1,222 @@
+
+.payment-cards {
+	padding-left: 0;
+  margin: 20px auto;
+  text-align: center;
+}
+
+.card-checkout {
+	color: black;
+  width: 100%;
+  max-width: 350px;
+	margin: auto;
+  box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.4);
+	border-radius: 5px;
+	background-color: white;
+	label {
+		text-transform: uppercase;
+		margin-bottom: 4px;
+		display: block;
+		padding-left: 10px;
+		font-weight: bold;
+	}
+}
+
+.card-options {
+  width: 100%;
+  height: 55%;
+  padding: 10px;
+}
+
+.card-details {
+  width: 100%;
+  height: 100%;
+  input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 1px;
+    border: 1px solid rgba(221, 221, 221, 0.5);
+    font-weight: 500;
+    text-transform: uppercase;
+    &.inline {
+      margin-right: 1px;
+    }
+    &::-webkit-input-placeholder, &::-moz-placeholder, &:-moz-placeholder, &:-ms-input-placeholder, &:placeholder-shown {
+      color: #C5DFFF;
+    }
+  }
+}
+
+.card-types {
+	text-align: center;
+	padding: 20px 0;
+}
+
+.card_type {
+	opacity: 0.5;
+	vertical-align: top;
+	background-color: #fff;
+	text-align: center;
+	color: #666;
+	transition: all 0.2s;
+	display: inline-block;
+	font-size: 35px;
+	margin: 0 5px;
+	transition: all 0.2s;
+	&.active {
+		transform: scale(1.3);
+		opacity: 1;
+	}
+}
+
+.card-confirm {
+  position: relative;
+  width: 100%;
+  height: 10%;
+}
+
+.button-confirm {
+	padding: 10px 0;
+  width: 100%;
+	outline: none !important;
+	background: #138d9a;
+	text-transform: uppercase;
+	font-weight: bold;
+	border: none;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+	box-shadow: none;
+	text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+	color: white;
+}
+
+
+div#visa, #mastercard, #amex, #discover {
+  color: #afafaf;
+  opacity: 100;
+}
+
+div#visa:hover, #mastercard:hover, #amex:hover, #discover:hover {
+  color: #138d9a;
+  opacity: 100;
+}
+
+
+/* End cards style */
+
+/* Page style */
+.logo {
+	display: block;
+	background: url(http://beta.triip.me/public/img/logo.svg) center center no-repeat;
+	background-size: 100%;
+	width: 60px;
+	height: 60px;
+	margin: auto;
+}
+
+.title {
+	font-size: 20px;
+	text-transform: uppercase;
+}
+
+.label {
+	font-size: 16px;
+}
+
+p {
+	font-size: 14px;
+}
+
+.line {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    border-radius: 15px;
+    background-color: white;
+}
+
+.loading, 
+.success {
+	display: none;
+	text-align: center;
+}
+
+@keyframes loadingH {
+    0% {width: 15px;}
+    50% {width: 35px; padding: 4px;}
+    100% {width: 15px;}
+}
+
+.load-8 .line {animation: loadingH 1.5s cubic-bezier(.17,.37,.43,.67) infinite;}
+
+.checkmark__circle {
+  stroke-dasharray: 166;
+  stroke-dashoffset: 166;
+  stroke-width: 2;
+  stroke-miterlimit: 10;
+  stroke: #7ac142;
+  fill: none;
+  animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+}
+
+.checkmark {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: block;
+  stroke-width: 2;
+  stroke: #fff;
+  stroke-miterlimit: 10;
+  margin: 10px auto;
+  box-shadow: inset 0px 0px 0px #7ac142;
+  animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both;
+}
+
+.checkmark__check {
+  transform-origin: 50% 50%;
+  stroke-dasharray: 48;
+  stroke-dashoffset: 48;
+  animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+}
+
+@keyframes stroke {
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+
+@keyframes scale {
+  0%, 100% {
+    transform: none;
+  }
+
+  50% {
+    transform: scale3d(1.1, 1.1, 1);
+  }
+}
+
+
+@keyframes fill {
+  100% {
+    box-shadow: inset 0px 0px 0px 30px #7ac142;
+  }
+}
+
+
+
+.card {
+  width: 40%;
+  margin: auto;
+}
+
+
+@media (min-width: 320px) and (max-width: 480px) {
+  .card {
+    width: 100% !important;
+  }
+}
+
+.pt-90 {
+  padding-top: 0px !important;
+}

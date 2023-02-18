@@ -1,0 +1,49 @@
+.badge-secondary {
+    color: #fff;
+    background-color: #138d9a !important;
+}
+
+button.btn.btn-success.btn-block {
+    background-color: #9cc33b;
+    border: none;
+}
+
+button.btn.btn-success.btn-block:hover {
+    background-color: #138d9a !important;
+}
+  
+.payment{
+    
+        font-size: 18px;
+        font-weight: 900;
+        position: absolute;
+        right: 6%;
+        color: #fff;
+        padding: 0px 18px;
+}
+
+.prjct-img{
+	padding-top: 16px;
+}
+
+#triangle-topright {
+	width: 0;
+    height: 0;
+    border-top: 130px solid #138d9a;
+    border-left: 130px solid transparent;
+    position: absolute;
+    top: 0px;
+    right: 7.5%;
+
+}
+
+.form-s {
+    padding: 20px 20px;
+}
+
+.prjct-form {
+    background-color: #d5f7fa;
+    padding: 24px 38px;
+    margin-bottom: 35px;
+    border-radius: 7px;
+}

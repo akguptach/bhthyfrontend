@@ -1,0 +1,166 @@
+.card-body .b{
+    
+    padding: 4.25rem !important;
+}
+
+.prjct-form h4 {
+  
+    font-size: 35px !important;
+}
+
+.prjct-form p {
+    color: #242424 !important;
+}
+
+.search-form {
+    
+    max-width: 100% !important;
+}
+
+.col-md-3 {
+   
+    padding-right: 5px !important;
+    padding-left: 5px !important;
+}
+
+label.col-md-12 {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.prjct-form .form-s {
+    padding: 19px 20px !important;
+}
+
+.state .btn {
+    right: 0px;
+    font-size: 12px !important;
+    font-weight: 300 !important;
+	margin:10px;
+    padding: 2px;
+	    float: right;
+}
+
+.d-flex.justify-content-center {
+    margin-top: 48px;
+}
+
+.hire-txt p {
+    font-size: 12px !important;
+    color: #333 !important;
+    text-align: left;
+}
+
+i.time-b {
+    font-size: 12px;
+    text-align: left !important;
+    background-color: #138d9a;
+    color: #fff;
+    padding: 2px 4px 2px 4px;
+
+}
+
+.expert-rate {
+    border-left: 1px solid #f4f4f4;
+    text-align: left !important;
+}
+
+h6.price {
+    /* background-color: #138d9a; */
+    font-size: 14px;
+    font-weight: 500;
+    color: #28a745;
+}
+
+@media (min-width: 1200px){
+.col-xl-6 {
+    -ms-flex: 0 0 50% !important;
+    flex: 0 0 49% !important;
+    max-width: 49% !important;
+    margin-right: 10px !important;
+}
+}
+
+img.img-fluid.icon-img{
+    background-color: #effafb;
+    padding: 9px;
+    border-radius: 15px;
+    box-shadow: 0 3px 6px rgb(0 0 0 / 16%), 0 3px 6px rgb(0 0 0 / 23%);
+}
+
+a.btn.btn-green.btn-sm.m-1 {
+    margin-left: 33px !important;
+}
+
+/* 
+  ##Device = Most of the Smartphones Mobiles (Portrait)
+  ##Screen = B/w 320px to 479px
+*/
+
+@media (min-width: 320px) and (max-width: 480px) {
+  
+    img.img-fluid.icon-img{
+    max-width: 18% !important;
+}
+
+.hire-txt h6{
+    text-align: center !important;
+}
+
+.cus-btn{
+    left: 130px !important;
+}
+
+.search-form {
+    
+    left: 0px !important;
+}
+
+.prjct-card .card-body {
+    padding: 10px 0px 30px !important;
+}
+
+.state .btn {
+ 
+    right: 0px !important;
+    
+    top: -178px !important;
+}
+
+.hire-txt, .hire-txt p {
+    text-align: center !important;
+}
+
+
+.d-flex.justify-content-center {
+    margin-top: 16px !important;
+}
+
+a.btn.btn-green.btn-sm.m-1 {
+    margin-left: 114px !important;
+    margin-bottom: 28px !important;
+}
+
+.prjct-img img {
+  
+    height: 100px !important;
+    width: 100px !important;
+   
+}
+
+  }
+
+  a.btn.btn-blue.btn-sm.m-1:hover {
+    background-color: #9cc33b !important;
+}
+
+.lmt{
+    /* --max-lines: 5; */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    line-height: 16px;
+    max-height: 32px;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+}

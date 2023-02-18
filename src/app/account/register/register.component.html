@@ -1,0 +1,225 @@
+<section class="inner-bg">
+  <div class="container">
+    <div class="row">
+      <div class="col-xl-12 col-lg-12 col-md-12 col-12">
+        <div class="inner-title">
+          <h1 *ngIf="!_customFunctions.IsRTL()" >
+            <img src="assets/images/icon/register.png" alt="" class="img-fluid icon-img" style="max-width: 7%;">
+
+            {{'NAV.REGISTER' | translate}}</h1>
+          <h1 *ngIf="_customFunctions.IsRTL()" style="text-align: right;">
+            <img src="assets/images/icon/register.png" alt="" class="img-fluid icon-img" style="max-width: 7%;">
+
+            {{'NAV.REGISTER' | translate}}</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Login banner -->
+<section class="registerSction" id="registerSction">
+  <div class="container">
+    <div class="row">
+      <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12 register">
+        <div class="card shadow-sm">
+          <div class="card-body p-4">
+            <form class="login_Form" [formGroup]="registerForm">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="FullName"  [ngClass]="customFunction.IsRTL()? 'label_arbic': ''" class="label">{{'BASE.TITLE' | translate}}</label>
+                    <input type="text" formControlName="FullName" class="form-control" id="FullName"
+                      placeholder="{{'BASE.TITLE' | translate}}" name="FullName" required>
+                    <div *ngIf="submitted && registerForm.controls.FullName.errors" class="invalid-feedback2">
+                      <span
+                        *ngIf="submitted && registerForm.controls.FullName.errors">{{'BASE.IS_REQUIRED' | translate}}</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="email"  [ngClass]="customFunction.IsRTL()? 'label_arbic': ''" class="label">{{'BASE.EMAIL' | translate}}</label>
+                    <input type="email" formControlName="Email" class="form-control" id="email"
+                      placeholder="{{'BASE.EMAIL' | translate}}" required
+                      pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+                    <div *ngIf="submitted && registerForm.controls.Email.errors" class="invalid-feedback2">
+                      <span
+                        *ngIf="submitted && registerForm.controls.Email.errors">{{'BASE.IS_REQUIRED' | translate}}</span>
+                    </div>
+                   
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="PhoneNumber"  [ngClass]="customFunction.IsRTL()? 'label_arbic': ''" class="label">{{'BASE.PHONE_NUMBER' | translate}}</label>
+                    <input type="text" formControlName="PhoneNumber" class="form-control" id="PhoneNumber"
+                      placeholder="{{'BASE.PHONE_NUMBER' | translate}}">
+                    <div *ngIf="submitted && registerForm.controls.PhoneNumber.errors" class="invalid-feedback2">
+                      <span
+                        *ngIf="submitted && registerForm.controls.PhoneNumber.errors">{{'BASE.IS_REQUIRED' | translate}}</span>
+                    </div>
+                   
+                  </div>
+
+                </div>
+
+                <div class="form-group col-md-6">
+                  <label for="" class="label"  [ngClass]="customFunction.IsRTL()? 'label_arbic': ''">{{'BASE.COUNTRY' | translate}}</label>
+                  <select class="form-control" formControlName="CountryId">
+					 <option value="" disabled  *ngIf="!customFunction.IsRTL()">Select Country</option>
+					<option value="" disabled  *ngIf="customFunction.IsRTL()">اختر الخدمة</option>
+                    <option *ngFor="let country of countries$ |async" [value]="country.id">{{country.name}}
+                    </option>
+                  </select>
+                  <div *ngIf="submitted && registerForm.controls.CountryId.errors" class="invalid-feedback2">
+                    <span
+                      *ngIf="submitted && registerForm.controls.CountryId.errors">{{'BASE.IS_REQUIRED' | translate}}</span>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="Password"  [ngClass]="customFunction.IsRTL()? 'label_arbic': ''" class="label">{{'BASE.PASSWORD' | translate}}</label>
+                    <input type="password" formControlName="Password" class="form-control"
+                      placeholder="{{'BASE.PASSWORD' | translate}}" name="password" autocomplete="off">
+                    <div *ngIf="submitted && registerForm.controls.Password.errors" class="invalid-feedback2">
+                      <span
+                        *ngIf="submitted && registerForm.controls.Password.errors">{{'BASE.IS_REQUIRED' | translate}}</span>
+                    </div>
+                   
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="ConfirmPassword" [ngClass]="customFunction.IsRTL()? 'label_arbic': ''" class="label">{{'BASE.CONFIRM_PASSWORD' | translate}}</label>
+                    <input type="password" formControlName="ConfirmPassword" class="form-control"
+                      placeholder="{{'BASE.CONFIRM_PASSWORD' | translate}}" name="confirmPassword" autocomplete="off">
+                    <div *ngIf="submitted && registerForm.controls.ConfirmPassword.errors" class="invalid-feedback2">
+                      <span
+                        *ngIf="submitted && registerForm.controls.ConfirmPassword.errors">{{'BASE.IS_REQUIRED' | translate}}</span>
+                    </div>
+                   
+                  </div>
+                </div>
+              </div>
+              <div *ngIf="!customFunction.IsRTL()" class="row">
+                <label for="role" class="label col-md-12">{{'BASE.ACCOUNT_TYPE' | translate}}</label>
+                <div class="col-md-12">
+                  <div class="form-check-inline" *ngFor="let role of roleTypes">
+                    <label class="form-check-label">
+                      <input type="radio" class="form-check-input" (ngModelChange)="onSelectUserType($event)"
+                        formControlName="Role" name="Role" [value]="role">
+                        {{role.title}}
+                    </label>
+                  </div>
+                  <div *ngIf="submitted && registerForm.controls.Role.errors" class="invalid-feedback2">
+                    <span
+                      *ngIf="submitted && registerForm.controls.Role.errors">{{'BASE.IS_REQUIRED' | translate}}</span>
+                  </div>
+                 
+                </div>
+              </div>
+              <div *ngIf="customFunction.IsRTL()" class="row" >
+                <label for="role" class="label col-md-12 label_arbic">{{'BASE.ACCOUNT_TYPE' | translate}}</label>
+                <div class="col-md-12" style="float: right;">
+                  <div class="form-check-inline" *ngFor="let role of abrroleTypes" style="float: right;">
+                    <label class="form-check-label">
+                      <input type="radio" class="form-check-input" (ngModelChange)="onSelectUserType($event)"
+                        formControlName="Role" name="Role" [value]="role">
+                        {{role.title}}
+                    </label>
+                  </div>
+                  <div *ngIf="submitted && registerForm.controls.Role.errors" class="invalid-feedback2" >
+                    <span
+                      *ngIf="submitted && registerForm.controls.Role.errors">{{'BASE.IS_REQUIRED' | translate}}</span>
+                  </div>
+                  
+                </div>
+              </div>
+              
+              <div class="row">
+
+
+                <div class="form-group col-md-6" *ngIf="isFreelancer === true">
+				
+                  <label for="" [ngClass]="customFunction.IsRTL()? 'label_arbic': ''" class="label">{{'BASE.CATEGORY' | translate}}</label>
+                  <select class="form-control" formControlName="ServiceId">
+                    <option value="" disabled  *ngIf="!customFunction.IsRTL()">Select service</option>
+					<option value="" disabled  *ngIf="customFunction.IsRTL()">اختر الخدمة</option>
+                    <option *ngFor="let service of services$ |async" [value]="service.id">{{service.name}}
+                    </option>
+                  </select>
+                  <div *ngIf="submitted && registerForm.controls.ServiceId.errors" class="invalid-feedback2">
+                    <span
+                      *ngIf="submitted && registerForm.controls.ServiceId.errors">{{'BASE.IS_REQUIRED' | translate}}</span>
+                  </div>
+                </div>
+              </div>
+              <div class="row my-2">
+                <div class="col-md-6 col-sm-6 col-6" id="rcptcha" >
+                  <div class="form-group" [ngClass]="customFunction.IsRTL()? 'div_arbic': ''">
+                    <label class="form-check-label">
+                      <input type="checkbox" name="is_agree_terms_conditions"
+                        value="is_agree_terms_conditions" formControlName="PrivacyAndTerms">
+
+                      <a class="forgt_txt text-info" target="_blank" routerLink="/terms">&nbsp;{{'BASE.TERMS_AND_CONDITIONS' | translate}}</a>
+
+
+                    </label>
+                    <div *ngIf="submitted && registerForm.controls.PrivacyAndTerms.errors" class="invalid-feedback2">
+                      <span
+                        *ngIf="submitted && registerForm.controls.PrivacyAndTerms.errors">{{'BASE.IS_REQUIRED' | translate}}</span>
+                    </div>
+                    
+                  </div>
+                </div>
+                <div class="col-md-6 rcpt">
+                  <ngx-recaptcha2 #captchaElem siteKey="6Lect8YgAAAAALUuS4PTWI7Og3N08doxJW4UPnLR"
+                    formControlName="recaptcha" (success)="handleSuccess($event)" [size]="size" [hl]="lang"
+                    [theme]="theme" [type]="type">
+                  </ngx-recaptcha2>
+                  
+                </div>
+              </div>
+			  <button type="button" (click)="registerUser()" class="btn btn-green  btn-block" id="signupbutton">
+                {{'BASE.SUBMIT' | translate}}</button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 mt-2">
+        <div class="row">
+          <div class="col-md-12 text-center">
+            <img alt="" src="assets/images/logo.png" class="img-fluid mb-4">
+			
+            <p *ngIf="!customFunction.IsRTL()" class="para-text m-0 mb-3">- or Signup with -</p>
+			<p *ngIf="customFunction.IsRTL()" class="para-text m-0 mb-3">- أو اشترك مع -</p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-12 text-center mb-3">
+            <a (click)="googleLogin()" class="btn btn-gmail mb-2"><i class="far fa-envelope social-icn"></i>Google</a>
+            <a (click)="linkedInLogin()" class="btn btn-fb mr-3 mb-2"> <i  class="fa fa-linkedin social-icn"></i> LinkedIn</a>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-12 text-center">
+    
+			
+			<p *ngIf="!customFunction.IsRTL()" class="para-text m-0 mb-3">Already Have an Account ?
+              <a [routerLink]="['/account/login']" class="btn-signup"> SIGN IN</a></p>
+			<p *ngIf="customFunction.IsRTL()" class="para-text m-0 mb-3">هل لديك حساب ؟
+              <a [routerLink]="['/account/login']" class="btn-signup"> تسجيل الدخول</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<app-account-footer style="position: fixed; left: 0; bottom: 0; width: 100%;"></app-account-footer>

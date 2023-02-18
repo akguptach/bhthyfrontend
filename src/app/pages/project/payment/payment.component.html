@@ -1,0 +1,76 @@
+
+<section class="bg-blue pt-90 nav-sec" style="padding-bottom: 60px">
+  <div class="container">
+    <div class="row">
+      <div class="col text-center">
+        <a class="logo" href="pay.triip.me" title="Triip Pay"></a>
+        <h1 class="title">Welcome to <span style="color: #138d9a;">Thawani</span> Gateway</h1>
+        <p>One of the safest payment gateway in the world</p>
+        <!-- <p>We support mostly all of the cards:</p>
+        <ul class="payment-cards">
+          <li class="visa"></li>
+          <li class="mastercard"></li>
+          <li class="amex"></li>
+          <li class="discover"></li>
+          <li class="paypal"></li>
+        </ul> -->
+        <h2>
+          <div class="label">Payment amount:</div>
+          <span class="amount" style="color: #138d9a;">$500</span>
+        </h2>
+        <br/>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <div class="card" id="card">
+          <div class="card-types">
+            <div class="card_type fa fa-cc-discover" id="discover"></div>
+            <div class="card_type fa fa-cc-amex" id="amex"></div>
+            <div class="card_type fa fa-cc-mastercard" id="mastercard"></div>
+            <div class="card_type fa fa-cc-visa" id="visa"></div>
+          </div>
+          <div class="card-options">
+            <form class="card-details" id="card-form">
+              <div class="form-group">
+                <label for="cc-number">Card Number</label>
+                <input id="cc-number" name="cc-number" class="cc-number" placeholder="XXXX XXXX XXXX XXXX" data-numeric required>
+              </div>
+              <div class="form-group">
+                <label for="cc-name">Card Holder</label>
+                <input id="cc-name" name="cc-name" class="cc-name" placeholder="Name Surname" required>
+              </div>
+              <div class="form-group">
+                <label for="cc-expiry">Expiry</label>
+                <div class="row">
+                  <div class="col-6">
+                    <input class="cc-expiry inline" placeholder="MM/YY" required>
+                  </div>
+                  <div class="col-6">
+                    <input class="cc-cvc" placeholder="CVC" data-numeric required>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="card-confirm">
+            <button id="submit-button" class="button-confirm">
+              <i class="fa fa-lock"></i> Submit
+            </button>
+          </div>
+        </div>
+        <div id="loading" class="loading hidden">
+          <div class="load-8">
+              <div class="line"></div>
+          </div>
+        </div>
+        <div id="success" class="success hidden">
+          <h4>Payment Succeeded !!</h4>
+          <p>Your confirmation code is: <br/><code>AD56346546</code></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<app-project-footer style="position: fixed; left: 0; bottom: 0; width: 100%;"></app-project-footer>

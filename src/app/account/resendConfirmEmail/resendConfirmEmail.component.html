@@ -1,0 +1,24 @@
+<!-- Forget password -->
+<section class="pt-90 ">
+  <div class="container">
+    <div class="row">
+      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 offset-md-3">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <form class="sign-up-htm" name="loginForm" [formGroup]="resendConfirmEmailForm"
+              (submit)="ResendConfirmEmailToken()">
+              <div class="form-group">
+                <label for="email" class="label"> {{'BASE.EMAIL' | translate}}</label>
+                <input id="email" type="text" formControlName="Email" class="form-control">
+              </div>
+              <div class="group">
+                <input type="submit" [disabled]="resendConfirmEmailForm.invalid" class="btn btn-success btn-sm"
+                  value="{{'BASE.SUBMIT' | translate}} ">
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
